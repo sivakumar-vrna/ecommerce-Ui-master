@@ -1,0 +1,21 @@
+<a class="product-card" routerLink="/product/{{data.bookId}}">
+  <img class="pc-img" [src]="data.posterurl" />
+
+  <div class="card-body">
+
+    <h2 class="name">{{data.bookname}}</h2>
+    <h6 class="des">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
+    <h6 class="author">{{data.authorName}}</h6>
+    <button class="add-card" routerLink="/cart">Add to Card</button>
+  </div>
+
+  <b class="pt-2">{{data.bookname}}</b>
+  <div class="d-flex">
+    <ion-icon name="star"></ion-icon>
+    <ion-icon name="star"></ion-icon>
+    <ion-icon name="star"></ion-icon>
+    <ion-icon name="star-half-outline"></ion-icon>
+    <ion-icon name="star-outline"></ion-icon>
+  </div>
+  <small class="pt-1">{{data.authorName}}</small>
+</a>

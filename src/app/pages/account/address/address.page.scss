@@ -1,0 +1,13 @@
+.address-main{
+    padding-bottom: 20vh;
+    .address-card {
+        ion-item {
+            --min-height: 100px;
+    
+            p {
+                margin-top: 10px;
+            }
+        }
+    
+    }
+}

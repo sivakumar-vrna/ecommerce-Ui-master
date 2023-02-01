@@ -1,0 +1,235 @@
+$white: #fff;
+$dark : #222428;
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family:'poppins',sans-serif;
+    box-sizing: border-box;
+}
+.footer-section{
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    background: linear-gradient(to right,#00093c,#2d0b00);
+    // background:  #222428;
+    color: #fff;
+    padding: 50px 0 30px;
+    font-size: 20px;
+    line-height: 20px;
+}
+.footer-text p {
+    margin-bottom: 14px;
+    font-size    : 15px;
+    color        : #7e7e7e;
+    line-height  : 28px;
+}
+.footer-text p a{
+    text-decoration: none;
+}
+.footer-text p:hover{
+    color: #fff;
+}
+
+.footer-widget-heading h3 {
+    color        : #fff;
+    font-size    : 20px;
+    font-weight  : 600;
+    margin-bottom: 40px;
+    position     : relative;
+
+}
+
+
+
+.footer-widget ul li {
+    display      : inline-block;
+    // float        : left;
+    width        :50%;
+    margin-bottom: 12px;
+    cursor       : pointer;
+    font-size    : 15px;
+    line-height: 20px;
+
+}
+
+.footer-widget ul li a:hover {
+    color: $white;
+    cursor: pointer;
+}
+
+.footer-widget ul li a {
+    color         : #878787;
+    text-transform: capitalize;
+    text-decoration: none;
+    padding: 0 10px;
+    position: relative;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    overflow: hidden;
+    padding: 0 10px;
+}
+ul li a:after{
+  content: '';
+  position: absolute;
+  background-color:$white;
+  height: 3px;
+  width: 0;
+  left: 0;
+  bottom: -10px;
+  transition: 0.3s;
+}
+ ul li a:hover:after{
+    width: 100%;
+    overflow: hidden;
+
+}
+.row{
+    width: 85%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.col{
+    flex-basis: 25%;
+    padding: 10px;
+}
+.col:nth-child(2),.col:nth-child(3),.col:nth-child(4){
+    flex-basis: 15%;
+}
+.img-fluid{
+    max-width: 200px;
+    margin-bottom: 30px;
+}
+.col h3{
+    width: fit-content;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+form{
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom:  1px solid #ccc;
+    margin-bottom: 50px;
+}
+form .icon{
+        font-size: 28px;
+        margin-right: 10px;
+}
+
+form input{
+    width: 100%;
+    background: transparent;
+    color: #ccc;
+    border: 0;
+    outline: none;
+}
+form button{
+   background: transparent;
+   border: 0;
+   outline: none;
+   cursor: pointer;
+}
+.social-icon ion-icon{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+ion-icon:hover{
+    scale: 1.3;
+}
+.facebook{
+    color: #3d6cd1;
+}
+
+.twitter {
+    color: #55ACEE;
+}
+
+.google {
+    color: #DD4B39;
+}
+.instagram{
+    background-color: #000;
+    color:#df148e;
+}
+hr{
+    width: 85%;
+    border: 0;
+    border: 1px solid #ccc;
+    border-radius: 1px solid #ccc;
+    margin: 20px auto;
+}
+.copyright{
+    text-align: center;
+    margin   : 0;
+    font-size: 14px;
+    color    : #878787;
+}
+.copyright:hover{
+    color: #fff;
+}
+.underline{
+    width: 100%;
+    height: 5px;
+    background: #767676;
+    border-radius: 3px;
+    position: absolute;
+    top: 25px;
+    left: 0;
+    overflow: hidden;
+
+}
+.underline span{
+    width: 15px;
+    height: 100%;
+    background: #fff;
+    border-radius: 3px;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    animation: moving 2s linear infinite;
+}
+@keyframes moving{
+    0%{
+        left: -20px;
+    }
+    100%{
+        left: 100px;
+    }
+}
+@media (max-width:700px) {
+    footer{
+        bottom: unset;
+    }
+    
+.col{
+    flex-basis: 100%;
+}
+.col:nth-child(2),.col:nth-child(3),.col:nth-child(4){
+    flex-basis: 100%;
+}
+.footer-widget ul li {
+    display      : inline-block;
+    cursor       : pointer;
+    list-style: none;
+    margin-bottom: 12px;
+    width        : 100%;
+    flex-basis: 100%;
+
+
+}
+
+
+
+}

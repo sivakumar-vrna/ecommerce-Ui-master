@@ -1,0 +1,17 @@
+.card-main{
+    padding-bottom: 40vh;
+}
+.saved-cards-main {
+    padding  : 0 5%;
+    max-width: 775px;
+
+    .card-design {
+        --min-height : 75px;
+        --color      : #fff;
+        --background : linear-gradient(90deg, #030303 0%, #dfdfdf 90%, #e6e6e6 100%);
+        width        : 100%;
+        min-width    : 275px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+}

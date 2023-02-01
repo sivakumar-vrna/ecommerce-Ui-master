@@ -1,0 +1,79 @@
+<ion-content>
+  <div class="ion-padding">
+    <ion-breadcrumbs>
+      <ion-breadcrumb routerLink="/">
+        <ion-icon slot="start" name="home"></ion-icon>Home
+      </ion-breadcrumb>
+      <ion-breadcrumb>My Account</ion-breadcrumb>
+    </ion-breadcrumbs>
+    <ion-grid class="account-main">
+      <ion-row>
+        <ion-col size="4">
+          <ion-card routerLink="/account/profile">
+            <ion-item>
+              <ion-thumbnail slot="start">
+                <img src="assets/img/profile.png" />
+              </ion-thumbnail>
+              <ion-label>Profile Information
+                <p>Edit login, name, and mobile number</p>
+              </ion-label>
+            </ion-item>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="4">
+          <ion-card routerLink="/account/cards">
+            <ion-item>
+              <ion-thumbnail slot="start">
+                <img src="assets/img/card.png" />
+              </ion-thumbnail>
+              <ion-label>Saved Cards
+                <p>Edit or add payment methods</p>
+              </ion-label>
+            </ion-item>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="4">
+          <ion-card routerLink="/account/address">
+            <ion-item>
+              <ion-thumbnail slot="start">
+                <img src="assets/img/address.png" />
+              </ion-thumbnail>
+              <ion-label>Address
+                <p>Edit addresses for orders and gifts</p>
+              </ion-label>
+            </ion-item>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="4">
+          <ion-card routerLink="/account/orders">
+            <ion-item>
+              <ion-thumbnail slot="start">
+                <img src="assets/img/orders.png" />
+              </ion-thumbnail>
+              <ion-label>Your Orders
+                <p>Track, return, or buy things again</p>
+              </ion-label>
+            </ion-item>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="4">
+          <ion-card routerLink="/account/wishlist">
+            <ion-item>
+              <ion-thumbnail slot="start">
+                <img src="assets/img/wishlist.png" />
+              </ion-thumbnail>
+              <ion-label>Your Wishlist
+                <p>We never forget your wishes</p>
+              </ion-label>
+            </ion-item>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <app-footer></app-footer>
+</ion-content>

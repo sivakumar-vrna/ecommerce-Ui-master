@@ -1,0 +1,57 @@
+<ion-toolbar>
+  <ion-row>
+    <ion-col size="9" class="my-auto">
+      <div class="d-flex">
+        <img class="ion-padding-horizontal my-auto" src="assets/img/logo-white-1.webp" alt="Book Mart" height="37"
+          routerLink="/" />
+
+        <div class="d-flex delivery-location my-auto pt-1 pe-2">
+          <div class="dl-icon">
+            <ion-icon name="location"></ion-icon>
+          </div>
+          <div class="d-flex flex-column dl-txt">
+            <small>Delivery</small>
+            <small><b>select your location</b></small>
+          </div>
+        </div>
+
+        <div class="box">
+          <input type="checkbox" id="check">
+          <div class="search-box">
+            <input type="text" placeholder="search">
+              <label for="check" class="icon">
+                <ion-icon name="search"></ion-icon>
+              </label>
+            </div>
+        </div>
+        <!-- <ion-searchbar animated="true" color="light"></ion-searchbar> -->
+      </div>
+      
+  
+    </ion-col>
+    <ion-col size="3" class="my-auto ion-text-end">
+      <app-login></app-login>
+      <ion-button fill="clear" id="popover-button" color="dark">Vinoth</ion-button>
+      <ion-popover trigger="popover-button" [dismissOnSelect]="true">
+        <ng-template>
+          <ion-content>
+            <ion-list lines="none">
+              <ion-item [button]="true" [detail]="false" [routerLink]="menu.url" routerLinkActive="side-menu-active"
+                [routerLinkActiveOptions]="{ exact: true }" *ngFor="let menu of profileMenus">
+                <ion-icon [name]="menu.icon" class="ion-padding-end"></ion-icon>{{menu.title}}
+              </ion-item>
+              <ion-item [button]="true" [detail]="false">
+                <ion-icon name="log-out-outline" class="ion-padding-end"></ion-icon> Logout
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-popover>
+
+      <ion-button fill="clear" color="dark" routerLink="/cart">
+        <ion-icon slot="start" name="cart"></ion-icon>
+        Cart <ion-badge class="ms-1">2</ion-badge>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-toolbar>

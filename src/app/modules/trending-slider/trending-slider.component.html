@@ -1,0 +1,12 @@
+<ion-card class="ion-padding ion-margin">
+  <ion-text color="dark">
+    <h2>Bestselling Books</h2>
+  </ion-text>
+  <div class="py-2" id="trending-slider">
+    <swiper #bannerSwiper [config]="config">
+      <ng-template swiperSlide *ngFor="let trending of trendings; index as i">
+        <app-product-card [data]="trending"></app-product-card>
+      </ng-template>
+    </swiper>
+  </div>
+</ion-card>

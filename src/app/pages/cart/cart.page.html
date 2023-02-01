@@ -1,0 +1,101 @@
+<ion-content>
+  <ion-grid class="cart-main ion-padding">
+    <ion-row>
+      <ion-col size="8">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle><b>Deliver to:</b> Vinoth</ion-card-subtitle>
+          </ion-card-header>
+
+          <ion-card-content>
+            <div class="d-flex">
+              <ion-text> Lorem ipsum dolor sit amet, consectetur adipiscing elit, Chennai, India - xxxxxx</ion-text>
+              <a class="ms-auto">Change</a>
+            </div>
+          </ion-card-content>
+        </ion-card>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Shopping Cart</ion-card-title>
+            <ion-card-subtitle>Deselect all items</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-thumbnail slot="start">
+                  <img src="assets/img/1.jpg" />
+                </ion-thumbnail>
+                <ion-label>
+                  <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h4>
+                  <p>Author: Aenean lacinia</p>
+                  <p>Seller: Vivamus</p>
+                </ion-label>
+                <div class="">
+                  <p>Delivery by Mon Dec 5 | Free</p>
+                  <h5>₹650</h5>
+                  <a>Remove</a>
+                </div>
+              </ion-item>
+              <ion-item lines="none">
+                <ion-checkbox slot="start"></ion-checkbox>
+                <ion-thumbnail slot="start">
+                  <img src="assets/img/2.jpg" />
+                </ion-thumbnail>
+                <ion-label>
+                  <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h4>
+                  <p>Author: Aenean lacinia</p>
+                  <p>Seller: Vivamus</p>
+                </ion-label>
+                <div class="">
+                  <p>Delivery by Mon Dec 5 | Free</p>
+                  <h5>₹650</h5>
+                  <a>Remove</a>
+                </div>
+              </ion-item>
+
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="4">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Price Details</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item lines="none">
+                <ion-label>Subtotal (2 items):</ion-label>
+                <p>₹650.00</p>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Delivery Charges</ion-label>
+                <p>FREE</p>
+              </ion-item>
+
+              <ion-item lines="none">
+                <ion-label>Total Amount</ion-label>
+                <b>₹650.00</b>
+              </ion-item>
+
+              <ion-item lines="none">
+                <ion-label>
+                  <ion-button expand="full" color="dark" routerLink="/checkout">Place Order</ion-button>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <!-- Trending Slider Here -->
+  <app-trending-slider></app-trending-slider>
+
+  <!-- Footer -->
+  <app-footer></app-footer>
+
+</ion-content>

@@ -1,0 +1,202 @@
+{
+    "status": "SUCCESS",
+    "statusCode": "200",
+    "message": null,
+    "data": [
+        {
+            "bookId": 90,
+            "partnerId": 0,
+            "topicId": 0,
+            "status": "A",
+            "workflowId": 898855,
+            "approvedBy": 0,
+            "bookname": "Sathesh Book",
+            "originCountry": "string",
+            "certificate": true,
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis dui id nisi posuere, vel viverra purus lacinia. Donec at erat justo. Proin posuere viverra dolor, id faucibus urna hendrerit nec. Fusce eget finibus justo. Nunc quis dignissim elit. Morbi consectetur in turpis quis rutrum.",
+            "details": "string",
+            "originLanguage": "string",
+            "posterurl": "/assets/img/1.jpg",
+            "landscapeUrl": "string",
+            "trailerurl": "string",
+            "bannerurl": "assets/img/878_generated.jpg",
+            "onlinePercent": 0,
+            "duration": "string",
+            "durationperweek": "string",
+            "durationperday": "string",
+            "bookYear": "string",
+            "experienceRating": "string",
+            "level": "string",
+            "authorName": "Mandel Raqif",
+            "authorComments": [
+                "string"
+            ],
+            "outcomes": [
+                "string"
+            ],
+            "faq": [
+                "string"
+            ],
+            "curriculam": [
+                "string"
+            ],
+            "expectedMoney": "string",
+            "isBanner": "true",
+            "isTrending": "string",
+            "isFeatured": "string",
+            "comment": "string",
+            "date": "2023-01-26T14:06:56.116+00:00",
+            "effectiveDate": "2023-01-02T02:57:10.279+00:00",
+            "expiryDate": "2023-12-12T02:57:10.279+00:00",
+            "userRating": 0,
+            "appRating": 0,
+            "cost": "string",
+            "currency": "string",
+            "subtitles": [
+                "string"
+            ],
+            "audiolanguages": [
+                "string"
+            ],
+            "category": [
+                0
+            ],
+            "categoryDesc": [
+                "string"
+            ],
+            "countriesAccess": [
+                "IN"
+            ]
+        },
+        {
+            "bookId": 90,
+            "partnerId": 0,
+            "topicId": 0,
+            "status": "A",
+            "workflowId": 898855,
+            "approvedBy": 0,
+            "bookname": "Sathesh Book",
+            "originCountry": "string",
+            "certificate": true,
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis dui id nisi posuere, vel viverra purus lacinia. Donec at erat justo. Proin posuere viverra dolor, id faucibus urna hendrerit nec. Fusce eget finibus justo. Nunc quis dignissim elit. Morbi consectetur in turpis quis rutrum.",
+            "details": "string",
+            "originLanguage": "string",
+            "posterurl": "/assets/img/2.jpg",
+            "landscapeUrl": "string",
+            "trailerurl": "string",
+            "bannerurl": "assets/img/887_generated.jpg",
+            "onlinePercent": 0,
+            "duration": "string",
+            "durationperweek": "string",
+            "durationperday": "string",
+            "bookYear": "string",
+            "experienceRating": "string",
+            "level": "string",
+            "authorName": "Mandel Raqif",
+            "authorComments": [
+                "string"
+            ],
+            "outcomes": [
+                "string"
+            ],
+            "faq": [
+                "string"
+            ],
+            "curriculam": [
+                "string"
+            ],
+            "expectedMoney": "string",
+            "isBanner": "true",
+            "isTrending": "string",
+            "isFeatured": "string",
+            "comment": "string",
+            "date": "2023-01-26T14:06:56.116+00:00",
+            "effectiveDate": "2023-01-02T02:57:10.279+00:00",
+            "expiryDate": "2023-12-12T02:57:10.279+00:00",
+            "userRating": 0,
+            "appRating": 0,
+            "cost": "string",
+            "currency": "string",
+            "subtitles": [
+                "string"
+            ],
+            "audiolanguages": [
+                "string"
+            ],
+            "category": [
+                0
+            ],
+            "categoryDesc": [
+                "string"
+            ],
+            "countriesAccess": [
+                "IN"
+            ]
+        },
+        {
+            "bookId": 90,
+            "partnerId": 0,
+            "topicId": 0,
+            "status": "A",
+            "workflowId": 898855,
+            "approvedBy": 0,
+            "bookname": "Sathesh Book",
+            "originCountry": "string",
+            "certificate": true,
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis dui id nisi posuere, vel viverra purus lacinia. Donec at erat justo. Proin posuere viverra dolor, id faucibus urna hendrerit nec. Fusce eget finibus justo. Nunc quis dignissim elit. Morbi consectetur in turpis quis rutrum.",
+            "details": "string",
+            "originLanguage": "string",
+            "posterurl": "/assets/img/2.jpg",
+            "landscapeUrl": "string",
+            "trailerurl": "string",
+            "bannerurl": "assets/img/900_generated.jpg",
+            "onlinePercent": 0,
+            "duration": "string",
+            "durationperweek": "string",
+            "durationperday": "string",
+            "bookYear": "string",
+            "experienceRating": "string",
+            "level": "string",
+            "authorName": "Mandel Raqif",
+            "authorComments": [
+                "string"
+            ],
+            "outcomes": [
+                "string"
+            ],
+            "faq": [
+                "string"
+            ],
+            "curriculam": [
+                "string"
+            ],
+            "expectedMoney": "string",
+            "isBanner": "true",
+            "isTrending": "string",
+            "isFeatured": "string",
+            "comment": "string",
+            "date": "2023-01-26T14:06:56.116+00:00",
+            "effectiveDate": "2023-01-02T02:57:10.279+00:00",
+            "expiryDate": "2023-12-12T02:57:10.279+00:00",
+            "userRating": 0,
+            "appRating": 0,
+            "cost": "string",
+            "currency": "string",
+            "subtitles": [
+                "string"
+            ],
+            "audiolanguages": [
+                "string"
+            ],
+            "category": [
+                0
+            ],
+            "categoryDesc": [
+                "string"
+            ],
+            "countriesAccess": [
+                "IN"
+            ]
+        }
+    ]
+}

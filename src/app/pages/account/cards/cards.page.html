@@ -1,0 +1,28 @@
+<ion-content>
+  <div class="ion-padding card-main">
+    <ion-breadcrumbs>
+      <ion-breadcrumb routerLink="/">
+        <ion-icon slot="start" name="home"></ion-icon>Home
+      </ion-breadcrumb>
+      <ion-breadcrumb routerLink="/account">My Account</ion-breadcrumb>
+      <ion-breadcrumb>Cards</ion-breadcrumb>
+    </ion-breadcrumbs>
+    <ion-list class="mx-auto saved-cards-main" lines="none">
+      <ion-item class="card-design" *ngFor="let card of cardData">
+        <ion-icon name="card" slot="start" color="light"></ion-icon>
+        <ion-label class="ion-text-end" color="dark">**** **** **** {{card.cardNo}}</ion-label>
+        <ion-button fill="clear">
+          <ion-icon name="trash" color="danger"></ion-icon>
+        </ion-button>
+        
+      </ion-item>
+      <ion-item class="add-card-design">
+        <ion-button class="m-auto" fill="clear" size="large">
+          <ion-icon name="add-circle"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <app-footer></app-footer>
+</ion-content>

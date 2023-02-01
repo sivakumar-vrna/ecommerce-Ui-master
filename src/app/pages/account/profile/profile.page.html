@@ -1,0 +1,81 @@
+<ion-content>
+  <div class="ion-padding">
+    <ion-breadcrumbs>
+      <ion-breadcrumb routerLink="/">
+        <ion-icon slot="start" name="home"></ion-icon>Home
+      </ion-breadcrumb>
+      <ion-breadcrumb routerLink="/account">My Account</ion-breadcrumb>
+      <ion-breadcrumb>Profile</ion-breadcrumb>
+    </ion-breadcrumbs>
+    <ion-card>
+      <ion-card-content>
+        <ion-row>
+          <!-- First Name -->
+          <ion-col class="ion-padding-vertical" size="6">
+            <label class="form-label">First Name</label>
+            <ion-item class="form-control" lines="none">
+              <ion-input autofocus="true" clearInput="true" type="text" maxlength="55" required="true"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <!-- Last Name -->
+          <ion-col class="ion-padding-vertical" size="6">
+            <label class="form-label">Last Name</label>
+            <ion-item class="form-control" lines="none">
+              <ion-input autofocus="true" clearInput="true" type="text" maxlength="55" required="true"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <!-- Phone -->
+          <ion-col class="ion-padding-vertical" size="6">
+            <label class="form-label">Phone</label>
+            <ion-item class="form-control" lines="none">
+              <ion-input autofocus="true" clearInput="true" type="text" maxlength="55" required="true"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <!-- Email -->
+          <ion-col class="ion-padding-vertical" size="6">
+            <label class="form-label">Email</label>
+            <ion-item class="form-control" lines="none">
+              <ion-input autofocus="true" inputmode="email" clearInput="true" type="email" maxlength="55"
+                required="true"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <!-- Gender -->
+          <ion-col class="ion-padding-vertical" size="6">
+            <label class="form-label">Gender</label>
+            <ion-item class="form-control" lines="none">
+              <ion-radio-group>
+                <div class="d-flex">
+                  <ion-radio value="1"></ion-radio>
+                  <ion-label class="my-auto">
+                    <p class="my-auto ps-2">Female</p>
+                  </ion-label>
+                </div>
+                <div class="d-flex">
+                  <ion-radio value="2"></ion-radio>
+                  <ion-label class="my-auto">
+                    <p class="my-auto ps-2">Male</p>
+                  </ion-label>
+                </div>
+                <div class="d-flex">
+                  <ion-radio value="3"></ion-radio>
+                  <ion-label class="my-auto">
+                    <p class="my-auto ps-2">Transgender</p>
+                  </ion-label>
+                </div>
+              </ion-radio-group>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12" class="ion-text-end">
+            <ion-button>Submit</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <app-footer></app-footer>
+</ion-content>

@@ -1,0 +1,52 @@
+<ion-content [fullscreen]="true">
+  <app-banner></app-banner>
+
+  <ion-grid class="ion-padding">
+    <ion-row>
+      <ion-col size="12">
+        <div class="d-flex w-100">
+          <ion-text color="dark">
+            <h2>Trending Books</h2>
+          </ion-text>
+          <ion-button class="ms-auto" shape="round" color="dark" routerLink="/all-books">View All</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <swiper #bookSwiper [config]="config">
+      <ng-template swiperSlide *ngFor="let book of trendings; index as i">
+        <app-product-card [data]="book"></app-product-card>
+         <ion-col size="2" *ngFor="let book of trendings"></ion-col>
+      </ng-template>
+    </swiper>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="ion-padding">
+    <ion-row>
+      <ion-col size="12">
+        <div class="d-flex w-100">
+          <ion-text color="dark">
+            <h2>Latest Books</h2>
+          </ion-text>
+          <ion-button class="ms-auto btn" shape="round" color="dark" routerLink="/all-books">View All</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <swiper #bookSwiper [config]="config">
+        <ng-template swiperSlide *ngFor="let book of latest; index as i">
+          <app-product-card [data]="book"></app-product-card>
+          <ion-col size="2" *ngFor="let book of latest"></ion-col>
+      </ng-template>
+      </swiper>
+    </ion-row>
+  </ion-grid>
+
+  <ion-row *ngIf="!trendings">
+    <ion-col *ngFor="let load of [1, 2, 3, 4, 5, 6, 7]" class="p-1" size="6" size-sm="6" size-md="4" size-xl="4">
+      <ion-skeleton-text animated style="width: 100%; height: 225px;"></ion-skeleton-text>
+    </ion-col>
+  </ion-row>
+
+  <app-footer></app-footer>
+</ion-content>
