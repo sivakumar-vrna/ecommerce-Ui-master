@@ -3,14 +3,14 @@ import { CardData } from 'src/app/shared/models/card.model';
 import { SwiperOptions } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
 // import Swiper core and required modules
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import SwiperCore, { Autoplay,Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { ErrorService } from 'src/app/shared/services/error.service';
 import { OrchestrationService } from 'src/app/shared/services/orchestration/orchestration.service';
 import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
 import { Book } from 'src/app/shared/models/book.model';
 
 // install Swiper modules
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+SwiperCore.use([Autoplay,Navigation, Pagination, Scrollbar, A11y]);
 
 @Component({
   selector: 'app-trending-slider',
@@ -26,10 +26,11 @@ export class TrendingSliderComponent implements OnInit {
     slidesPerView: 5,
     spaceBetween: 15,
     preloadImages: true,
-    loop: true,
-    navigation: true,
-    pagination: { clickable: true },
+    // loop: true,
+    // navigation: true,
+    // pagination: { clickable: true },
     scrollbar: false,
+    autoplay:true
   };
   @ViewChild('bannerSwiper', { static: false }) swiper?: SwiperComponent;
   constructor(
@@ -56,5 +57,13 @@ export class TrendingSliderComponent implements OnInit {
         this.errorService.onError(error);
       }
     });
+  }
+  
+  ngAfterContentChecked(): void {
+    if(this.swiper)
+    {
+      this.swiper.updateSwiper({})
+      this.swiper.swiperRef.autoplay.start();
+    }
   }
 }

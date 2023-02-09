@@ -23,6 +23,7 @@ export class AllBooksPage implements OnInit {
   onGetBooks() {
     this.orchService.getBooks().subscribe({
       next: (res: any) => {
+        // alert(res)
         if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {
           this.books = res.data;
           console.log(this.books)

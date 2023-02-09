@@ -13,13 +13,17 @@ SwiperCore.use([Autoplay,Navigation, Pagination, Scrollbar, A11y]);
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
+  
   encapsulation: ViewEncapsulation.None,
 
 })
 export class HomePage implements OnInit {
   trendings: Book[];
   latest: Book[];
-  featured:Book[];
+  featured: Book[];
+  bookid:any;
+  
+  
   
   config: SwiperOptions = {
     slidesPerView: 5,
@@ -42,6 +46,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.onGetLatest();
     this.onGetTrending();
+    this.onGetfeatured();
   }
 
   onGetLatest() {
@@ -59,6 +64,17 @@ export class HomePage implements OnInit {
       }
     });
   }
+  
+  
+   
+//   ngAfterContentChecked(): void {
+//     if(this.swiper)
+//     {
+//       this.swiper.updateSwiper({})
+//       this.swiper.swiperRef.autoplay.start();
+//     }
+
+// }
 
   onGetTrending() {
     this.orchService.getTrending().subscribe({
@@ -76,13 +92,22 @@ export class HomePage implements OnInit {
     });
   }
 
-   
-  ngAfterContentChecked(): void {
-    if(this.swiper)
-    {
-      this.swiper.updateSwiper({})
-      this.swiper.swiperRef.autoplay.start();
-    }
+  
+  onGetfeatured() {
+    this.orchService.getfeatured().subscribe({
+      next: (res: any) => {
+        if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {
+          this.featured = res.data;
+          console.log(this.featured)
+        } else {
+          this.errorService.onError(res);
+        }
+      },
+      error: error => {
+        this.errorService.onError(error);
+      }
+    });
+  }
 
-}
+  
 }

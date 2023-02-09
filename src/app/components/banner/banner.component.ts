@@ -3,6 +3,7 @@ import { ErrorService } from 'src/app/shared/services/error.service';
 import { OrchestrationService } from 'src/app/shared/services/orchestration/orchestration.service';
 import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
 
+
 // #importing Swiper core and required modules
 import { SwiperOptions } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
@@ -17,13 +18,18 @@ SwiperCore.use([Virtual, Navigation, Pagination, A11y,Autoplay]);
   styleUrls: ['./banner.component.scss'],
   encapsulation: ViewEncapsulation.None,
   providers: [
-    OrchestrationService
+    OrchestrationService,
   ]
 })
 export class BannerComponent implements OnInit {
   @Input() bannerData: any[];
   showBanner = false;
+  dataSource: any[] = [];
+  messageid:any[] = [] ;
+  loading = false;
+  country:['IN'];
   placeholder = 'assets/images/placeholder-banner.webp';
+ 
 
   config: SwiperOptions = {
     slidesPerView: 1,
@@ -41,14 +47,15 @@ export class BannerComponent implements OnInit {
     private orchService: OrchestrationService,
     public toast: ToastWidget,
     private errorService: ErrorService) { }
-
   ngOnInit() {
     this.onGetBanners();
+    // this.getDataSource() 
   }
 
   onGetBanners() {
-    this.orchService.getBanner().subscribe({
+    this.orchService.getBanner(this.country).subscribe({
       next: (res: any) => {
+        
         if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {
           this.bannerData = res.data;
           console.log(this.bannerData)
@@ -61,7 +68,7 @@ export class BannerComponent implements OnInit {
       }
     });
   }
-   
+  
   ngAfterContentChecked(): void {
     if(this.swiper)
     {
@@ -70,4 +77,42 @@ export class BannerComponent implements OnInit {
     }
 
 }
+
+
+
+
+
+// getDataSource(){
+ 
+ 
+// this.orchService.getBanner().subscribe({
+  
+//   next: (res:any) => {
+//     console.log(res);
+//     if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {
+//       this.dataSource = res.data;
+//       this.dataSource?.map((messageid: any) => {
+//         this.messageid?.forEach((message: any) => {
+//           // console.log(res.data.status);
+//           if (messageid === message) {
+//             messageid['message'] = message;
+//           }
+//          });
+//       });
+      
+//     } else {
+//       // this.toast.show('error', res.status, res.message);
+//     }
+//   },
+//   complete: () => {
+//   console.log('refresh complete');
+// },
+
+
+//   error: error => {
+//     console.error(error);
+//     // this.toast.show('error', 'Failed', error.statusText);
+//   }
+// })
+// }
 }

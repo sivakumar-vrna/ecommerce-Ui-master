@@ -9,8 +9,7 @@ import { ProductCardModule } from 'src/app/components/product-card/product-card.
 import { BannerModule } from 'src/app/components/banner/banner.module';
 import { FooterModule } from 'src/app/layout/footer/footer.module';
 import { SwiperModule } from 'swiper/angular';
-
-
+import { TopbarModule } from 'src/app/layout/topbar/topbar.module';
 
 @NgModule({
   imports: [
@@ -21,7 +20,8 @@ import { SwiperModule } from 'swiper/angular';
     ProductCardModule,
     BannerModule,
     FooterModule,
-    SwiperModule
+    SwiperModule,
+    TopbarModule
   ],
   declarations: [HomePage]
 })

@@ -8,12 +8,18 @@
       width: max-content;
     }
   }
- 
+ img{
+  cursor: pointer;
+ } 
+ .toggle{
+  position:relative;
+  bottom: -20px;
+ }
 .box{
   max-width: 500px;
   width: 100%;
   position: relative;
-  left: 30%;
+  left: 35%;
 
 }
 .box .search-box{
@@ -62,6 +68,7 @@
   color: #fff;
   width: 60px;
   border-radius: 0 25px 25px 0;
+  text-align: center;
 
 }
 #check{
@@ -71,8 +78,31 @@
 @media (max-width:700px){
   .box{
     flex-basis: auto;
-    position: absolute;
+    position:absolute;
+    left: -0.5%;
+    top: 100%;
   }
+  ion-toolbar{
+    position:relative;
+    width: 100%;
+  }
+  .delivery-location {
+    flex-basis: auto;
+  }
+  img{
+    position:relative;
+    top: -80%;
+
+  }
+  .list{
+    position:relative;
+    // padding-inline: 30%;
+    // background: red;
+    width: 100%;
+    height: 100%;
+    display      : inline-block;
+
+}
 }
 
 

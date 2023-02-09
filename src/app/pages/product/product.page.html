@@ -38,7 +38,12 @@
         <ion-col size="3">
           <ion-card>
             <ion-card-header>
-              <ion-card-title>₹399.00</ion-card-title>
+              <ion-card-title>
+                <!-- <p class="total-price">
+                   <span> <ion-icon name="logo-usd"></ion-icon></span>
+                   <span id="gtybox">3</span>
+                </p> -->
+                ₹399.00</ion-card-title>
               <ion-card-subtitle>Inclusive of all taxes</ion-card-subtitle>
             </ion-card-header>
 
@@ -46,13 +51,15 @@
               FREE delivery Today by 10 PM.
               <ion-list>
                 <ion-item>
-                  <ion-label>Quantity</ion-label>
-                  <ion-select interface="popover" value="1">
-                    <ion-select-option value="1">1</ion-select-option>
-                    <ion-select-option value="2">2</ion-select-option>
-                    <ion-select-option value="3">3</ion-select-option>
-                    <ion-select-option value="4">4</ion-select-option>
-                    <ion-select-option value="5">5</ion-select-option>
+                  <ion-label >Quantity</ion-label>
+                  <ion-select  (click)="incrementQuantity(book)"  interface="popover" value="1">
+                    <ion-select-option   value="1">1</ion-select-option>
+                    <ion-select-option   value="2">2</ion-select-option>
+                    <ion-select-option   value="3">3</ion-select-option>
+                    <ion-select-option   value="4">4</ion-select-option>
+                    <ion-select-option   value="5">5</ion-select-option>
+                    <ion-select-option   value="6">6</ion-select-option>
+
                   </ion-select>
                 </ion-item>
               </ion-list>
@@ -67,3 +74,13 @@
   <app-trending-slider></app-trending-slider>
   <app-footer></app-footer>
 </ion-content>
+
+<script>
+     
+  let addbtn = document.querySelector('#add');
+  let gty = document.querySelector('#gtybox');
+  addbtn.addEventListener('click',()=>{
+    gty.value = parseInt(gty.value)
+    console.log(gty)
+  })
+</script>

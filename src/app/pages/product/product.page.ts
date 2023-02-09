@@ -5,6 +5,7 @@ import { Book } from 'src/app/shared/models/book.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 import { OrchestrationService } from 'src/app/shared/services/orchestration/orchestration.service';
 import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
+import { CartPage } from '../cart/cart.page';
 
 @Component({
   selector: 'app-product',
@@ -45,4 +46,11 @@ export class ProductPage implements OnInit {
       }
     });
   }
+
+
+  incrementQuantity(book){
+   this.orchService.getBooks();
+
+  }
+  
 }

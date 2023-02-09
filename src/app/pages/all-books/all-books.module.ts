@@ -10,6 +10,9 @@ import { AllBooksPage } from './all-books.page';
 import { ProductCardModule } from 'src/app/components/product-card/product-card.module';
 
 @NgModule({
+  exports: [
+    AllBooksPage
+  ],
   imports: [
     CommonModule,
     FormsModule,
