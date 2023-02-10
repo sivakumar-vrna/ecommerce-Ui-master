@@ -31,8 +31,8 @@ export class ProductPage implements OnInit {
     console.log(this.movieId)
     this.onProductDetails();
   }
-  onProductDetails() {
-    this.orchService.getBooks().subscribe({
+  async onProductDetails() {
+    (await this.orchService.getBooks()).subscribe({
       next: (res: any) => {
         if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {
           this.book = res.data.find((e: Book) => e.bookId == this.movieId);
@@ -52,5 +52,5 @@ export class ProductPage implements OnInit {
    this.orchService.getBooks();
 
   }
-  
+
 }

@@ -20,8 +20,8 @@ export class AllBooksPage implements OnInit {
   ngOnInit() {
     this.onGetBooks();
   }
-  onGetBooks() {
-    this.orchService.getBooks().subscribe({
+  async onGetBooks() {
+    (await this.orchService.getBooks()).subscribe({
       next: (res: any) => {
         // alert(res)
         if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {

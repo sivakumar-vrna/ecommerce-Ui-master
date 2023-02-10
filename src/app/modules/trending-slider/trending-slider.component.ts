@@ -43,8 +43,8 @@ export class TrendingSliderComponent implements OnInit {
     this.onGetTrending();
   }
 
-  onGetTrending() {
-    this.orchService.getTrending().subscribe({
+  async onGetTrending() {
+    (await this.orchService.getTrending()).subscribe({
       next: (res: any) => {
         if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {
           this.trendings = res.data;
@@ -58,7 +58,7 @@ export class TrendingSliderComponent implements OnInit {
       }
     });
   }
-  
+
   ngAfterContentChecked(): void {
     if(this.swiper)
     {

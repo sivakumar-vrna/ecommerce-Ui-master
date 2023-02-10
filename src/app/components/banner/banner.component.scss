@@ -1,0 +1,113 @@
+#banner-main {
+  height: fit-content;
+  justify-content: center;
+  .swiper-slide {
+
+      .banner-img {
+          margin: 1px auto;
+          justify-content: center;
+          img {
+              justify-content: center;
+              border-radius: 20px;
+              box-shadow   : 0 0.225rem 0.29rem rgb(0 0 0);
+          }
+      }
+  }
+
+  @media only screen and (max-width: 1200px) {
+      .swiper {
+
+          .swiper-button-prev,
+          .swiper-button-next,
+          .swiper-pagination {
+              display: none;
+          }
+      }
+
+      .swiper-slide {
+          //margin-bottom: 10px;
+      }
+  }
+
+  @media only screen and (min-width: 1200px) {
+      .swiper {
+
+          .swiper-button-prev,
+          .swiper-button-next {
+
+              &:after {
+                  color: var(--ion-color-warning);
+              }
+          }
+
+          .swiper-button-prev {
+              height: 100%;
+              margin: auto 0;
+              top   : 0;
+              bottom: 0;
+              width : 7rem;
+              left  : 0;
+
+              &:hover {
+                  background: linear-gradient(270deg, rgba(2, 0, 36, 0) 20%, rgba(1, 0, 15, 0.5) 50%, rgba(0, 0, 0, 0.7) 100%);
+              }
+          }
+
+          .swiper-button-next {
+              height: 100%;
+              margin: auto 0;
+              top   : 0;
+              bottom: 0;
+              width : 7rem;
+              right : 0;
+
+              &:hover {
+                  background: linear-gradient(90deg, rgba(2, 0, 36, 0) 20%, rgba(1, 0, 15, 0.5) 50%, rgba(0, 0, 0, 0.7) 100%);
+              }
+          }
+      }
+  }
+
+  .swiper-slide {
+      //margin-bottom: 2em;
+  }
+
+}
+
+.align-center{
+  justify-content: center;
+  color: rgb(253, 251, 251);
+  width: 100%;
+  text-align: center;
+  padding-top: 45%;
+}
+
+.cols{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.container{
+  width: 135pt;
+  height: 150px;
+  background: linear-gradient(rgb(24 37 44),black);
+  border-radius: 9px;
+  text-align: center;
+  vertical-align: middle;
+  margin: 2px;
+  font-size: 16px;
+
+}
+
+ion-modal.genre-modal{
+  --max-width : 1000px;
+  --min-width: 1080%;
+  max-width : 1000px;
+  min-width: 100%;
+
+}
+
+
+
+

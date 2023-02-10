@@ -13,7 +13,7 @@ SwiperCore.use([Autoplay,Navigation, Pagination, Scrollbar, A11y]);
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  
+
   encapsulation: ViewEncapsulation.None,
 
 })
@@ -22,9 +22,9 @@ export class HomePage implements OnInit {
   latest: Book[];
   featured: Book[];
   bookid:any;
-  
-  
-  
+
+
+
   config: SwiperOptions = {
     slidesPerView: 5,
     spaceBetween: 30,
@@ -49,8 +49,8 @@ export class HomePage implements OnInit {
     this.onGetfeatured();
   }
 
-  onGetLatest() {
-    this.orchService.getLatest().subscribe({
+  async onGetLatest() {
+    (await this.orchService.getLatest()).subscribe({
       next: (res: any) => {
         if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {
           this.latest = res.data;
@@ -64,9 +64,9 @@ export class HomePage implements OnInit {
       }
     });
   }
-  
-  
-   
+
+
+
 //   ngAfterContentChecked(): void {
 //     if(this.swiper)
 //     {
@@ -76,8 +76,8 @@ export class HomePage implements OnInit {
 
 // }
 
-  onGetTrending() {
-    this.orchService.getTrending().subscribe({
+async onGetTrending() {
+  (await this.orchService.getTrending()).subscribe({
       next: (res: any) => {
         if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {
           this.trendings = res.data;
@@ -92,9 +92,9 @@ export class HomePage implements OnInit {
     });
   }
 
-  
-  onGetfeatured() {
-    this.orchService.getfeatured().subscribe({
+
+  async onGetfeatured() {
+    (await this.orchService.getfeatured()).subscribe({
       next: (res: any) => {
         if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {
           this.featured = res.data;
@@ -109,5 +109,5 @@ export class HomePage implements OnInit {
     });
   }
 
-  
+
 }

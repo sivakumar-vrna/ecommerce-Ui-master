@@ -134,10 +134,10 @@ export class HttpService {
   }
 
   async header() {
-    const userName = await this.userService.getEmail();
-    const macAddress = await this.userService.getUniqueId();
-    const authorization = await this.userService.getCurrentToken();
-    let country = await this.userService.getCountryCode();
+    //const userName = await this.userService.getEmail();
+    //const macAddress = await this.userService.getUniqueId();
+    //const authorization = await this.userService.getCurrentToken();
+    //let country = await this.userService.getCountryCode();
 
     // if (country === null || country === undefined) {
     //   await this.locationService.getLocationPopover().then(async () => {
@@ -151,10 +151,10 @@ export class HttpService {
       // macAddress: macAddress,
       // Authorization: authorization,
       // country: country,
-      // userName:satheshjkv@gmail.com,
-      // macAddress:123456789,
-      // authToken:YTUzYzM1NTQtZGFkYi00ZjI3LWJlN2YtZTFjZmVjZDRiY2M3,
-      // country:IN,
+       'userName':'satheshjkv@gmail.com',
+       'macAddress':'123456789',
+       'authToken':'YTUzYzM1NTQtZGFkYi00ZjI3LWJlN2YtZTFjZmVjZDRiY2M3',
+       'country':'IN',
     };
     return headers;
   }
