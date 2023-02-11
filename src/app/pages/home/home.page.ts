@@ -6,6 +6,12 @@ import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
 import { SwiperOptions } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, { Autoplay,Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { environment } from 'src/environments/environment';
+import { isPlatform } from '@ionic/core';
+import { BookDetailsService } from '../book-details/book-details.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
+
 
 SwiperCore.use([Autoplay,Navigation, Pagination, Scrollbar, A11y]);
 
@@ -22,6 +28,7 @@ export class HomePage implements OnInit {
   latest: Book[];
   featured: Book[];
   bookid:any;
+  domainUrl: string;
 
 
 
@@ -40,14 +47,39 @@ export class HomePage implements OnInit {
   constructor(
     private orchService: OrchestrationService,
     public toast: ToastWidget,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private bookDetailsService:BookDetailsService,
+    private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnInit() {
     this.onGetLatest();
     this.onGetTrending();
     this.onGetfeatured();
+  
+  
+    if (isPlatform('capacitor')) {
+      this.domainUrl = environment.capaciorUrl;
+    } else {
+      this.domainUrl = window.location.origin;
+    }
+    this.triggerHomeData();
+    this.route.queryParams.subscribe((params) => {
+      const bookId = params['id'];
+      if (bookId) {
+        this.bookDetailsService.bookDetailsModal(bookId);
+      }
+    });
   }
+  triggerHomeData() {
+    // this.homeService.getBannerData();
+    // this.homeService.getContinueWatchData();
+    // this.homeService.getFavouriteData();
+    // this.homeService.getRentedData();
+    // this.homeService.getHomeData();
+  }
+
 
   async onGetLatest() {
     (await this.orchService.getLatest()).subscribe({

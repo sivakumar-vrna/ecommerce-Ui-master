@@ -52,7 +52,7 @@
               <ion-list>
                 <ion-item>
                   <ion-label >Quantity</ion-label>
-                  <ion-select  (click)="incrementQuantity(book)"  interface="popover" value="1">
+                  <ion-select  interface="popover" value="1">
                     <ion-select-option   value="1">1</ion-select-option>
                     <ion-select-option   value="2">2</ion-select-option>
                     <ion-select-option   value="3">3</ion-select-option>
@@ -63,7 +63,7 @@
                   </ion-select>
                 </ion-item>
               </ion-list>
-              <ion-button expand="block" color="dark">Add to Cart</ion-button>
+              <ion-button expand="block" color="dark" routerLink="/cart">Add to Cart<ion-icon name="cart" slot="end"></ion-icon></ion-button>
               <ion-button expand="block" color="warning" routerLink="/checkout">Buy Now</ion-button>
             </ion-card-content>
           </ion-card>
@@ -75,12 +75,3 @@
   <app-footer></app-footer>
 </ion-content>
 
-<script>
-     
-  let addbtn = document.querySelector('#add');
-  let gty = document.querySelector('#gtybox');
-  addbtn.addEventListener('click',()=>{
-    gty.value = parseInt(gty.value)
-    console.log(gty)
-  })
-</script>

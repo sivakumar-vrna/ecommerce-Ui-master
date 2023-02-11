@@ -19,9 +19,10 @@
             <ion-card-title>Shopping Cart</ion-card-title>
             <ion-card-subtitle>Deselect all items</ion-card-subtitle>
           </ion-card-header>
-          <ion-card-content>
+
+           <ion-card-content> 
             <ion-list>
-              <ion-item>
+              <!-- <ion-item>
                 <ion-checkbox slot="start"></ion-checkbox>
                 <ion-thumbnail slot="start">
                   <img src="assets/img/1.jpg" />
@@ -34,23 +35,25 @@
                 <div class="">
                   <p>Delivery by Mon Dec 5 | Free</p>
                   <h5>₹650</h5>
-                  <a>Remove</a>
+                  <ion-button class="ion-minus-circled" fill="outline"  >Remove </ion-button>
                 </div>
-              </ion-item>
-              <ion-item lines="none">
+              </ion-item>  -->
+
+              <ion-item lines="none"  >
                 <ion-checkbox slot="start"></ion-checkbox>
                 <ion-thumbnail slot="start">
-                  <img src="assets/img/2.jpg" />
+                  <img  [src]="book.posterurl"/>
                 </ion-thumbnail>
                 <ion-label>
-                  <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h4>
-                  <p>Author: Aenean lacinia</p>
+                  <h4>{{book.bookname}}.</h4>
+                  <p>Author: {{book.authorName}}</p>
                   <p>Seller: Vivamus</p>
                 </ion-label>
                 <div class="">
                   <p>Delivery by Mon Dec 5 | Free</p>
                   <h5>₹650</h5>
-                  <a>Remove</a>
+                  <ion-button class="ion-minus-circled"  fill="outline">Remove</ion-button>
+
                 </div>
               </ion-item>
 

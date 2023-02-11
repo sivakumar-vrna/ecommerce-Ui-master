@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Book } from 'src/app/shared/models/book.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 import { OrchestrationService } from 'src/app/shared/services/orchestration/orchestration.service';
 import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
-import { CartPage } from '../cart/cart.page';
+import { ModalController } from '@ionic/angular';
+
+
+
 
 @Component({
   selector: 'app-product',
@@ -13,6 +16,10 @@ import { CartPage } from '../cart/cart.page';
   styleUrls: ['./product.page.scss'],
 })
 export class ProductPage implements OnInit {
+  @Input() data: Book;
+  cart = [];
+  products = [];
+  // cartItemCount: BehaviorSubject<number>;
   movieId: number;
   routeSub: Subscription;
   book: Book;
@@ -20,7 +27,8 @@ export class ProductPage implements OnInit {
     private route: ActivatedRoute,
     private orchService: OrchestrationService,
     public toast: ToastWidget,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private modalCtrl: ModalController
   ) {
     this.routeSub = this.route.params.subscribe(params => {
       this.movieId = params['id']; // Movie id is captured here
@@ -52,5 +60,6 @@ export class ProductPage implements OnInit {
    this.orchService.getBooks();
 
   }
+
 
 }

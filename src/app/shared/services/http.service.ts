@@ -15,6 +15,7 @@ import { ErrorService } from './error.service';
   providedIn: 'root',
 })
 export class HttpService {
+  post: any;
   constructor(
     private http: HttpClient,
     private userService:UserService,

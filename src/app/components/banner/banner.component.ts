@@ -49,7 +49,6 @@ export class BannerComponent implements OnInit {
     private errorService: ErrorService) { }
   ngOnInit() {
     this.onGetBanners();
-    // this.getDataSource() 
   }
 
   async onGetBanners() {
@@ -77,42 +76,4 @@ export class BannerComponent implements OnInit {
     }
 
 }
-
-
-
-
-
-// getDataSource(){
- 
- 
-// this.orchService.getBanner().subscribe({
-  
-//   next: (res:any) => {
-//     console.log(res);
-//     if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {
-//       this.dataSource = res.data;
-//       this.dataSource?.map((messageid: any) => {
-//         this.messageid?.forEach((message: any) => {
-//           // console.log(res.data.status);
-//           if (messageid === message) {
-//             messageid['message'] = message;
-//           }
-//          });
-//       });
-      
-//     } else {
-//       // this.toast.show('error', res.status, res.message);
-//     }
-//   },
-//   complete: () => {
-//   console.log('refresh complete');
-// },
-
-
-//   error: error => {
-//     console.error(error);
-//     // this.toast.show('error', 'Failed', error.statusText);
-//   }
-// })
-// }
 }

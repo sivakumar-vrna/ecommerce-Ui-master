@@ -13,6 +13,8 @@ Trending='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/orchestra
 featured='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/orchestration-service/event/menu?userId=3424&menuName=featured';
 top='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/orchestration-service/event/menu?userId=3424&menuName=top';
 allbooks='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/book-service/book/activebooks';
+upcoming='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/book-service/book/upcoming?userId=112245';
+
 
   constructor(
     private http: HttpService
@@ -37,7 +39,6 @@ allbooks='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/book-serv
 
   async getTrending() {
      const url = this.Trending;
-     //return this.http.get(url);
      return this.http.getCall(url, environment.capaciorUrl+url)
     // return this.http.get<any>("assets/trending.json");
 
@@ -64,5 +65,10 @@ allbooks='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/book-serv
     // return this.http.get<any>("assets/books.json");
   }
 
+
+  async getupcoming(){
+    const url=this.upcoming;
+    return this.http.getCall(url,environment.capaciorUrl+url)
+  }
 
 }
