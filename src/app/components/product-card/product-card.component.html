@@ -1,21 +1,37 @@
+
+
 <a class="product-card" routerLink="/book-details/{{data.bookId}}">
+
   <img class="pc-img" [src]="data.posterurl" />
 
   <div class="card-body">
-
     <h2 class="name">{{data.bookname}}</h2>
     <h6 class="des">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
     <h6 class="author">{{data.authorName}}</h6>
     <button class="add-card" routerLink="/product">Add to Card</button>
   </div>
 
-  <b class="pt-2">{{data.bookname}}</b>
+  <h5 class="pt-2" text="wrap_text">{{data.bookname}}</h5>
+
   <div class="d-flex">
-    <ion-icon name="star"></ion-icon>
-    <ion-icon name="star"></ion-icon>
-    <ion-icon name="star"></ion-icon>
-    <ion-icon name="star-half-outline"></ion-icon>
-    <ion-icon name="star-outline"></ion-icon>
+    <ion-icon color="warning" name="star"></ion-icon>
+    <ion-icon color="warning" name="star"></ion-icon>
+    <ion-icon color="warning" name="star"></ion-icon>
+    <ion-icon color="warning" name="star-half-outline"></ion-icon>
+    <ion-icon color="warning" name="star-outline"></ion-icon>
   </div>
+  <h3>₹ 499</h3>
+ <div>
+  <small><ion-button shape="rectangle" size="small" color="danger" > 40% Off </ion-button></small>
+    <small colour="danger"><b>Deal</b></small>
+  </div>
+  MRP <s>2,999</s>
+  <ion-fab vertical="center" horizontal="end" slot="fixed" color="darken">
+    <ion-fab-button>
+      <ion-icon name="add" color="darken"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <small class="pt-1">{{data.authorName}}</small>
 </a>
+

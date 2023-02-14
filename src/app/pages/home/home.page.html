@@ -1,40 +1,110 @@
 <ion-header  class="home-header ion-no-border">
   <app-topbar></app-topbar>
+
+  <style>
+    * {
+/* Here i made the margin and padding  0 */
+margin: 0;
+
+padding: 0;
+}
+
+.navbar {
+display: left;
+
+/* This is used to make the navbar sticky, So that the
+navbar stays at the top part even if we scroll */
+position: sticky;
+align-items: center;
+justify-content: center;
+top: 0px;
+
+/*it specifies the mouse cursor to be displayed
+when it is pointed over the element */
+cursor: pointer;
+}
+
+.nav-list {
+width: 10%;
+display: flex;
+}
+
+.nav-list li {
+list-style: none;
+padding: 3px 30px;
+}
+
+.nav-list li a {
+text-decoration: none;
+color: #f1f0f5;
+}
+
+.nav-list li a:hover {
+color: rgb(225, 247, 145);
+}
+
+.rightNav {
+width: 5%;
+text-align: right;
+}
+
+#search {
+padding: 2px;
+font-size: 17px;
+border: 2px solid rgb(5, 2, 2);
+border-radius: 5px;
+}
+
+.background {
+background: hsl(255, 100%, 6%);
+background-blend-mode: darken;
+background-size:contain;
+}
+ </style>
+
+
+
 </ion-header>
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="false">
+  <ion-item-group>
   <app-banner ></app-banner>
+</ion-item-group>
+  <ion-item-group>
   <ion-grid class="ion-padding">
     <ion-row>
-      <ion-col size="12">
+      <ion-col size="11.5">
         <div class="d-flex w-100">
           <ion-text color="dark">
             <h2>Trending Books</h2>
           </ion-text>
-          <ion-button class="ms-auto" shape="round" color="dark" routerLink="/all-books">View All</ion-button>
+          <ion-button class="ms-auto btnshape" shape="rectangle" color="primary" routerLink="/all-books">View All</ion-button>
         </div>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row size ="20">
       <swiper #bookSwiper [config]="config">
       <ng-template swiperSlide *ngFor="let book of  trendings; index as i">
         <app-product-card [data]="book"></app-product-card>
-         <ion-col size="2" *ngFor="let book of  trendings"></ion-col>
+         <ion-col size="220" *ngFor="let book of  trendings"></ion-col>
       </ng-template>
     </swiper>
     </ion-row>
   </ion-grid>
+</ion-item-group>
+
+<ion-item-group>
   <ion-grid class="ion-padding">
     <ion-row>
-      <ion-col size="12">
+      <ion-col size="11.5">
         <div class="d-flex w-100">
           <ion-text color="dark">
             <h2>Latest Books</h2>
           </ion-text>
-          <ion-button class="ms-auto btn" shape="round" color="dark" routerLink="/all-books">View All</ion-button>
+          <ion-button class="ms-auto btn" shape="rectangle" color="primary" routerLink="/all-books">View All</ion-button>
         </div>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row size ="20">
       <swiper #bookSwiper [config]="config">
         <ng-template swiperSlide *ngFor="let book of latest; index as i">
           <app-product-card [data]="book"></app-product-card>
@@ -43,18 +113,20 @@
       </swiper>
     </ion-row>
   </ion-grid>
-  <ion-grid class="ion-padding">
+</ion-item-group>
+<ion-item-group>
+  <ion-grid >
     <ion-row>
-      <ion-col size="12">
+      <ion-col size="11.5">
         <div class="d-flex w-100">
           <ion-text color="dark">
-            <h2>Featured Books</h2>
+            <h2>  Featured Books</h2>
           </ion-text>
-          <ion-button class="ms-auto" shape="round" color="dark" routerLink="/all-books">View All</ion-button>
+          <ion-button class="ms-auto" shape="rectangle" color="primary" routerLink="/all-books">View All</ion-button>
         </div>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row size ="20">
       <swiper #bookSwiper [config]="config">
       <ng-template swiperSlide *ngFor="let book of featured; index as i">
         <app-product-card [data]="book"></app-product-card>
@@ -63,12 +135,12 @@
     </swiper>
     </ion-row>
   </ion-grid>
-
+</ion-item-group>
   <ion-row *ngIf="!trendings">
     <ion-col *ngFor="let load of [1, 2, 3, 4, 5, 6, 7]" class="p-1" size="6" size-sm="6" size-md="4" size-xl="4">
       <ion-skeleton-text animated style="width: 100%; height: 225px;"></ion-skeleton-text>
     </ion-col>
   </ion-row>
-
+<br><br><br><br><br><br>
   <app-footer></app-footer>
 </ion-content>

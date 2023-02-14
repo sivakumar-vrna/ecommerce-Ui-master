@@ -1,14 +1,15 @@
 #banner-main {
-  height: fit-content;
+  height: auto;
+  width:auto;
   justify-content: center;
   .swiper-slide {
 
       .banner-img {
-          margin: 1px auto;
+          margin: 40px auto;
           justify-content: center;
           img {
               justify-content: center;
-              border-radius: 20px;
+              border-radius: 10px;
               box-shadow   : 0 0.225rem 0.29rem rgb(0 0 0);
           }
       }

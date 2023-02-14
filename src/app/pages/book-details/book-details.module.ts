@@ -12,6 +12,7 @@ import { SwiperModule } from 'swiper/angular';
 import { ProductCardModule } from 'src/app/components/product-card/product-card.module';
 import { TrendingSliderModule } from 'src/app/modules/trending-slider/trending-slider.module';
 import { BookDetailsService } from './book-details.service';
+import { InfiniteScrollCustomEvent } from '@ionic/angular';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { BookDetailsService } from './book-details.service';
     SwiperModule,
     ProductCardModule,
     TrendingSliderModule
+
   ],
   declarations: [
     BookDetailsPage

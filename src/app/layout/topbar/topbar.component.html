@@ -1,49 +1,83 @@
-<ion-toolbar >
+<script>
+
+</script>
+<header>
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+  />
+  <!--signout-->
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <!--notification-->
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,200"
+  />
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"
+/>
+</header>
+
+<ion-toolbar color="warning">
   <ion-row>
-    <ion-col size="9" class="my-auto">
-      <div class="d-flex">
-        <img class="ion-padding-horizontal my-auto" src="assets/img/logo-white-1.webp" alt="Book Mart" height="37"
-          routerLink="/" />
+    <ion-col size="7" class="my-auto">
+      <div class="d-flex justify-content-right">
+
+        <img class="ion-padding-horizontal my-auto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbVsAPxKZgahrN6EfVXE9Bs1Gzf2Tm7iijsA&usqp=CAU"  alt="Book Mart"height="50"width="100"routerLink="/" />
 
         <div class="d-flex delivery-location my-auto pt-1 pe-2">
-          <div class="dl-icon">
             <ion-icon name="location"></ion-icon>
+              <div>
+                  <div><small><b>Hello</b></small></div>
+                  <div >
+                    <ion-label ><small>Select Location</small></ion-label>
+                   </div>
+                </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <div>
+            <ion-select class="fi fi-in" color="dark" width="60px" height="60px">
+              <ion-select-option class="fi fi-in"><h3> India <ion-label class="fi-fi-in"></ion-label></h3></ion-select-option>
+              <ion-select-option class="fi fi-us"><h3> United Stated of Amerca</h3></ion-select-option>
+            </ion-select>
           </div>
-          <div class="d-flex flex-column dl-txt">
-            <small>Delivery</small>
-            <small><b>select your location</b></small>
           </div>
-        </div>
-<!-- 
-        <div class="box">
-          <input type="checkbox" id="check">
-          <div class="search-box">
-            <input type="text" placeholder="search">
-              <label for="check" class="icon">
-                <ion-icon name="search"></ion-icon>
-              </label>
-            </div>
-        </div> -->
-        <ion-searchbar  routerLink="/search" animated="true" color="light"></ion-searchbar>
-        <!-- <ion-button class="ion-margin-start me-2" Fill="clear" (click)="onNavigate('/search')">
-          <ion-icon class="home-search-icon" name="search-outline"></ion-icon>
-        </ion-button> -->
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <ion-searchbar show-clear-button="always" clear-icon="trash-bin" value="Seach Books" color="light"></ion-searchbar>
       </div>
     </ion-col>
-     <ion-col size="3" class="my-auto ion-text-end list">
-      <ion-toggle class="toggle"(ionChange)="onThemeChange($event)" [checked]="currentTheme"></ion-toggle>
+
+
+    <ion-col size="5" class="my-auto ion-text-end list">
       <app-login></app-login>
-      <ion-button fill="clear" id="popover-button" color="dark">Vinoth</ion-button>
+      <ion-button fill="clear" id="popover-button" color="light"
+        >Vinoth</ion-button
+      >
       <ion-popover trigger="popover-button" [dismissOnSelect]="true">
         <ng-template>
           <ion-content>
             <ion-list lines="none">
-              <ion-item [button]="true" [detail]="false" [routerLink]="menu.url" routerLinkActive="side-menu-active"
-                [routerLinkActiveOptions]="{ exact: true }" *ngFor="let menu of profileMenus">
-                <ion-icon [name]="menu.icon" class="ion-padding-end"></ion-icon>{{menu.title}}
+              <ion-item
+                [button]="true"
+                [detail]="false"
+                [routerLink]="menu.url"
+                routerLinkActive="side-menu-active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                *ngFor="let menu of profileMenus"
+              >
+                <ion-icon [name]="menu.icon" class="ion-padding-end"></ion-icon
+                >{{ menu.title }}
               </ion-item>
               <ion-item [button]="true" [detail]="false">
-                <ion-icon name="log-out-outline" class="ion-padding-end"></ion-icon> Logout
+                <ion-icon
+                  name="log-out-outline"
+                  class="fa fa-sign-out"
+                ></ion-icon>
+                Logout
               </ion-item>
             </ion-list>
           </ion-content>
@@ -52,8 +86,66 @@
 
       <ion-button fill="clear" color="dark" routerLink="/cart">
         <ion-icon slot="start" name="cart"></ion-icon>
-        Cart <ion-badge class="ms-1">2</ion-badge>
+        <ion-badge slot="start" color="success" Data-Badge>2</ion-badge>
       </ion-button>
+      <ion-button fill="clear" color="dark" routerLink="/logout">
+        <ion-icon slot="start" name="Logout"></ion-icon>
+        Logout
+        <p></p>
+        <ion-icon class="fa fa-sign-out fa-2x"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" color="dark" routerLink="/notification">
+        <ion-icon slot="start" name="notifications"></ion-icon>
+        <ion-badge slot="start" color="success" Data-Badge>2</ion-badge>
+      </ion-button>
+      <ion-toggle class="toggle" (ionChange)="onThemeChange($event)"[checked]="true" color="light"></ion-toggle>
+
+      <style>
+        ion-icon {
+          color: hwb(240 0% 96%);
+          font-size: 40px;
+        }
+
+        page-index {
+          ion-searchbar {
+            width: 90%;
+            text-align: center !important;
+          }
+          
+        }
+      </style>
     </ion-col>
   </ion-row>
+</ion-toolbar>
+<ion-toolbar color="dark">
+  <ion-buttons slot="start">
+    <ion-menu-button auto-hide="false"></ion-menu-button>
+  </ion-buttons>
+  <ion-segment value="All">
+
+    <ion-segment-button value="Latest">
+      Latest
+    </ion-segment-button>
+    <ion-segment-button value="Featured">
+      Featured
+    </ion-segment-button>
+    <ion-segment-button value="BestSellers">
+      Best Sellers
+    </ion-segment-button>
+    <ion-segment-button value="Regional">
+      Regional
+    </ion-segment-button>
+    <ion-segment-button value="Fashion">
+      Fashion
+    </ion-segment-button>
+    <ion-segment-button value="New Releases">
+      New Releases
+    </ion-segment-button>
+    <ion-segment-button value="Authors">
+      Popular Authors
+    </ion-segment-button>
+    <ion-segment-button value="Recommended">
+      Recommended
+    </ion-segment-button>
+  </ion-segment>
 </ion-toolbar>

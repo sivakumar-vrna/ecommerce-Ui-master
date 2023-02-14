@@ -1,206 +1,490 @@
-<ion-header class="ion-no-border"  *ngIf="!isLoading">
-  <ion-toolbar class="movie-detail-topbar"  *ngIf="book">
-    <ion-button fill="clear" class="back-btn" slot="start"  routerLink="/">
-      <ion-icon name="arrow-back-outline"></ion-icon>
-    </ion-button>
-    <ion-title>
-      <ion-text>
-        <h4 class="fs-14 ion-no-margin">
-          {{book.bookname}}  {{book.bookYear}}
-        </h4>
-        <div class="common-genre py-1 ion-no-margin ion-text-start">
-          <ul>
-            <!-- <li *ngFor="let genre of book.genre">{{genre}}</li> -->
-          </ul>
-        </div>
-      </ion-text>
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<style>
+  .offers {
+    color: hwb(0 15% 4%);
+  }
+  .ion-col {
+    border: solid 1px rgb(238, 234, 234);
+    color: black;
+    text-align: auto;
+  }
+  .ion-button {
+    --border-radius: 0;
+    --border-style: solid;
+    --border-width: 2px;
+    --box-shadow: 0 2px 6px 0 white;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+  }
+  .imgStyle {
+    width: 250px;
+    height: 350px;
+  }
+</style>
+<style>
+  .container {
+    display: flex;
+    align-items: auto;
+    justify-content: auto;
+  }
+  img {
+    max-width: 100%;
+  }
+  .image {
+    flex-basis: 40%;
+  }
+  .text {
+    font-size: 20px;
+    padding-left: 40px;
+    font-size: medium;
+  }
+</style>
 
-<ion-content class="movie-details-content" fullscreen>
-  <ion-grid class="ion-no-padding">
-      <ion-row *ngIf="book">
-        <ion-col class="position-relative movie-detail-banner">
-  
-          <!-- Banner Image -->
-          <ion-img class="mdc-banner-img" [src]="book.bannerurl"></ion-img>
-  
-          <div class="bg-overlay"></div>
-  
-          <div class="bottom-bar d-flex">
-            <!-- Rating -->
-            <div class="ms-auto my-auto">
-              <!-- <app-rating [userRating]="movieDetails.userRating" [movieId]="movieDetails.movieId"></app-rating> -->
-            </div>
-          </div>
-        </ion-col>
-      </ion-row>
+<ion-content [fullscreen]="true">
+  <ion-header class="ion-no-border" *ngIf="!isLoading">
+    <app-topbar></app-topbar>
+    <ion-card style="width: 100%; height: 1105px; padding: 60px">
+      <ion-card-content class="ion-padding ion-margin">
+        <ion-toolbar *ngIf="book">
+          <ion-row class="suggestions-section p-3" *ngIf="book">
+            <ion-col class="mdc-details" size="12">
+              <div class="container">
+                <ion-card
+                  style="width: 200%; height: 600px; padding: 5px;"
+                  class="ion-no-border"
+                >
+                  <img class="imgStyle" [src]="book.posterurl" />
 
-    <ion-row *ngIf="book">
-      <ion-col class="mdc-details px-3" size="12">
-        <p class="ion-text-wrap pt-2 my-0 mdc-description">
-          {{book.description}}
-        </p>
-        <table class="mdc-detail-table mt-2">
-          <tr>
-            <th>BookName</th>
-            <td><span>{{book.bookname}}</span></td>
-          </tr>
-          <tr>
-            <th>AuthorName</th>
-            <td><span>{{book.authorName}}</span></td>
-          </tr>
-          <tr>
-            <th>bookId</th>
-            <td><span>{{book.bookId}}</span></td>
-          </tr>
-          <tr>
-            <th>Description</th>
-            <td><span>{{book.description}}</span></td>
-          </tr>
-          <tr>
-            <th>Audiolanguages</th>
-            <td><span>{{book.audiolanguages}}</span></td>
-          </tr>
-          <tr>
-            <th>OriginLanguage</th>
-            <td>{{book.originLanguage}}</td>
-          </tr>
-          <tr>
-            <th>Duration</th>
-            <td><span>{{book.duration}}</span></td>
-          </tr>
-          <tr>
-            <th>AuthorComments</th>
-            <td>{{book.authorComments}}</td>
-           </tr>
-          
-        </table>
-      </ion-col>
-      <ion-col class="position-relative mt-2 pe-3" size="12" >
-        <ion-row id="myHeader">
-          <ion-col class="position-relative" size="4">
-            <div class="d-flex">
-              <ion-button class="share-btn" color="primary" fill="clear" (click)="shareUs()">
-                <ion-icon name="share-social"></ion-icon>
-              </ion-button>
-            </div>
-          </ion-col>
-          <ion-col class="position-relative" size="2"> </ion-col>
-          <ion-col class="position-relative" size="6">
-            <div class="d-flex" >
-              <ion-button class="w-100" expand="block" fill="solid" color="primary" routerLink="/product/{{book.bookId}}">
-              Add to Card
-              </ion-button>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-col>
-    </ion-row>
-    <ion-row *ngIf="!book">
-      <ion-col class="position-relative" size="12">
-        <ion-skeleton-text animated class="banner-skeleton"></ion-skeleton-text>
-      </ion-col>
-      <ion-col class="mdc-details p-3" size="12">
-        <h4 class="m-0">
-          <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
-        </h4>
-        <div class="common-genre pb-2 m-0 ion-text-start">
-          <ul>
-            <li>
-              <ion-skeleton-text animated style="width: 150px"></ion-skeleton-text>
-            </li>
-          </ul>
-        </div>
-        <p class="ion-text-wrap pt-2 my-0 mdc-description">
-          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
-        </p>
-        <p class="ion-text-wrap pt-0 my-0 mdc-description">
-          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
-        </p>
-        <p class="ion-text-wrap pt-0 my-0 mdc-description">
-          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
-        </p>
-        <table class="mdc-detail-table mt-2">
-          <tr>
-            <th>
-              <ion-skeleton-text animated style="width: 75px"></ion-skeleton-text>
-            </th>
-            <td>
-              <span>
-                <ion-skeleton-text animated style="width: 175px"></ion-skeleton-text>
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <ion-skeleton-text animated style="width: 75px"></ion-skeleton-text>
-            </th>
-            <td>
-              <span>
-                <ion-skeleton-text animated style="width: 175px"></ion-skeleton-text>
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <ion-skeleton-text animated style="width: 75px"></ion-skeleton-text>
-            </th>
-            <td>
-              <span>
-                <ion-skeleton-text animated style="width: 175px"></ion-skeleton-text>
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <th>
-              <ion-skeleton-text animated style="width: 75px"></ion-skeleton-text>
-            </th>
-            <td>
-              <span>
-                <ion-skeleton-text animated style="width: 175px"></ion-skeleton-text>
-              </span>
-            </td>
-          </tr>
-        </table>
-      </ion-col>
-    </ion-row>
+                  <div>
+                    <br />
+                    <div>
+                      <div class="container">
+                        <ion-thumbnail>
+                          <img
+                            alt="Silhouette of mountains"
+                            src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+                          />
+                        </ion-thumbnail>
+                        &nbsp;
+                        <ion-thumbnail>
+                          <img
+                            alt="Silhouette of mountains"
+                            src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+                          />
+                        </ion-thumbnail>
+                        &nbsp;
+                        <ion-thumbnail>
+                          <img
+                            alt="Silhouette of mountains"
+                            src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+                          />
+                        </ion-thumbnail>
+                        &nbsp;
+                        <ion-thumbnail>
+                          <img
+                            alt="Silhouette of mountains"
+                            src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+                          />
+                        </ion-thumbnail>
+                        &nbsp;
+                        <ion-thumbnail>
+                          <img
+                            alt="Silhouette of mountains"
+                            src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+                          />
+                        </ion-thumbnail>
+                      </div>
+                      <ion-label>See all images</ion-label>
+                      <ion-item-divider></ion-item-divider>
+                    </div>
+                    <div>
+                      <h4>
+                        <b
+                          >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Follow
+                          the Author
+                        </b>
+                      </h4>
+                    </div>
+                    <br />
+                    <div class="container">
+                      <ion-avatar size="small">
+                        <img
+                          alt="Silhouette of a person's head"
+                          src="https://ionicframework.com/docs/img/demos/avatar.svg"
+                        />
+                      </ion-avatar>
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      &nbsp;&nbsp;&nbsp;&nbsp;<ion-button
+                        size="donut_small"
+                        color="secondary"
+                        fill="outline"
+                        shape="round"
+                      >
+                        Follow
+                      </ion-button>
+                    </div>
+                  </div>
+                </ion-card>
+                <div class="text">
+                  <div class="container">
+                    <h1>
+                      Stock Investing Mastermind Hardcover – 1 January 2022
+                    </h1>
+                    <span>
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ion-icon
+                        size="large"
+                        name="share"
+                        shape="round"
+                      ></ion-icon>
+                    </span>
+                  </div>
+                  <div>
+                    by <a><ion-label> Zebra Learn (Author)</ion-label></a>
+                    <div class="d-flex">
+                      <ion-icon color="warning" name="star"></ion-icon>
+                      <ion-icon color="warning" name="star"></ion-icon>
+                      <ion-icon color="warning" name="star"></ion-icon>
+                      <ion-icon
+                        color="warning"
+                        name="star-half-outline"
+                      ></ion-icon>
+                      <ion-icon color="warning" name="star-outline"></ion-icon>
+                      <ion-item-divider></ion-item-divider>
+                    </div>
+                    <br />
+                    <div>
+                      <small><b>See all formats and editions</b></small>
+                    </div>
+                    <ion-button color="danger" fill="outline"
+                      ><h1>₹ 1499</h1></ion-button
+                    >
+                    <br />
+                    <br />
+                    <br />
+                    <div class="container" border_all="dark">
+                      <ion-grid>
+                        <ion-row class="ion-col">
+                          <ion-col>
+                            <ion-label class="offers"
+                              ><b>Save Extra</b></ion-label
+                            ><ion-label> with 3 offers</ion-label>
+                          </ion-col>
+                        </ion-row>
 
-    <!---------------------------------- #Related Suggestions Section --------------------------------------->
+                        <ion-row class="ion-col">
+                          <ion-col>
+                            <ion-label class="offers"
+                              ><b>No Cost EMI: </b></ion-label
+                            >
+                            <ion-label
+                              >Avail No Cost EMI on select cards for orders
+                              above ₹3000 Details</ion-label
+                            >
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row class="ion-col">
+                          <ion-col>
+                            <ion-label class="offers">
+                              <b>Partner Offers: </b></ion-label
+                            ><ion-label
+                              >Get GST invoice and save up to 28% on business
+                              purchases. Sign up for free Details</ion-label
+                            >
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row class="ion-col">
+                          <ion-col>
+                            <ion-label class="offers"
+                              ><b>Bank Offer: </b></ion-label
+                            ><ion-label
+                              >5% Instant Discount up to INR 250 on HSBC
+                              Cashback Card Credit Card Transactions.</ion-label
+                            >
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </div>
+
+                    <br />
+                    <ion-item-divider></ion-item-divider>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col>
+                          <ion-thumbnail>
+                            <img
+                              src="https://m.media-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/trust_icon_free_shipping_81px._CB630870460_.png"
+                          /></ion-thumbnail>
+                          Free Delivery
+                        </ion-col>
+                        <ion-col>
+                          <ion-thumbnail>
+                            <img
+                              src="https://m.media-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/icon-cod._CB485937110_.png"
+                            />
+                          </ion-thumbnail>
+                          Pay on Delivery
+                        </ion-col>
+                        <ion-col>
+                          <ion-thumbnail>
+                            <img
+                              src="https://m.media-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/icon-returns._CB484059092_.png"
+                            />
+                          </ion-thumbnail>
+                          10 days Replacement
+                        </ion-col>
+                        <ion-col>
+                          <ion-thumbnail>
+                            <img
+                              src="https://m.media-amazon.com/images/G/31/A2I-Convert/mobile/IconFarm/icon-amazon-delivered._CB485933725_.png"
+                            />
+                          </ion-thumbnail>
+                          VRNA Delivered
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+                    <ion-item-divider></ion-item-divider>
+                    <br>
+                    <div text="wrap_text">
+                      <ion-label fontsize="10px" class="text">
+                        Stock Investing Mastermind is for Indian investors,
+                        makes you an independent investor who can find, evaluate
+                        and invest in stocks that grow. It starts from absolute
+                        basics, and then explains how stock prices move. It
+                        explains how to generate stock ideas, how to read annual
+                        reports, understand Companies’ financial statements,
+                        evaluate business strength, find the right price,
+                        identify when to buy and sell, understand what makes an
+                        investment grow 10X and so much more. This is for those
+                        who want to begin or have just begun their stock
+                        investing journey, and are trying to figure out the
+                        right way of investing. It not only takes you through
+                        the entire process of investing, but also helps you
+                        build the right mindset, written in a manner that makes
+                        it extremely practical and applicable in the Indian
+                        markets.
+                      </ion-label>
+                    </div>
+                    <ion-item-divider></ion-item-divider>
+                    <ion-grid>
+                      <ion-row>
+                        <ion-col>Print length</ion-col>
+                        <ion-col>Language</ion-col>
+                        <ion-col>Publisher</ion-col>
+                        <ion-col>Publication date</ion-col>
+                        <ion-col>Reading age</ion-col>
+                      </ion-row>
+
+                      <ion-row>
+                        <ion-col><ion-icon size="large" name="book"></ion-icon></ion-col>
+                        <ion-col><ion-icon size="large"name="globe"></ion-icon></ion-col>
+                        <ion-col><ion-icon size="large"name="business"></ion-icon></ion-col>
+                        <ion-col><ion-icon size="large"name="calendar"></ion-icon></ion-col>
+                        <ion-col><ion-icon size="large"name="people"></ion-icon></ion-col>
+                      </ion-row>
+                        <ion-row>
+                          <ion-col>368 pages</ion-col>
+                          <ion-col>English</ion-col>
+                          <ion-col>Zebra Learn</ion-col>
+                          <ion-col>1 January 2022</ion-col>
+                          <ion-col>15 years and up</ion-col>
+                        </ion-row>
+                    </ion-grid>
+                  </div>
+                </div>
+                <ion-card
+                  style="width: 200%; height: 600px; padding: 5px;"
+                  class="ion-no-border"
+                  margin-top="2px"
+                >
+                  <ion-card-content class="ion-padding">
+                    <ion-toolbar  *ngIf="book">
+                      <ion-row class="suggestions-section p-3" *ngIf="book">
+                        <ion-col class="mdc-details" size="12"> </ion-col>
+                        <b>Buy new:</b>
+                        <span
+                          ><span>
+                            <div>
+                              <ion-label color="danger" textContent="right"
+                                ><h2>
+                                  <b>&nbsp;&nbsp;&nbsp;₹1,490.00</b>
+                                </h2></ion-label
+                              >
+                            </div>
+                            <div>
+                              <ion-label
+                                >&nbsp;&nbsp;&nbsp;M.R.P.:
+                                <s>₹3,990.00</s></ion-label
+                              >
+                            </div>
+                            <div>
+                              <ion-label
+                                >&nbsp;&nbsp;&nbsp;Save: ₹2,500.00 (63%)
+                              </ion-label>
+                            </div>
+                            <div>
+                              <ion-label
+                                >&nbsp;&nbsp;&nbsp;Inclusive of all
+                                taxes</ion-label
+                              >
+                            </div>
+                          </span></span
+                        >
+
+                        <div>
+                          <br />
+                          <div>
+                            <b
+                              ><ion-label color="success"
+                                >FREE delivery</ion-label
+                              >
+                              Thursday, 16 February.
+                            </b>
+                            <ion-label>
+                              <b> <i>within 16 hrs 30 mins.</i></b>
+                            </ion-label>
+                            Details
+                          </div>
+                          <br />
+                          <div>
+                            <span
+                              ><ion-label onclick=""
+                                ><h6>
+                                  <ion-icon
+                                    name="location"
+                                    size="size-md"
+                                  ></ion-icon>
+                                  Select delivery location
+                                </h6></ion-label
+                              >
+                            </span>
+                          </div>
+                          <div>
+                            <br />
+                            <ion-label color="success"
+                              ><h2>In stock.</h2></ion-label
+                            >
+                          </div>
+                          <div>
+                            <ion-label>Sold and Fulfilled by </ion-label>
+                            <span></span
+                            ><ion-label color="tertiary"
+                              ><b>VRNA.</b></ion-label
+                            >
+                          </div>
+
+                          <ion-list>
+                            <ion-item>
+                              <ion-label>Quantity :</ion-label>
+                              <ion-select
+                                interface="popover"
+                                placeholder="1"
+                                color="dark"
+                              >
+                                <ion-select-option value="1"
+                                  >1</ion-select-option
+                                >
+                                <ion-select-option value="2"
+                                  >2</ion-select-option
+                                >
+                                <ion-select-option value="3"
+                                  >3</ion-select-option
+                                >
+                              </ion-select>
+                            </ion-item>
+                          </ion-list>
+                        </div>
+                        <div>
+                          <ion-button color="primary" shape="round"  routerLink="/cart"
+                            >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add to
+                            Cart&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-button
+                          >
+                        </div>
+                        <div>
+                          <ion-button color="warning" shape="round"  routerLink="/checkout"
+                            >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Buy
+                            Now&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <ion-label color="warning"></ion-label>
+                          </ion-button>
+                        </div>
+                        <br />
+                        <div>
+                          &nbsp;&nbsp;&nbsp;
+                          <ion-icon
+                            size="photo_size_select_large"
+                            name="lock-closed"
+                            fill="darken"
+                          ></ion-icon>
+                          <span color="dark">&nbsp;Secure Transaction</span>
+                          <br />
+                          <div>
+                            &nbsp;&nbsp;&nbsp; <ion-checkbox></ion-checkbox>
+                            Add Gift Option
+                          </div>
+                        </div>
+                        <br />
+                        <div>
+                          <ion-button color="dark" fill="outline" shape="round"
+                            >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add to Wish
+                            List&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</ion-button
+                          >
+                        </div>
+                      </ion-row>
+                    </ion-toolbar>
+                  </ion-card-content>
+                </ion-card>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-toolbar>
+      </ion-card-content>
+    </ion-card>
+    <ion-card></ion-card>
+  </ion-header>
+
+  <ion-card-content>
     <ion-row class="suggestions-section p-3" *ngIf="suggestions">
-      <!-- title -->
       <ion-col size="12">
         <ion-text class="suggestions-section-title" color="primary">
           <h2>Bestselling Books</h2>
         </ion-text>
-      
-      <ion-card class="ion-padding ion-margin">
-     
-        <div class="py-2" id="trending-slider">
-          <swiper #bannerSwiper [config]="config">
-            <ng-template swiperSlide *ngFor="let trending of trendings; index as i">
-              <app-product-card [data]="trending"></app-product-card>
-            </ng-template>
-          </swiper>
-        </div>
-      </ion-card>
-    </ion-col>
-     
+
+        <ion-card class="ion-padding ion-margin">
+          <div class="py-2" id="trending-slider">
+            <swiper #bannerSwiper [config]="config">
+              <ng-template
+                swiperSlide
+                *ngFor="let trending of trendings; index as i"
+              >
+                <app-product-card [data]="trending"></app-product-card>
+              </ng-template>
+            </swiper>
+          </div>
+        </ion-card>
+      </ion-col>
     </ion-row>
- 
-    <!-- #Skeleton Loader -->
-    
+  </ion-card-content>
+  <!-- #Skeleton Loader -->
+
   <ion-row class="p-3" *ngIf="!suggestions">
     <ion-col class="mdc-details" size="12">
       <h4 class="m-0">
         <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
       </h4>
     </ion-col>
-    <ion-col class="p-1" size="6" size-sm="6" size-md="4" size-xl="4" *ngFor="let
-      load of skeletonData">
-      <ion-skeleton-text animated style="width: 100%; height: 225px"></ion-skeleton-text>
+    <ion-col
+      class="p-1"
+      size="6"
+      size-sm="6"
+      size-md="4"
+      size-xl="4"
+      *ngFor="let
+      load of skeletonData"
+    >
+      <ion-skeleton-text
+        animated
+        style="width: 100%; height: 225px"
+      ></ion-skeleton-text>
     </ion-col>
   </ion-row>
-</ion-grid>
 </ion-content>

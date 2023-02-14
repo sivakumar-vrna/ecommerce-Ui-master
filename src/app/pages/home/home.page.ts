@@ -33,8 +33,8 @@ export class HomePage implements OnInit {
 
 
   config: SwiperOptions = {
-    slidesPerView: 5,
-    spaceBetween: 30,
+    slidesPerView: 7,
+    spaceBetween: 10,
     preloadImages: true,
     // loop: true,
     navigation: true,
@@ -57,8 +57,8 @@ export class HomePage implements OnInit {
     this.onGetLatest();
     this.onGetTrending();
     this.onGetfeatured();
-  
-  
+
+
     if (isPlatform('capacitor')) {
       this.domainUrl = environment.capaciorUrl;
     } else {

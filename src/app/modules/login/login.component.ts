@@ -14,7 +14,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 export class LoginComponent implements OnInit {
   @ViewChild(IonModal) modal: IonModal;
   loginForm: FormGroup
-  message = 'Login';
+  message = 'LOGIN';
   name: string;
   hide = true;
   tempLogin = true;

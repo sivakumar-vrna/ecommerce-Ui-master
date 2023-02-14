@@ -51,10 +51,10 @@
               </ion-col>
 
               <!-- Signup -->
-              <ion-col class="signup-link ion-no-padding ion-no-margin" size="12">
-                <p class="fs-12">
+              <ion-col class="signup-link ion-no-padding ion-no-margin" size="13">
+                <p class="fs-12" class="primary">
                   Not registered yet?
-                  <ion-text color="secondary" routerLink="/auth/signup" class="pointer">
+                  <ion-text color="success" routerLink="/auth/signup" class="pointer">
                     Create an Account
                   </ion-text>
                 </p>
@@ -68,7 +68,7 @@
 
         <!-- Social Login -->
         <ion-col size="12">
-          <ion-button class="social-media-btn google-login mx-auto ion-margin-bottom" fill="clear" expand="block" (click)="googleSignIn()">
+          <ion-button  color="orange"class="social-media-btn google-login mx-auto ion-margin-bottom"  fill="dark" expand="block" (click)="googleSignIn()">
             <ion-img class="ion-margin-end" slot="start" src="assets/img/google.png">
             </ion-img>
             <ion-label> Sign in Google </ion-label>

@@ -38,16 +38,16 @@ export class TopbarComponent implements OnInit {
   }
 
   ngOnInit() {}
-  
+
   async getCurrentTheme() {
     const theme: any = await Storage.get({ key: THEME_KEY });
     if (theme.value === 'dark') {
-      this.currentTheme = true;  
+      this.currentTheme = true;
     } else {
       this.currentTheme = false;
     }
   }
-  
+
   onThemeChange(e: any) {
     console.log('THeme', this.currentTheme);
     if (e.detail.checked) {
@@ -60,4 +60,5 @@ export class TopbarComponent implements OnInit {
   onNavigate(path: string) {
     this.router.navigate([path]);
   }
+
 }
