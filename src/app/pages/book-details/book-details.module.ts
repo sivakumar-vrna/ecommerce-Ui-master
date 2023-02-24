@@ -25,7 +25,8 @@ import { InfiniteScrollCustomEvent } from '@ionic/angular';
     TopbarModule,
     SwiperModule,
     ProductCardModule,
-    TrendingSliderModule
+    TrendingSliderModule,
+
 
   ],
   declarations: [

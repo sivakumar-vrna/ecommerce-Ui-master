@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { themeService,THEME_KEY} from 'src/app/shared/services/theme/theme.service';
 import { isPlatform, ModalController } from '@ionic/angular';
 import { Storage } from '@capacitor/storage';
 import { Router } from '@angular/router';
-
+import { CartPageService } from 'src/app/pages/cart/cart.service';
+import { Book } from 'src/app/shared/models/book.model';
+import { ErrorService } from 'src/app/shared/services/error.service';
+import{OrchestrationService} from 'src/app/shared/services/orchestration/orchestration.service';
 
 export interface ProfileMenu {
   title: string,
@@ -11,12 +14,18 @@ export interface ProfileMenu {
   icon: string
 }
 
+
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
   styleUrls: ['./topbar.component.scss'],
 })
 export class TopbarComponent implements OnInit {
+  bookDtls: Book[];
+  bookid:any;
+  public userId:"3434";
+  @Input() data: Book;
+
   currentTheme: boolean;
   public isMobile: boolean = false;
 
@@ -26,10 +35,14 @@ export class TopbarComponent implements OnInit {
     { title: 'Orders', url: '/account/orders', icon: 'archive-outline' },
     { title: 'Wishlist', url: '/account/wishlist', icon: 'heart-outline' },
   ];
+
   constructor(
     private router:Router,
     private theme: themeService,
     public  modalController: ModalController,
+    public cartService:CartPageService,
+    public errorService:ErrorService,
+    private orchService: OrchestrationService,
     ){
     if (isPlatform('capacitor')) {
       this.isMobile = true;
@@ -37,7 +50,9 @@ export class TopbarComponent implements OnInit {
     this.getCurrentTheme();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+   }
 
   async getCurrentTheme() {
     const theme: any = await Storage.get({ key: THEME_KEY });
@@ -60,5 +75,7 @@ export class TopbarComponent implements OnInit {
   onNavigate(path: string) {
     this.router.navigate([path]);
   }
+
+
 
 }

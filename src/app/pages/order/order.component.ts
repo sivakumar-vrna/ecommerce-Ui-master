@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order.component.scss'],
 })
 export class OrderComponent implements OnInit {
-
+  isLoading = true;
   constructor() { }
 
   ngOnInit() {}

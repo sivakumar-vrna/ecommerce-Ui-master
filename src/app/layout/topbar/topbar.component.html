@@ -1,6 +1,3 @@
-<script>
-
-</script>
 <header>
   <link
     rel="stylesheet"
@@ -22,39 +19,33 @@
 />
 </header>
 
-<ion-toolbar color="warning">
+<ion-toolbar class="ion-toolbar">
   <ion-row>
     <ion-col size="7" class="my-auto">
       <div class="d-flex justify-content-right">
-
-        <img class="ion-padding-horizontal my-auto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbVsAPxKZgahrN6EfVXE9Bs1Gzf2Tm7iijsA&usqp=CAU"  alt="Book Mart"height="50"width="100"routerLink="/" />
-
+<!--Logo
+        <img class="ion-padding-horizontal my-auto" src=""  alt=" "height="50"width="100"routerLink="/"
+         />
+-->
         <div class="d-flex delivery-location my-auto pt-1 pe-2">
-            <ion-icon name="location"></ion-icon>
-              <div>
-                  <div><small><b>Hello</b></small></div>
-                  <div >
-                    <ion-label ><small>Select Location</small></ion-label>
-                   </div>
-                </div>
+              <ion-button fill="clear" color="dark">   <ion-icon name="location"></ion-icon>Location</ion-button>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
             <div>
-            <ion-select class="fi fi-in" color="dark" width="60px" height="60px">
+            <ion-select class="fi fi-in" color="dark" width="20px" height="60px">
               <ion-select-option class="fi fi-in"><h3> India <ion-label class="fi-fi-in"></ion-label></h3></ion-select-option>
               <ion-select-option class="fi fi-us"><h3> United Stated of Amerca</h3></ion-select-option>
             </ion-select>
           </div>
           </div>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <ion-searchbar show-clear-button="always" clear-icon="trash-bin" value="Seach Books" color="light"></ion-searchbar>
+      <ion-searchbar show-clear-button="always" clear-icon="trash-bin" value="Seach Books" color="light" shape="rectangle"></ion-searchbar>
       </div>
     </ion-col>
 
 
     <ion-col size="5" class="my-auto ion-text-end list">
       <app-login></app-login>
-      <ion-button fill="clear" id="popover-button" color="light"
+      <ion-button fill="clear" id="popover-button" color="dark"
         >Vinoth</ion-button
       >
       <ion-popover trigger="popover-button" [dismissOnSelect]="true">
@@ -84,9 +75,9 @@
         </ng-template>
       </ion-popover>
 
-      <ion-button fill="clear" color="dark" routerLink="/cart">
+      <ion-button fill="clear" color="dark" routerLink="/cart/3434">
         <ion-icon slot="start" name="cart"></ion-icon>
-        <ion-badge slot="start" color="success" Data-Badge>2</ion-badge>
+        <ion-badge value=cartQty name=quantity slot="start" color="danger" Data-Badge size="medium">2</ion-badge>
       </ion-button>
       <ion-button fill="clear" color="dark" routerLink="/logout">
         <ion-icon slot="start" name="Logout"></ion-icon>
@@ -96,23 +87,12 @@
       </ion-button>
       <ion-button fill="clear" color="dark" routerLink="/notification">
         <ion-icon slot="start" name="notifications"></ion-icon>
-        <ion-badge slot="start" color="success" Data-Badge>2</ion-badge>
+        <ion-badge slot="start" color="danger" Data-Badge siz="medium">2</ion-badge>
       </ion-button>
       <ion-toggle class="toggle" (ionChange)="onThemeChange($event)"[checked]="true" color="light"></ion-toggle>
 
       <style>
-        ion-icon {
-          color: hwb(240 0% 96%);
-          font-size: 40px;
-        }
 
-        page-index {
-          ion-searchbar {
-            width: 90%;
-            text-align: center !important;
-          }
-          
-        }
       </style>
     </ion-col>
   </ion-row>
@@ -146,6 +126,9 @@
     </ion-segment-button>
     <ion-segment-button value="Recommended">
       Recommended
+    </ion-segment-button>
+    <ion-segment-button routerLink="/order" value="Recommended">
+      Orders
     </ion-segment-button>
   </ion-segment>
 </ion-toolbar>

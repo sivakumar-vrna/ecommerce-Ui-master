@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { TopbarModule } from 'src/app/layout/topbar/topbar.module';
 import { IonicModule } from '@ionic/angular';
-
-
-
+import { SwiperModule } from 'swiper/angular';
+import { ProductCardModule } from 'src/app/components/product-card/product-card.module';
 import { CartPageRoutingModule } from './cart-routing.module';
-
 import { CartPage } from './cart.page';
 import { FooterModule } from 'src/app/layout/footer/footer.module';
 import { TrendingSliderModule } from 'src/app/modules/trending-slider/trending-slider.module';
@@ -19,7 +17,10 @@ import { TrendingSliderModule } from 'src/app/modules/trending-slider/trending-s
     IonicModule,
     CartPageRoutingModule,
     FooterModule,
-    TrendingSliderModule
+    TrendingSliderModule,
+    TopbarModule,
+    SwiperModule,
+    ProductCardModule
   ],
   declarations: [CartPage]
 })

@@ -1,3 +1,68 @@
-<p>
-  order works!
-</p>
+<ion-content>
+  <app-topbar></app-topbar>
+    <div class="container">
+      <ion-breadcrumbs>
+        <ion-breadcrumb href="#">Your Account</ion-breadcrumb>
+        <ion-breadcrumb href="#"> Your Orders</ion-breadcrumb>
+        
+      </ion-breadcrumbs>
+    </div>  
+  <div class="top">
+    <h2>Your Orders</h2>
+    <div class="side">  
+      <ion-searchbar color="light" placeholder="Search this list"></ion-searchbar>
+      <button>search Orders</button>
+    </div>
+  </div>
+
+  <div class="a-row a-spacing-medium custom-view-options">
+    <ul class="a-unordered-list a-nostyle a-horizontal" role="tablist">
+        <li role="tab"><span class="a-list-item"></span></li>
+        <li class="selected" role="tab"><span class="a-list-item">
+        <span class="item"> Orders</span></span></li>
+        <li role="tab"><span class="a-list-item"> Buy Again</span></li>
+        <li role="tab"><span class="a-list-item">Not Yet Shipped</span></li>
+        <li role="tab"><span class="a-list-item">Cancelled Orders</span></li>
+    </ul>
+  </div>
+
+  <div class="drop">
+      <h4>2 orders&nbsp;<span>placed in</span></h4>
+      <ion-list>
+        <ion-item>
+          <ion-select interface="popover" placeholder="Past 3 Months">
+            <ion-select-option value="Past 3 Months">Past 3 Months</ion-select-option>
+            <ion-select-option value="2023">2023</ion-select-option>
+            <ion-select-option value="2022">2022</ion-select-option>
+            <ion-select-option value="2021">2021</ion-select-option>
+            <ion-select-option value="Archived Orders">Archived Orders</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+  </div>
+  
+
+  <ion-grid [fixed]="true">
+    <ion-row>
+      <ion-col>
+            <h3>ORDER PLACED</h3>
+            <h3>TOTAL</h3>
+            <h3>SHIP TO</h3>
+      <ion-col>
+        <h3>ORDER PLACED</h3>
+
+      </ion-col>
+    </ion-col>
+       
+    </ion-row>
+  </ion-grid>
+  
+  
+  
+  
+  
+  
+  
+  
+
+</ion-content>

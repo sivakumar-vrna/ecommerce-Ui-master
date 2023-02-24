@@ -1,5 +1,5 @@
 <ion-content>
-
+  
   <ion-breadcrumbs>
     <ion-breadcrumb routerLink="/">
       <ion-icon slot="start" name="home"></ion-icon>Home
@@ -71,8 +71,21 @@
                   <ion-label>Google Pay UPI - xxxxxxx@okaxis</ion-label>
                 </ion-item>
 
+                <ion-list>
+                  <ion-item>
+                  <ion-radio slot="start" value="4"></ion-radio>
+                  <ion-label position="stacked">Net banking</ion-label>
+
+                    <ion-select interface="popover" placeholder="Select fruit">
+                      <ion-select-option value="apples">HDFC</ion-select-option>
+                      <ion-select-option value="oranges">INDIAN BANK</ion-select-option>
+                      <ion-select-option value="bananas">IDBI BANK</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-list>
+
                 <ion-item>
-                  <ion-radio slot="start" value="3"></ion-radio>
+                  <ion-radio slot="start" value="5"></ion-radio>
                   <ion-label>
                     Credit / Debit / ATM Card
                   </ion-label>
@@ -103,6 +116,8 @@
                 </ion-col>
               </ion-row>
 
+             
+
             </div>
           </ion-card-content>
         </ion-card>
@@ -131,7 +146,7 @@
 
               <ion-item lines="none">
                 <ion-label>
-                  <ion-button expand="full" color="dark" routerLink="/checkout">Checkout</ion-button>
+                  <ion-button expand="full" color="dark" routerLink="/complete">Checkout</ion-button>
                 </ion-label>
               </ion-item>
             </ion-list>

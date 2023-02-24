@@ -57,6 +57,7 @@ export class HomePage implements OnInit {
     this.onGetLatest();
     this.onGetTrending();
     this.onGetfeatured();
+   // this.GetBookDetails();
 
 
     if (isPlatform('capacitor')) {
@@ -73,11 +74,7 @@ export class HomePage implements OnInit {
     });
   }
   triggerHomeData() {
-    // this.homeService.getBannerData();
-    // this.homeService.getContinueWatchData();
-    // this.homeService.getFavouriteData();
-    // this.homeService.getRentedData();
-    // this.homeService.getHomeData();
+    
   }
 
 

@@ -13,7 +13,7 @@ const routes: Routes = [
         loadChildren: () => import('../../pages/home/home.module').then(m => m.HomePageModule)
       },
       {
-        path: 'cart',
+        path: 'cart/:id',
         loadChildren: () => import('../../pages/cart/cart.module').then(m => m.CartPageModule)
       },
       {
@@ -39,6 +39,38 @@ const routes: Routes = [
       {
         path:'book-details/:id',
         loadChildren:() => import('../../pages/book-details/book-details.module').then(m => m.BookDetailsPageModule)
+      },
+      {
+        path:'complete',
+        loadChildren:() => import('../../pages/complete/complete.module').then(m => m.CompleteModule)
+      },
+      {
+        path:'order',
+        loadChildren:() => import('../../pages/order/order.module').then(m => m.OrderModule)
+      },
+      {
+        path:'add-card',
+        loadChildren:() => import('../../pages/add-card/add-card.module').then(m => m.AddCardModule)
+      },
+      {
+        path:'address',
+        loadChildren:() => import('../../pages/address/address.module').then(m => m.AddressModule)
+      },
+      {
+        path:'author',
+        loadChildren:() => import('../../pages/author/author.module').then(m => m.AuthorModule)
+      },
+      {
+        path:'author-details',
+        loadChildren:() => import('../../pages/author-details/author-details.module').then(m => m.AuthorDetailsModule)
+      },
+      {
+        path:'save-card',
+        loadChildren:() => import('../../pages/save-card/save-card.module').then(m => m.SaveCardModule)
+      },
+      {
+        path:'best-seller',
+        loadChildren:() => import('../../pages/best-seller/best-seller.module').then(m => m.BestSellerModule)
       }
     ]
   }

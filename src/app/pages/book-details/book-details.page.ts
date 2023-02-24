@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component,ViewChild, Input, OnDestroy, OnInit } from '@angular/core';
 import { Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { isPlatform, ModalController } from '@ionic/angular';
 import { BackgroundColorOptions } from '@capacitor/status-bar';
 import { ActivatedRoute, Data, Router } from '@angular/router';
@@ -26,9 +27,20 @@ SwiperCore.use([Autoplay,Navigation, Pagination, Scrollbar, A11y]);
   styleUrls: ['./book-details.page.scss'],
 })
 
+@Injectable({
+  providedIn:'root'
+})
 export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
   @Input() bookId: number;
   @Input() data:Book;
+  @ViewChild('popover') popover;
+
+  isOpen = false;
+
+  presentPopover(e: Event) {
+    this.popover.event = e;
+    this.isOpen = true;
+  }
   // @Input() bannerData: any[];
   cart = [];
   products = [];
@@ -39,11 +51,12 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
   showBanner = false;
   banner:any;
   casts: any;
+  userId:any;
   isLoading = true;
   suggestions = [];
   trendings: Book[];
   placeholder = 'assets/images/placeholder-banner.webp';
-  
+
   config: SwiperOptions = {
     slidesPerView: 5,
     spaceBetween: 15,
@@ -109,7 +122,7 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.domainUrl = window.location.origin;
     }
-   
+
     this.routeSub = this.route.params.subscribe(params => {
       this.movieId = params['id']; // Movie id is captured here
     });
@@ -122,10 +135,38 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.onGetMovieDetail();
     this.onGetTrending();
-    console.log(this.movieId)
+    console.log("{Inside ngOnInit book-details.page.ts ----------->}"+this.movieId)
     this.onProductDetails();
-  
+    console.log("calling add to cart from {ngOnInit}----->> "+ this.data)
+
   }
+  
+  addToCart(){
+    console.log("Inside { addToCart} book-details.page.ts----->here "+this.bookId);
+    this.addCourseToCart(this.book);
+  }
+  async addCourseToCart(book: any) {
+    const data = {
+      userId: "3434",
+      bookId: book.bookId,
+      count: 1
+    };
+    console.log("{this is the book id to add to cart--->> Last step}"+ data.bookId);
+
+    (await this.orchestrationService.addToCart(data)).subscribe(
+      (res: any) => {
+        if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
+          this.toast.onSuccess(res.message);
+          window.alert(data.bookId+'book added successfully! ');
+        } else {
+          this.toast.onFail('Error in the request');
+        }
+      }, (err: any) => {
+        this.toast.onFail('Network Error');
+      }
+    )
+  }
+
   async onProductDetails() {
     (await this.orchestrationService.getBooks()).subscribe({
       next: (res: any) => {
@@ -141,10 +182,10 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
       }
     });
   }
-  
+
   incrementQuantity(book){
     this.orchestrationService.getBooks();
- 
+
    }
 
 
@@ -160,7 +201,7 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  
+
 
   async getSuggestions() {
     (await this.orchestrationService.getupcoming()).subscribe(async response => {
@@ -180,7 +221,7 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
   //     'dismissed': true
   //   });
   // }
-  
+
   ngOnDestroy() {
     if (this.routeSub) {
       this.routeSub.unsubscribe();
@@ -188,7 +229,7 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
 
-  
+
   async onGetTrending() {
     (await this.orchestrationService.getTrending()).subscribe({
       next: (res: any) => {

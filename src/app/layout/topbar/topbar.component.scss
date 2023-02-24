@@ -106,6 +106,49 @@
     display      : inline-block;
 
 }
+.offers {
+  color: hwb(0 15% 4%);
+}
+
+.ion-col {
+  border: solid 1px rgb(238, 234, 234);
+  color: black;
+  text-align: auto;
+}
+
+.ion-button {
+  --border-radius: 0;
+  --border-style: solid;
+  --border-width: 2px;
+  --box-shadow: 0 2px 6px 0 white;
+  --padding-top: 10px;
+  --padding-bottom: 10px;
+}
+
+.imgStyle {
+  width: 250px;
+  height: 350px;
+}
+.ion-icon {
+  color: hwb(240 0% 96%);
+  font-size: 40px;
+}
+
+.page-index {
+  .ion-searchbar {
+    width: 90%;
+    text-align: center !important;
+  }
+}
+.ion-toolbar {
+  --background: #0d0e0d;
+  --color: white;
+
+  --border-color: #0c0c0c;
+  --min-height: 10px;
+  --padding-top: 2px;
+  --padding-bottom: 2px;
+}
 }
 
 
