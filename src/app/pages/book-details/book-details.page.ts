@@ -153,6 +153,8 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
     };
     console.log("{this is the book id to add to cart--->> Last step}"+ data.bookId);
 
+   
+
     (await this.orchestrationService.addToCart(data)).subscribe(
       (res: any) => {
         if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
@@ -166,6 +168,70 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
       }
     )
   }
+
+
+  addToWishList(){
+    console.log("Inside { addToCart} book-details.page.ts----->here "+this.bookId);
+    this.addCourseToWish(this.book);
+  }
+  
+  async addCourseToWish(book: any) {
+    const data = {
+      userId: "3434",
+      bookId: book.bookId,
+      count: 1
+    };
+    console.log("{this is the book id to add to cart--->> Last step}"+ data.bookId);
+
+
+
+    (await this.orchestrationService.addToWish(data)).subscribe(
+      (res: any) => {
+        if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
+          this.toast.onSuccess(res.message);
+          window.alert(data.bookId+'book added successfully! ');
+        } else {
+          this.toast.onFail('Error in the request');
+        }
+      }, (err: any) => {
+        this.toast.onFail('Network Error');
+      }
+    )
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   async onProductDetails() {
     (await this.orchestrationService.getBooks()).subscribe({
@@ -215,13 +281,6 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-
-  // dismiss() {
-  //   this.modalController.dismiss({
-  //     'dismissed': true
-  //   });
-  // }
-
   ngOnDestroy() {
     if (this.routeSub) {
       this.routeSub.unsubscribe();
@@ -265,3 +324,5 @@ async shareUs() {
   });
 }
 }
+
+

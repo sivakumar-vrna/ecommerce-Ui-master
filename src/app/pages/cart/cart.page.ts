@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnDestroy, OnInit,ViewChild,CUSTOM_ELEMENTS_SCHEMA, TemplateRef } from '@angular/core';
+import { AfterViewInit, Component, Input,Output,EventEmitter,  OnDestroy, OnInit,ViewChild,CUSTOM_ELEMENTS_SCHEMA, TemplateRef } from '@angular/core';
 import { Inject } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Book } from 'src/app/shared/models/book.model';
@@ -27,6 +27,8 @@ SwiperCore.use([Autoplay,Navigation, Pagination, Scrollbar, A11y]);
 export class CartPage implements OnInit, AfterViewInit, OnDestroy {
   @Input() data: Book;
   @Input() bookId: number;
+  @Output() cartItemCountChanged = new EventEmitter<number>();
+
   trendings: Book[];
   latest: Book[];
   featured: Book[];
@@ -45,6 +47,7 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
   userId: any;
   content:Book[];
   cartitems:any;
+
 
   config: SwiperOptions = {
     slidesPerView: 7,
@@ -113,7 +116,7 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
     }
 
   remove(no){
-     (this.books).splice( no,1);
+     this.cartitems.splice( no,1);
   }
 
 
@@ -150,7 +153,7 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
   }
   async getUserCart() {
     await this.getAllCartItems();
-}
+  }
 
 async getAllCartItems() {
     (await this.orchService.getCartItems()).subscribe(
@@ -162,6 +165,7 @@ async getAllCartItems() {
                 console.log(this. cartitems);
                 this.cartData.next(this.orchService.orchestrateData(tempData));
                 console.log(this.cartData)
+
               
             } else {
                 this.errorService.onError(res);
@@ -176,25 +180,29 @@ async getAllCartItems() {
 
 
 
-
 RemoveToCart(cartitem:any){
   console.log("Inside { RemoveToCart} book-details.page.ts----->here "+cartitem.bookId);
   this.removeToCart(cartitem);
+  this.removeFromCartArray(cartitem);
 }
 async removeToCart(cartitem: any) {
   const data = {
     userId: "3434",
     bookId: cartitem.bookId
-    // count: 1
   };
-  // console.log("{this is the book id to add to cart--->> Last step}"+ data.bookId);
-
   (
     await this.orchService.removeCart(data)).subscribe(
     (res: any) => {
       if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
         this.toast.onSuccess(res.message);
         window.alert(data.bookId+'book remove successfully! ');
+        
+        // Update cartItems array and save to localStorage
+        // const index = this.cartitems.indexOf(cartitem);
+        // if (index !== -1) {
+        //   this.cartitems.splice(index, 1);
+        //   localStorage.setItem('cartItems', JSON.stringify(this.cartitems));
+        // }
       } else {
         this.toast.onFail('Error in the request');
       }
@@ -203,7 +211,19 @@ async removeToCart(cartitem: any) {
     }
   )
 }
-
+  
+removeFromCartArray(cartitem: any) {
+  const index = this.cartitems.indexOf(cartitem);
+  if (index !== -1) {
+    this.cartitems.splice(index, 1);
+    
+  }
+}
+clearCart() {
+  // this.cartitems = [];
+  
+  this.cartitems.splice(0, this.cartitems.length);
+}
 
 
 

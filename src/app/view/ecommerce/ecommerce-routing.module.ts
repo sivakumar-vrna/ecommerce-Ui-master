@@ -33,6 +33,10 @@ const routes: Routes = [
         loadChildren: () => import('../../pages/account/account.module').then(m => m.AccountPageModule)
       },
       {
+        path: 'wish-list',
+        loadChildren: () => import('../../pages/account/wishlist/wishlist.module').then(m => m.WishlistPageModule)
+      },
+      {
         path:'search',
         loadChildren:() => import('../../pages/search/search.module').then(m => m.SearchPageModule)
       },

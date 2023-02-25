@@ -38,27 +38,23 @@
                       <p>Delivery by Mon Dec 5 | Free</p>
                       <h5>₹650</h5>
                       <ion-button (click)="RemoveToCart(cartitem)" class="ion-minus-circled"  fill="outline">Remove</ion-button>
-
                     </div>
 
+
                   </ion-item>
+                  <ion-button (click)="clearCart()">Clear Cart</ion-button>
 
+                  <!-- <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count"></span>
+                  </div> -->
+
+                  <!-- <ion-button fill="clear" color="dark" routerLink="/cart/3434">
+                    <ion-icon slot="start" name="cart"></ion-icon>
+                    <ion-badge value=cartQty name=quantity slot="start" color="danger" Data-Badge size="medium">{{ cartitems.length }}</ion-badge>
+                  </ion-button> -->
               </ion-list>
-              <ion-list>
-                    
-                   <ion-item lines="inset" *ngFor="let cartItem of cartitems">
-                         
-
-                      <h4>{{cartItem.bookid}}.</h4>
-
-  
-                     
-
-                   </ion-item>   
-
-
-              </ion-list>
-            </ion-card-content>
+              </ion-card-content>
           </ion-card>
         </ion-col>
         <ion-col size="4">

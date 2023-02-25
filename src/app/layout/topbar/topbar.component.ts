@@ -7,6 +7,9 @@ import { CartPageService } from 'src/app/pages/cart/cart.service';
 import { Book } from 'src/app/shared/models/book.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 import{OrchestrationService} from 'src/app/shared/services/orchestration/orchestration.service';
+import { CardData } from 'src/app/shared/models/card.model';
+// import { Subscription } from 'rxjs';
+
 
 export interface ProfileMenu {
   title: string,
@@ -21,13 +24,22 @@ export interface ProfileMenu {
   styleUrls: ['./topbar.component.scss'],
 })
 export class TopbarComponent implements OnInit {
+  @Input() cartItemCount: number;
+
+  
   bookDtls: Book[];
   bookid:any;
   public userId:"3434";
   @Input() data: Book;
+  // routeSub: Subscription;
+
 
   currentTheme: boolean;
   public isMobile: boolean = false;
+
+  // cartItemCount: number = 0; 
+
+
 
 
   profileMenus: ProfileMenu[] = [
@@ -51,7 +63,7 @@ export class TopbarComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    
    }
 
   async getCurrentTheme() {

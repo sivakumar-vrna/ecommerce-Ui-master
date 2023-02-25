@@ -30,6 +30,10 @@ export class OrchestrationService {
   removeCartURL ='http://170.187.138.204:8089/customer-service/cart/delete?userId=3424&';
 
   getCartItemsURL ='http://170.187.138.204:8089/customer-service/cart/get?userId=3434';
+
+  addWishURL='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/customer-service/watchlist/add';
+
+  getWishLIstURl='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/customer-service/watchlist/3424';
   
   constructor(private http: HttpService) {}
 
@@ -99,7 +103,7 @@ export class OrchestrationService {
     return this.http.postCall(url, capacitorUrl, data);
   }
   
- orchestrateData(data: any) {
+  orchestrateData(data: any) {
     let tempData: any[] = [];
     if (data !== null && data[0]) {
         const tempContentsList = data;
@@ -131,4 +135,24 @@ async contentOrchestrate(content: any) {
         return window.location.origin;
     }
 }
+
+
+addToWish(content: any) {
+  const url = this.addWishURL;
+  console.log('inside {addCartURL}---------->');
+  const capacitorUrl = environment.capaciorUrl + url;
+  return this.http.postCall(url, capacitorUrl, content);
+}
+async getWishList() {
+  const url = this.getWishLIstURl;
+  const capacitorUrl = environment.capaciorUrl + url;
+  return this.http.getCall(url, environment.capaciorUrl + url);
+}
+
+
+
+
+
+
+
 }
