@@ -43,7 +43,7 @@ export class OrchestrationService {
 
   getCartItemsURL ='http://170.187.138.204:8089/customer-service/cart/get?userId=3434';
 
-  addWishURL='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/customer-service/watchlist/add';
+  addWishURL='http://170.187.138.204:8089:8099/customer-service/watchlist/add';
 
   getWishListURl='http://170.187.138.204:8089/customer-service/watchlist/3434';
 

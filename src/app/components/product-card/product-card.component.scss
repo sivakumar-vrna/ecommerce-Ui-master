@@ -90,6 +90,13 @@
   border-radius: 1rem;
 
 }
+.expectedMoney{
+  color: red;
+  font-size: large;
+}
+span.rupee-symbol {
+  color: red;
+}
 
 @media (max-width:20px){
   .card-body{

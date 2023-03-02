@@ -210,9 +210,7 @@ async getAllCartItems() {
       count: 1
     };
     console.log("{this is the book id to add to cart--->> Last step}"+ data.bookId);
-
-
-
+    
     (await this.OrchService.addToWish(data)).subscribe(
       (res: any) => {
         if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
