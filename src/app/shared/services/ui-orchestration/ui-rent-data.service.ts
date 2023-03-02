@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { ToastWidget } from 'src/app/widgets/toast.widget';
-import { IntelligenceService, RENTED_KEY } from '../../../shared/services/intelligence.service';
+import { ToastWidget } from '../../widgets/toast.widget';
+
+import { IntelligenceService,RENTED_KEY } from '../../../shared/services/intelligence.service';
 import { Storage } from '@capacitor/storage';
 
 @Injectable({

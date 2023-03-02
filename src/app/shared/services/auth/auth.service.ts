@@ -15,6 +15,8 @@ export const USERNAME_KEY = 'username';
 export const STRIPE_KEY = 'rentId';
 export const MAC_KEY = 'macId';
 
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -31,6 +33,9 @@ export class AuthService {
   ) {
     this.loadToken();
   }
+
+   
+
 
   async loadToken() {
     const token = localStorage.getItem(TOKEN_KEY);

@@ -13,6 +13,7 @@ import { ProductCardModule } from 'src/app/components/product-card/product-card.
 import { TrendingSliderModule } from 'src/app/modules/trending-slider/trending-slider.module';
 import { BookDetailsService } from './book-details.service';
 import { InfiniteScrollCustomEvent } from '@ionic/angular';
+import { CartPageModule } from '../cart/cart.module';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { InfiniteScrollCustomEvent } from '@ionic/angular';
     SwiperModule,
     ProductCardModule,
     TrendingSliderModule,
+    CartPageModule
 
 
   ],

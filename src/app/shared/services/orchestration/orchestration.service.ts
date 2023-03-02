@@ -4,11 +4,23 @@ import { HttpService } from '../http.service';
 import { environment } from 'src/environments/environment';
 import { isPlatform } from '@ionic/core';
 import { Storage } from '@capacitor/storage';
+import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
+import { UserService } from '../user.service';
+
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class OrchestrationService {
+  clearCart() {
+    throw new Error('Method not implemented.');
+  }
+  stripe: any;
+
+  private cartItemsCount = new BehaviorSubject<number>(0);
+
   banner ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/book-service/book/banner';
 
   latest ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/orchestration-service/event/menu?userId=3424&menuName=latest';
@@ -33,9 +45,17 @@ export class OrchestrationService {
 
   addWishURL='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/customer-service/watchlist/add';
 
-  getWishLIstURl='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/customer-service/watchlist/3424';
+  getWishListURl='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/customer-service/watchlist/3424';
+
+  AddCustomerCard='http://170.187.138.204:8089/payment-service/payment/addCustomerCard';
   
-  constructor(private http: HttpService) {}
+  processpayment='http://170.187.138.204:8089/payment-service/payment/processPayment';
+
+  getcards='http://170.187.138.204:8089/payment-service/payment/cardinfo?userName=vinoth';
+  constructor(
+    private http: HttpService,
+    private userService: UserService
+    ) {}
 
   async header(){
     const headers = {
@@ -75,7 +95,6 @@ export class OrchestrationService {
   async getBooks() {
     const url = this.allbooks;
     return this.http.getCall(url, environment.capaciorUrl + url);
-    // return this.http.get<any>("assets/books.json");
   }
   async getBookDetails(bookId) {
     console.log('{orchestration service }  ---- {}getBookDetails-----here ');
@@ -89,10 +108,12 @@ export class OrchestrationService {
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.postCall(url, capacitorUrl, content);
   }
+  
   async getCartItems() {
     const url = this.getCartItemsURL;
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.getCall(url, environment.capaciorUrl + url);
+    
   }
   
   removeCart(data){
@@ -116,12 +137,13 @@ export class OrchestrationService {
         return null;
     }
 }
+
 async contentOrchestrate(content: any) {
   const cart: any[] = [];
   content['bannerurl'] = this.domainUrl + '/images' + content.bannerurl;
   content['posterurl'] = ' https://wallpaperaccess.com/full/3421332.jpg';
 
-  // content['posterurl'] = this.domainUrl + '/images' + content.posterurl;
+
 
 }
   async getupcoming() {
@@ -144,15 +166,46 @@ addToWish(content: any) {
   return this.http.postCall(url, capacitorUrl, content);
 }
 async getWishList() {
-  const url = this.getWishLIstURl;
+  const url = this.getWishListURl;
   const capacitorUrl = environment.capaciorUrl + url;
   return this.http.getCall(url, environment.capaciorUrl + url);
 }
 
 
+  async addcustomercard(postData) {
+    const url =this.AddCustomerCard;
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.http.postCall(url, capacitorUrl, postData);
+  }
 
 
+  getCartItemsCount() {
+    return this.cartItemsCount.asObservable();
+  }
+
+  updateCartItemsCount(count: number) {
+    this.cartItemsCount.next(count);
+  }
+
+  
+  async onPayment(postData) {
+    const baseUrl =this.processpayment;
+    const url = baseUrl;
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.http.postCall(url, capacitorUrl, postData);
+  }
+
+ 
 
 
+  async getSavedCards(): Promise<Observable<any>> {
+    const userName = await this.userService.getEmail();
+    const url =`http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/payment-service/payment/cardinfo?userName=${userName}`;
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.http.getCall(url, capacitorUrl);
+  }
+  
+
+ 
 
 }

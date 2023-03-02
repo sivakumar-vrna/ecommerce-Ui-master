@@ -52,14 +52,13 @@
         <ng-template>
           <ion-content>
             <ion-list lines="none">
-              <ion-item
+              <ion-item 
                 [button]="true"
                 [detail]="false"
                 [routerLink]="menu.url"
                 routerLinkActive="side-menu-active"
                 [routerLinkActiveOptions]="{ exact: true }"
-                *ngFor="let menu of profileMenus"
-              >
+                *ngFor="let menu of profileMenus">
                 <ion-icon [name]="menu.icon" class="ion-padding-end"></ion-icon
                 >{{ menu.title }}
               </ion-item>
@@ -74,20 +73,27 @@
           </ion-content>
         </ng-template>
       </ion-popover>
-
-      <ion-button fill="clear" color="dark" routerLink="/cart/3434">
+      <ion-button  fill="clear" color="dark" routerLink="/cart/3434">
         <ion-icon slot="start" name="cart"></ion-icon>
-        <ion-badge value=cartQty name=quantity slot="start" color="danger" Data-Badge size="medium">2</ion-badge>
+        <ion-badge  value=cartQty name=quantity slot="start" color="danger" Data-Badge size="medium"></ion-badge>
+       
       </ion-button>
+     
+      <!-- <ion-button  fill="clear" color="dark" routerLink="/add-card">
+
+      <ion-icon name="card-outline"></ion-icon>
+
+    </ion-button> -->
       <ion-button fill="clear" color="dark" routerLink="/logout">
         <ion-icon slot="start" name="Logout"></ion-icon>
         Logout
         <p></p>
+
         <ion-icon class="fa fa-sign-out fa-2x"></ion-icon>
       </ion-button>
-      <ion-button fill="clear" color="dark"  routerLink="/wish-list">
+      <ion-button fill="clear" color="dark" routerLink="/wish-list">
         <ion-icon slot="start" name="notifications"></ion-icon>
-        <ion-badge slot="start" color="danger" Data-Badge siz="medium">2</ion-badge>
+        <ion-badge slot="start" color="danger" Data-Badge siz="medium">4</ion-badge>
       </ion-button>
       <ion-toggle class="toggle" (ionChange)="onThemeChange($event)"[checked]="true" color="light"></ion-toggle>
 

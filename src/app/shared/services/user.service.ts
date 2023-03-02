@@ -8,7 +8,7 @@ import {
   USERNAME_KEY,
   USER_KEY,
 } from './auth/auth.service';
-// import { RENTED_KEY } from './intelligence.service';
+import { RENTED_KEY } from './intelligence.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,9 +18,9 @@ export class UserService {
   constructor() { }
 
   async getRentedMoviesList() {
-    // const tempData = await Storage.get({ key: RENTED_KEY });
-    // const rentedList = JSON.parse(tempData.value);
-    // return rentedList;
+    const tempData = await Storage.get({ key: RENTED_KEY });
+    const rentedList = JSON.parse(tempData.value);
+    return rentedList;
   }
 
   async getCurrentToken() {
@@ -35,12 +35,39 @@ export class UserService {
 
   async getUserId(): Promise<number> {
     const id = await Storage.get({ key: USER_KEY });
+    if (id){
+    const id = await Storage.get({ key: USER_KEY });
+    console.log("inside if for nan chcek")
+    id.value="61a5887ad55419688a542013";
     return parseInt(id.value);
+
+    }
+    else {
+      console.log("inside if for nan chcek")
+      id.value="61a5887ad55419688a542013";
+      return parseInt(id.value);
+      
+    }
+    return parseInt(id.value);
+    
   }
 
   async getEmail(): Promise<string> {
     const email = await Storage.get({ key: USERNAME_KEY });
-    return email.value;
+
+    if (email)
+    {
+    const email = await Storage.get({ key: USERNAME_KEY });
+      console.log("inside if for null check");
+      email.value="kannan.gb@vrnaplex.com"; 
+      return email.value;
+    }
+
+    else {
+      console.log("inside else for null check ")
+      email.value="kannan.gb@vrnaplex.com"; 
+      return email.value;
+    }
   }
 
   async getStripeId() {

@@ -46,43 +46,37 @@
           </ion-card-header>
           <ion-card-content>
             <ion-list lines="none">
-              <ion-radio-group value="1">
-                <ion-item>
-                  <ion-radio slot="start" value="1"></ion-radio>
-                  <ion-thumbnail slot="start">
-                    <img src="assets/img/visa.png" />
-                  </ion-thumbnail>
-                  <ion-label>xxx xxxx xxxx 0005</ion-label>
-                </ion-item>
+              
+        <ion-radio-group [value]="selectedCard" (ionChange)="onCardSelection($event)" *ngIf="contentPrice !== 0">
+          <ion-item lines="none" *ngFor="let card of cardData">
+              <ion-radio color="dark" slot="start" [value]="card" [disabled]="isLoading"></ion-radio>
+              <ion-thumbnail slot="start">
+                <img src="assets/img/visa.png" />
+              </ion-thumbnail>
+              <ion-label color="dark">**** **** 0005
+                  {{card.cardNo}}
+              </ion-label>
+              <ion-icon name="card-outline" slot="end"></ion-icon>
+          </ion-item>
 
-                <ion-item>
+                <!-- <ion-item>
                   <ion-radio slot="start" value="2"></ion-radio>
                   <ion-thumbnail slot="start">
                     <img src="assets/img/visa.png" />
                   </ion-thumbnail>
                   <ion-label>xxx xxxx xxxx 6695</ion-label>
-                </ion-item>
+                </ion-item> -->
 
+                
                 <ion-item>
-                  <ion-radio slot="start" value="3"></ion-radio>
-                  <ion-thumbnail slot="start">
-                    <img src="assets/img/gpay.webp" />
-                  </ion-thumbnail>
-                  <ion-label>Google Pay UPI - xxxxxxx@okaxis</ion-label>
+                  <ion-radio slot="start" value="2"></ion-radio>
+                  <ion-label>
+                    <ion-button routerLink="/add-card" class="m-auto" fill="clear" color="dark" size="small">
+                    <ion-icon name="add-circle"></ion-icon> Add New Card
+                  </ion-button>
+                  </ion-label>
                 </ion-item>
 
-                <ion-list>
-                  <ion-item>
-                  <ion-radio slot="start" value="4"></ion-radio>
-                  <ion-label position="stacked">Net banking</ion-label>
-
-                    <ion-select interface="popover" placeholder="Select fruit">
-                      <ion-select-option value="apples">HDFC</ion-select-option>
-                      <ion-select-option value="oranges">INDIAN BANK</ion-select-option>
-                      <ion-select-option value="bananas">IDBI BANK</ion-select-option>
-                    </ion-select>
-                  </ion-item>
-                </ion-list>
 
                 <ion-item>
                   <ion-radio slot="start" value="5"></ion-radio>
@@ -90,7 +84,6 @@
                     Credit / Debit / ATM Card
                   </ion-label>
                 </ion-item>
-
               </ion-radio-group>
             </ion-list>
             <div class="px-5">
@@ -146,7 +139,7 @@
 
               <ion-item lines="none">
                 <ion-label>
-                  <ion-button expand="full" color="dark" routerLink="/complete">Checkout</ion-button>
+                  <ion-button expand="full" color="dark" (click)="onGetRental()" >Checkout</ion-button>
                 </ion-label>
               </ion-item>
             </ion-list>
@@ -157,9 +150,12 @@
   </ion-grid>
   
   <!-- Trending Slider Here -->
-  <app-trending-slider></app-trending-slider>
+  <!-- <app-trending-slider></app-trending-slider> -->
 
   <!-- Footer -->
   <app-footer></app-footer>
 
 </ion-content>
+
+
+

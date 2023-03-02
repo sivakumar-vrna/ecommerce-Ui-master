@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { isPlatform } from '@ionic/core';
 import { BookDetailsService } from '../book-details/book-details.service';
 import { ActivatedRoute, Router } from '@angular/router';
+// import { TopbarComponent } from 'src/app/layout/topbar/topbar.component';
 
 
 
@@ -51,6 +52,7 @@ export class HomePage implements OnInit {
     private bookDetailsService:BookDetailsService,
     private route: ActivatedRoute,
     private router: Router,
+    // public TopbarComponent:TopbarComponent
   ) { }
 
   ngOnInit() {

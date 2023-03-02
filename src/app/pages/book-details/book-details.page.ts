@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { isPlatform, ModalController } from '@ionic/angular';
 import { BackgroundColorOptions } from '@capacitor/status-bar';
 import { ActivatedRoute, Data, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription,Subject } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { SwiperOptions } from 'swiper';
@@ -56,6 +56,8 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
   suggestions = [];
   trendings: Book[];
   placeholder = 'assets/images/placeholder-banner.webp';
+  cartitems:any;
+  cartData = new Subject();
 
   config: SwiperOptions = {
     slidesPerView: 5,
@@ -112,7 +114,7 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private orchService: OrchService,
-    private orchestrationService:OrchestrationService,
+    private OrchService:OrchestrationService,
     private errorService:ErrorService,
     public toast: ToastWidget,
 
@@ -155,7 +157,7 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
 
    
 
-    (await this.orchestrationService.addToCart(data)).subscribe(
+    (await this.OrchService.addToCart(data)).subscribe(
       (res: any) => {
         if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
           this.toast.onSuccess(res.message);
@@ -168,6 +170,32 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
       }
     )
   }
+
+
+  
+
+async getAllCartItems() {
+  (await this.OrchService.getCartItems()).subscribe(
+      (res: any) => {
+          if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
+              const tempData = res.data;
+              this.cartitems= res.data;
+              console.log("cartitems");
+              console.log(this. cartitems);
+              this.cartData.next(this.OrchService.orchestrateData(tempData));
+              console.log(this.cartData)
+
+            
+          } else {
+              this.errorService.onError(res);
+          }
+      },
+      (err) => {
+          this.errorService.onError(err);
+      }
+  );
+}
+
 
 
   addToWishList(){
@@ -185,7 +213,7 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
 
 
 
-    (await this.orchestrationService.addToWish(data)).subscribe(
+    (await this.OrchService.addToWish(data)).subscribe(
       (res: any) => {
         if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
           this.toast.onSuccess(res.message);
@@ -234,7 +262,7 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
 
 
   async onProductDetails() {
-    (await this.orchestrationService.getBooks()).subscribe({
+    (await this.OrchService.getBooks()).subscribe({
       next: (res: any) => {
         if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {
           this.book = res.data.find((e: Book) => e.bookId == this.movieId);
@@ -250,13 +278,13 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   incrementQuantity(book){
-    this.orchestrationService.getBooks();
+    this.OrchService.getBooks();
 
    }
 
 
   async onGetMovieDetail() {
-    (await this.orchestrationService.getBooks()).subscribe(async response => {
+    (await this.OrchService.getBooks()).subscribe(async response => {
       if (response.status.toLowerCase() === 'success' && response.statusCode == 200) {
         this.book = response.data;
         await this.orchService.movieOrchestrate(this.book);
@@ -270,7 +298,7 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
 
 
   async getSuggestions() {
-    (await this.orchestrationService.getupcoming()).subscribe(async response => {
+    (await this.OrchService.getupcoming()).subscribe(async response => {
       if (response.status.toLowerCase() === 'success' && response.statusCode == 200) {
         this.suggestions = response.data;
         this.suggestions.map(cast => cast['posterurl'] = this.domainUrl + '/images' + cast.posterurl)
@@ -290,7 +318,7 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
 
 
   async onGetTrending() {
-    (await this.orchestrationService.getTrending()).subscribe({
+    (await this.OrchService.getTrending()).subscribe({
       next: (res: any) => {
         if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {
           this.trendings = res.data;

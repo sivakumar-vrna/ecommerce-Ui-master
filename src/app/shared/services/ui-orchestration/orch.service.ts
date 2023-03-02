@@ -19,6 +19,9 @@ export const CURRENCY_KEY = 'currency';
 })
 
 export class OrchService {
+    getCartItems() {
+      throw new Error('Method not implemented.');
+    }
 
     constructor(
         private http: HttpService,

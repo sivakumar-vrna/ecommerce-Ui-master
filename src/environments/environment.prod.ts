@@ -1,5 +1,5 @@
-const apiUrl = 'https://dev.vrnaplex.com';
-const domainUrl = 'https://dev.vrnaplex.com';
+const apiUrl = 'https://dev.vrnaplex.com';//http://170.187.138.204:8089
+const domainUrl = 'https://dev.vrnaplex.com';//http://170.187.138.204:8089
 export const environment = {
   production: true,
   baseUrl: apiUrl,

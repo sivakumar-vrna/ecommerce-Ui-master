@@ -3,6 +3,7 @@ import { Book } from 'src/app/shared/models/book.model';
 import { ErrorService } from 'src/app/shared/services/error.service';
 import { OrchestrationService } from 'src/app/shared/services/orchestration/orchestration.service';
 import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
+import { TopbarComponent } from 'src/app/layout/topbar/topbar.component';
 
 @Component({
   selector: 'app-all-books',
@@ -14,11 +15,17 @@ export class AllBooksPage implements OnInit {
   constructor(
     private orchService: OrchestrationService,
     public toast: ToastWidget,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private TopbarComponent:TopbarComponent
   ) { }
 
   ngOnInit() {
+    // this.TopbarComponent.getAllCartItems();
+
+    // console.log('TopbarComponent');
+
     this.onGetBooks();
+
   }
   async onGetBooks() {
     (await this.orchService.getBooks()).subscribe({

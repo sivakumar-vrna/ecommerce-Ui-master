@@ -1,4 +1,5 @@
   <app-topbar></app-topbar>
+
   <ion-content  >  
     <ion-grid class="cart-main ion-padding">
       <ion-toolbar *ngIf="cartData">
@@ -22,12 +23,15 @@
               <ion-card-subtitle>Deselect all items</ion-card-subtitle>
             </ion-card-header>
 
-             <ion-card-content  >
+             <ion-card-content>
               <ion-list>
                   <ion-item lines="inset" *ngFor="let cartitem of cartitems">
-                    <ion-checkbox slot="start"></ion-checkbox>
-                    <ion-thumbnail slot="start">
-                      <a><img  [src]="cartitem.posterurl"/></a>
+                    <!-- <ion-checkbox slot="start"></ion-checkbox> -->
+                    <!-- <ion-thumbnail slot="start">
+                      <ion-img  [src]="cartitem.posterurl"/>
+                    </ion-thumbnail> -->
+                    <ion-thumbnail slot="start" *ngIf="cartitem.posterurl">
+                      <ion-img [src]="cartitem.posterurl" alt="No preview"></ion-img>
                     </ion-thumbnail>
                     <ion-label>
                       <h4> {{cartitem.bookid}} .</h4>
@@ -38,22 +42,25 @@
                       <p>Delivery by Mon Dec 5 | Free</p>
                       <h5>₹650</h5>
                       <ion-button (click)="RemoveToCart(cartitem)" class="ion-minus-circled"  fill="outline">Remove</ion-button>
+                      <ion-button (click)="decreaseCount(cartitem)">
+                        <ion-icon name="remove-circle-outline"></ion-icon>
+                      </ion-button>
+
+                      <ion-button (click)="increaseCount(cartitem)">
+                        <ion-icon name="add-circle-outline"></ion-icon>
+                      </ion-button>
+
                     </div>
 
-
+                    <p>Cart Items: </p>
+                    <ion-button fill="clear" color="dark" routerLink="/cart/3434">
+                      <ion-icon slot="start" name="cart"></ion-icon>
+                      <ion-badge value=cartQty name=quantity slot="start" color="danger" Data-Badge size="medium">{{ cartitems.length }}</ion-badge>
+                    </ion-button>
                   </ion-item>
+
                   <ion-button (click)="clearCart()">Clear Cart</ion-button>
-
-                  <!-- <div class="cart-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count"></span>
-                  </div> -->
-
-                  <!-- <ion-button fill="clear" color="dark" routerLink="/cart/3434">
-                    <ion-icon slot="start" name="cart"></ion-icon>
-                    <ion-badge value=cartQty name=quantity slot="start" color="danger" Data-Badge size="medium">{{ cartitems.length }}</ion-badge>
-                  </ion-button> -->
-              </ion-list>
+                </ion-list>
               </ion-card-content>
           </ion-card>
         </ion-col>
@@ -65,18 +72,17 @@
             <ion-card-content>
               <ion-list>
                 <ion-item lines="none">
-                  <ion-label>Subtotal (2 items):</ion-label>
-                  <p>₹650.00</p>
+                  <ion-label>{{ subtotalText }} </ion-label>
+                  <p>₹650{{ getTotalCount() | number: '1.2-2' }}</p>
                 </ion-item>
-
-                <ion-item>
+                 <ion-item>
                   <ion-label>Delivery Charges</ion-label>
                   <p>FREE</p>
                 </ion-item>
 
                 <ion-item lines="none">
                   <ion-label>Total Amount</ion-label>
-                  <b>₹650.00</b>
+                  <b>₹{{getTotalAmount()}}</b>
                 </ion-item>
 
                 <ion-item lines="none">

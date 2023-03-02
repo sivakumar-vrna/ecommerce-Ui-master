@@ -29,6 +29,8 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
   @Input() bookId: number;
   @Output() cartItemCountChanged = new EventEmitter<number>();
 
+  cartItemsCount: number;
+  cartItemCount: number = 0;
   trendings: Book[];
   latest: Book[];
   featured: Book[];
@@ -46,7 +48,11 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
   angularFirestore: any;
   userId: any;
   content:Book[];
-  cartitems:any;
+  totalcartitemsCost: number = 0;
+  public cartitemCount: number = 0;
+  cartitems: any[] = [];
+
+
 
 
   config: SwiperOptions = {
@@ -63,6 +69,8 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
 
     // #For Skeleton Loader
     skeletonData = [1, 2, 3, 4, 5, 6];
+   subtotalText: string;
+   errorMessage: string;
     
 
 
@@ -86,6 +94,7 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
       this.movieId = params['id']; // Movie id is captured here
     });
    }
+
    ngOnDestroy() {
     if (this.routeSub) {
       this.routeSub.unsubscribe();
@@ -97,6 +106,9 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
      this.getAllCartItems();
+     this.cartItemCount = this.cartitems.length;
+     
+
    }
 
   async onGetTrending() {
@@ -125,7 +137,8 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
   deleteSpace(book: Book): void {
     console.log('book.id',book)
       this.setisDeleted(book);
-  }
+    }
+    
 
   setisDeleted(book): Promise<any> {
     const isDeleted = true;
@@ -151,23 +164,26 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
       }
     });
   }
+  
   async getUserCart() {
     await this.getAllCartItems();
   }
 
+
 async getAllCartItems() {
     (await this.orchService.getCartItems()).subscribe(
+      
         (res: any) => {
             if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
+              
                 const tempData = res.data;
                 this.cartitems= res.data;
+                this.cartItemCount = tempData.length; 
                 console.log("cartitems");
                 console.log(this. cartitems);
                 this.cartData.next(this.orchService.orchestrateData(tempData));
                 console.log(this.cartData)
-
-              
-            } else {
+              } else {
                 this.errorService.onError(res);
             }
         },
@@ -197,12 +213,6 @@ async removeToCart(cartitem: any) {
         this.toast.onSuccess(res.message);
         window.alert(data.bookId+'book remove successfully! ');
         
-        // Update cartItems array and save to localStorage
-        // const index = this.cartitems.indexOf(cartitem);
-        // if (index !== -1) {
-        //   this.cartitems.splice(index, 1);
-        //   localStorage.setItem('cartItems', JSON.stringify(this.cartitems));
-        // }
       } else {
         this.toast.onFail('Error in the request');
       }
@@ -220,37 +230,61 @@ removeFromCartArray(cartitem: any) {
   }
 }
 clearCart() {
-  // this.cartitems = [];
-  
   this.cartitems.splice(0, this.cartitems.length);
 }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+getTotalAmount(): number {
+  let total = 0;
+  for (let cartitem of this.cartitems) {
+    total += cartitem.count * cartitem.count;
+  }
+  return total;
 }
+
+getTotalCount(): number {
+  let total = 0;
+  for (let i = 0; i < this.cartitems.length; i++) {
+    total += this.cartitems[i].count * this.cartitems[i].price;
+  }
+  this.subtotalText = `Subtotal (${this.cartitems.length} items):`; // update the subtotal text here
+  return total;
+}
+
+increaseCount(cartitem: any) {
+  cartitem.count += 1;
+}
+
+decreaseCount(cartitem: any) {
+  cartitem.count -= 1;
+}
+
+
+
+
+// async onAddNewCard() {
+//   this.addCardModal.onAddNewCard().then(res => {
+//     this.onGetSavedCards();
+//   });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

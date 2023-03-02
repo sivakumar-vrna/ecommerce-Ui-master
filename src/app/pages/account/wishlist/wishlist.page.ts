@@ -19,14 +19,14 @@ export class WishlistPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getAllCartItems()
+    this.getAllWishItems()
   }
 
 
 
 
   
-async getAllCartItems() {
+async getAllWishItems() {
   (await this.orchService.getWishList()).subscribe(
       (res: any) => {
           if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddCardPageRoutingModule } from './add-card-routing.module';
+import { AddCardRoutingModule } from './add-card-routing.module';
 import { AddCardComponent } from './add-card.component';
+import { IonicModule } from '@ionic/angular';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -11,7 +13,10 @@ import { AddCardComponent } from './add-card.component';
   ],
   imports: [
     CommonModule,
-    AddCardPageRoutingModule
+    AddCardRoutingModule,
+    IonicModule,
+    FormsModule, 
+    ReactiveFormsModule
   ]
 })
 export class AddCardModule { }
