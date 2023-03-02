@@ -10,7 +10,9 @@ import { Subject } from 'rxjs';
 })
 export class WishlistPage implements OnInit {
   cartitems:any;
+  wishitems:any;
   cartData = new Subject();
+  wishData =new Subject();
 
 
   constructor(
@@ -31,11 +33,11 @@ async getAllWishItems() {
       (res: any) => {
           if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
               const tempData = res.data;
-              this.cartitems= res.data;
-              console.log("cartitems");
-              console.log(this. cartitems);
-              this.cartData.next(this.orchService.orchestrateData(tempData));
-              console.log(this.cartData)
+              this.wishitems= res.data;
+              console.log("wishitems");
+              console.log(this. wishitems);
+              this.wishData.next(this.orchService.orchestrateData(tempData));
+              console.log(this.wishData)
 
             
           } else {

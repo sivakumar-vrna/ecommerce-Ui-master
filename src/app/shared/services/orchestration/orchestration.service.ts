@@ -45,7 +45,7 @@ export class OrchestrationService {
 
   addWishURL='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/customer-service/watchlist/add';
 
-  getWishListURl='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/customer-service/watchlist/3424';
+  getWishListURl='http://170.187.138.204:8089/customer-service/watchlist/3434';
 
   AddCustomerCard='http://170.187.138.204:8089/payment-service/payment/addCustomerCard';
   

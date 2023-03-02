@@ -50,6 +50,8 @@ export class CheckoutPage implements OnInit {
 
   ngOnInit() {
     this.onGetSavedCards();
+    // this.contentPrice = this.contentData.ppmCost;
+
 
   }
 
