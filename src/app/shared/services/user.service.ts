@@ -35,20 +35,21 @@ export class UserService {
 
   async getUserId(): Promise<number> {
     const id = await Storage.get({ key: USER_KEY });
+    
     if (id){
     const id = await Storage.get({ key: USER_KEY });
-    console.log("inside if for nan chcek")
-    id.value="61a5887ad55419688a542013";
+    console.log("inside if for userid chcek")
+    id.value="3434";
     return parseInt(id.value);
 
     }
     else {
       console.log("inside if for nan chcek")
-      id.value="61a5887ad55419688a542013";
+      id.value="3434";
       return parseInt(id.value);
       
     }
-    return parseInt(id.value);
+    // return parseInt(id.value);
     
   }
 

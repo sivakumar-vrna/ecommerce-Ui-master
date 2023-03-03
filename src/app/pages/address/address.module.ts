@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { AddressPageRoutingModule } from './address-routing.module';
 import { AddressComponent } from './address.component';
 import { IonicModule } from '@ionic/angular';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+
 
 
 
@@ -13,7 +16,9 @@ import { IonicModule } from '@ionic/angular';
   imports: [
     CommonModule,
     AddressPageRoutingModule,
-    IonicModule
+    IonicModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AddressModule { }

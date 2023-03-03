@@ -5,7 +5,8 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./view/ecommerce/ecommerce.module').then( m => m.EcommerceModule)
-  }
+  },
+  
 ];
 
 @NgModule({

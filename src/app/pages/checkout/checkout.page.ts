@@ -26,7 +26,13 @@ export class CheckoutPage implements OnInit {
   isLoading: boolean = false;
   
   public cardData: any;
+  public addressData:any;
+
   selectedCard: any;
+  selectedAddress: any;
+  subtotal: number = 0;
+
+
   contentPrice: number;
   isPromoCode = false;
   isPromoCodeValid = false;
@@ -50,7 +56,7 @@ export class CheckoutPage implements OnInit {
 
   ngOnInit() {
     this.onGetSavedCards();
-    // this.contentPrice = this.contentData.ppmCost;
+    this.ongetSavedAddress();
 
 
   }
@@ -58,6 +64,11 @@ export class CheckoutPage implements OnInit {
   onCardSelection(e) {
     console.log(e.detail.value)
     this.selectedCard = e.detail.value;
+  }
+
+  onAddressSelection(e) {
+    console.log(e.detail.value)
+    this.selectedAddress = e.detail.value;
   }
 
 
@@ -83,7 +94,30 @@ export class CheckoutPage implements OnInit {
     );
   }
 
+  async ongetSavedAddress(){
+    this.isLoading = true;
+    const loading = await this.loadingController.create();
+    (await this. orchService.getSavedAddress()).subscribe((res: any) => {
+      console.log(res);
+      const data = res.data;
+      if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
+        this. addressData = data;
+        console.log(this. addressData);
+        this.selectedAddress = this.addressData[1];
+      } else {
+        this.selectedAddress = 'new';
+      }
+      this.isLoading = false;
+      loading.dismiss();
+    }, (err) => {
+      console.log('sivakumar:', err); // add a console.log statement here to help diagnose the error
+      this.isLoading = false;
+      loading.dismiss();
+    });
+  }
+  
 
+  
   async onGetRental() {
     this.isLoading = true;
     const userId = await this.userService.getUserId();

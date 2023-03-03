@@ -1,18 +1,18 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-const apiUrl = 'https://dev.vrnaplex.com';
-const domainUrl = 'https://dev.vrnaplex.com';
+const apiUrl = 'http://170.187.138.204:8089';
+const domainUrl = 'http://170.187.138.204:8089';
 export const environment = {
   production: false,
   baseUrl: apiUrl,
   capaciorUrl: domainUrl,
   awsUrl: '/aws-service/',
-  authUrl: '/auth-service/',
-  vrnaFlowUrl: '/orch-service/vrnaflow/',
+  authUrl: '/user-service/',
+  vrnaFlowUrl: '/orchestration-service/event/',
   intelligenceUrl: '/intelligence-service/',
-  contentUrl: '/content-service/',
-  watchlistUrl: '/watchlist-service/',
+  contentUrl: '/book-service/',
+  watchlistUrl: '/customer-service/',
   supportUrl: '/support-service/',
   paymentUrl: '/payment-service/',
   commonUrl: '/common-service/',

@@ -6,6 +6,9 @@ import { LoadingController } from '@ionic/angular';
     providedIn: 'root'
 })
 export class ToastWidget {
+    onError(arg0: string) {
+      throw new Error('Method not implemented.');
+    }
 
     constructor(
         public toastController: ToastController,

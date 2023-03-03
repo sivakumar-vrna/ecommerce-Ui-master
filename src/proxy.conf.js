@@ -1,12 +1,12 @@
 const PROXY_CONFIG = [
   {
     context: [
-      "/auth-service",
-      "/orch-service",
-      "/vrnaflow",
+      "/user-service",
+      "/orchestration-service",
+      "/event",
       "/intelligence-service",
-      "/content-service",
-      "/watchlist-service",
+      "/book-service",
+      "/customer-service",
       "/support-service",
       "/payment-service",
       "/common-service",
@@ -15,7 +15,7 @@ const PROXY_CONFIG = [
       "/video",
       "/trailer",
     ],
-    target: "http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/",
+    target: "http://170.187.138.204:8089",
     secure: false,
     logLevel: "debug",
     changeOrigin: true,

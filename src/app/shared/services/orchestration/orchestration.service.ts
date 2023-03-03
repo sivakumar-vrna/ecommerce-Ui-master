@@ -52,6 +52,11 @@ export class OrchestrationService {
   processpayment='http://170.187.138.204:8089/payment-service/payment/processPayment';
 
   getcards='http://170.187.138.204:8089/payment-service/payment/cardinfo?userName=vinoth';
+
+  getAddress='http://170.187.138.204:8089/user-service/address/all?userId=3434';
+
+  AddaddressURL='http://170.187.138.204:8089/user-service/address/add';
+ 
   constructor(
     private http: HttpService,
     private userService: UserService
@@ -173,11 +178,12 @@ async getWishList() {
 
 
   async addcustomercard(postData) {
-    const url =this.AddCustomerCard;
+    const url =environment.paymentUrl +'payment/addCustomerCard';
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.postCall(url, capacitorUrl, postData);
   }
 
+ 
 
   getCartItemsCount() {
     return this.cartItemsCount.asObservable();
@@ -204,7 +210,22 @@ async getWishList() {
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.getCall(url, capacitorUrl);
   }
+
+  async getSavedAddress(): Promise<Observable<any>> {
+    const userId = await this.userService.getUserId();
+    const url = environment.authUrl + 'address/all?userId='+userId;
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.http.getCall(url, capacitorUrl);
+  }
+
+  async addAddress(postData) {
+    
+    const url =environment.authUrl +'address/add';
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.http.postCall(url, capacitorUrl, postData);
+  }
   
+
 
  
 

@@ -18,24 +18,36 @@
 
           <ion-card-content>
             <ion-list>
-              <ion-radio-group value="2">
-                <ion-item>
-                  <ion-radio slot="start" value="1"></ion-radio>
+              <ion-radio-group value="2" [value]="selectedCard" (ionChange)="onCardSelection($event)" *ngIf="contentPrice !== 0">
+                <ion-item lines="none" *ngFor="let address of addressData">
+                  <ion-radio slot="start" value="1" [value]="address" [disabled]="isLoading"></ion-radio>
                   <ion-label>
-                    <b>H.Vestibulum</b> - +91 xxxxx xxxxx
-                    <p> Shop No-29, Sumer Nagar, S V Road, Opp Flyover Bridge, Kora Kendra, Borivli (w), Chennai,
-                      Tamilnadu - 400102</p>
-                  </ion-label>
+                    
+                    <b>{{address.firstName}}</b> - {{address.mobile}} {{address.lastName}}
+                    <p> {{address.address1}}</p><span><p>{{address.address2}}</p></span>
+                    <b>{{address.addressId}}</b> -{{address.addressType}} {{address.area}} {{address.country}}{{address.zipCode}}
+                  </ion-label>  
                   <a>Edit</a>
                 </ion-item>
-                <ion-item lines="none">
-                  <ion-radio slot="start" value="2"></ion-radio>
-                  <ion-label>
+
+                <!-- <ion-item lines="none"  *ngFor="let address of addressData">
+                  <ion-radio [value]="selectedAddress" slot="start" value="2"></ion-radio>
+                  <ion-label>{{address.addressData}}
                     <b>Curabitur</b> - +91 xxxxx xxxxx
                     <p>4, Raj Laxmi Bldg, Shree Nagar, Wagle Est, Thane(w), Mumbai, Maharashtra - 400604</p>
                   </ion-label>
                   <a>Edit</a>
+                </ion-item> -->
+                  
+                <ion-item>
+                  <ion-radio slot="start" value="3"></ion-radio>
+                  <ion-label>
+                    <ion-button routerLink="/address" class="m-auto" fill="clear" color="dark" size="small">
+                    <ion-icon name="add-circle"></ion-icon> Add New Address
+                  </ion-button>
+                  </ion-label>
                 </ion-item>
+
               </ion-radio-group>
             </ion-list>
           </ion-card-content>
@@ -58,16 +70,7 @@
               </ion-label>
               <ion-icon name="card-outline" slot="end"></ion-icon>
           </ion-item>
-
-                <!-- <ion-item>
-                  <ion-radio slot="start" value="2"></ion-radio>
-                  <ion-thumbnail slot="start">
-                    <img src="assets/img/visa.png" />
-                  </ion-thumbnail>
-                  <ion-label>xxx xxxx xxxx 6695</ion-label>
-                </ion-item> -->
-
-                
+          
                 <ion-item>
                   <ion-radio slot="start" value="2"></ion-radio>
                   <ion-label>
@@ -108,9 +111,6 @@
                   </ion-item>
                 </ion-col>
               </ion-row>
-
-             
-
             </div>
           </ion-card-content>
         </ion-card>
@@ -123,8 +123,11 @@
           <ion-card-content>
             <ion-list>
               <ion-item lines="none">
+                <!-- <ion-label>Subtotal ({{cardData.length}} items):</ion-label>
+                <p>₹{{subtotal.toFixed(2)}}</p>
+              </ion-item> -->
                 <ion-label>Subtotal (2 items):</ion-label>
-                <p>₹650.00</p>
+                <p>₹650</p>
               </ion-item>
 
               <ion-item>

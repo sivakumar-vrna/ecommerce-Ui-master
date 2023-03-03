@@ -5,7 +5,10 @@ import { IonicModule } from '@ionic/angular';
 import { OrderComponent } from './order.component';
 import { FooterModule } from 'src/app/layout/footer/footer.module';
 import { TopbarModule } from 'src/app/layout/topbar/topbar.module';
-
+import { ProductCartModule } from './product-cart/product-cart.module';
+import { TrendingSliderModule } from 'src/app/modules/trending-slider/trending-slider.module';
+import { ProductCardModule } from 'src/app/components/product-card/product-card.module';
+import { SwiperModule } from 'swiper/angular';
 @NgModule({
   declarations: [
     OrderComponent
@@ -15,7 +18,11 @@ import { TopbarModule } from 'src/app/layout/topbar/topbar.module';
     OrderPageRoutingModule,
     IonicModule,
     FooterModule,
-    TopbarModule
+    TopbarModule,
+    ProductCartModule,
+    TrendingSliderModule,
+    ProductCardModule,
+    SwiperModule
   ]
 })
 export class OrderModule { }

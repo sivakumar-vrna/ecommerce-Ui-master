@@ -2,7 +2,7 @@
   display: flex;
   align-items: auto;
   justify-content: auto;
-  margin-left: 15%;
+  margin-left: 16%;
 }
 .search{
     position: relative;
@@ -46,12 +46,7 @@ ul li{
     align-items: auto;
     justify-content: auto;
 }
-ion-col {
-    background-color: #135d54;
-    border: solid 1px #fff;
-    color: #fff;
-    text-align: center;
-}
+
 .main{
     margin-left: 16%;
     display: flex;
@@ -62,4 +57,8 @@ ion-col {
     left: 15%;
     margin-top: -1%;
     background-color: gainsboro;
+}
+.card{
+    position: relative;
+    margin-left: 9%;
 }

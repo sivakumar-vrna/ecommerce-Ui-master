@@ -25,7 +25,7 @@
         <li role="tab"><span class="a-list-item">Cancelled Orders</span></li>
     </ul>
   </div>
-
+  
   <div class="drop">
       <h4>2 orders&nbsp;<span>placed in</span></h4>
       <ion-list>
@@ -39,45 +39,80 @@
           </ion-select>
         </ion-item>
       </ion-list>
-  </div>
-  
-<!-- 
-  <ion-grid [fixed]="true">
-    <ion-row>
-      <ion-col>
-            <h3>ORDER PLACED</h3>
-            <h3>TOTAL</h3>
-            <h3>SHIP TO</h3>
-            <h3>ORDER PLACED</h3>
-      
-    </ion-col>
-       
-    </ion-row>
-  </ion-grid> -->
+    </div>
+    <div class="card" >
+      <app-product-cart></app-product-cart>
+    </div>
+    
+    <ion-content [fullscreen]="false">
 
-  <ion-card class="content">
-   
+      <ion-card-content>
+        <ion-row class="suggestions-section p-3" >
+          <ion-col size="12">
+            <ion-text class="suggestions-section-title" color="primary">
+              <h2>More digital items to explore</h2>
+            </ion-text>
+    
+            <ion-card class="ion-padding ion-margin">
+              <div class="py-2" id="trending-slider">
+                <swiper #bannerSwiper [config]="config">
+                  <ng-template swiperSlide *ngFor="let trending of trendings; index as i">
+                    <app-product-card [data]="trending"></app-product-card>
+                  </ng-template>
+                </swiper>
+              </div>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
 
-    <ion-card-header>
-      <ion-col>
-      <ion-card-title>
-        My Card Title
-      </ion-card-title>
-    </ion-col>
-    </ion-card-header>
-  
-  
-    <!-- <ion-card-content>
-      This is some content for my card. It can be anything you want to display in your app.
-    </ion-card-content> -->
-  </ion-card>
-  
-  
-  
-  
-  
-  
-  
-  
+    </ion-content>
 
-</ion-content>
+
+
+    
+    <ion-content [fullscreen]="false">
+
+      <ion-card-content>
+        <ion-row class="suggestions-section p-3" >
+          <ion-col size="12">
+            <ion-text class="suggestions-section-title" color="primary">
+              <h2>Recommended based on your shopping trends</h2>
+            </ion-text>
+    
+            <ion-card class="ion-padding ion-margin">
+              <div class="py-2" id="trending-slider">
+                <swiper #bookSwiper [config]="config">
+                  <ng-template swiperSlide *ngFor="let book of latest; index as i">
+                    <app-product-card [data]="book"></app-product-card>
+                    <ion-col size="2" *ngFor="let book of latest"></ion-col>
+                </ng-template>
+                </swiper>
+              </div>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+
+    </ion-content>
+
+<ion-card-content>
+  <ion-row class="suggestions-section p-3" >
+    <ion-col size="12">
+      <ion-text class="suggestions-section-title" color="primary">
+      <h3>Your browsing historyView or edit your browsing history</h3>
+    </ion-text>
+    <ion-card class="ion-padding ion-margin">
+      <div class="py-2" id="trending-slider">
+        <swiper #bannerSwiper [config]="config">
+          <ng-template swiperSlide *ngFor="let history of history; index as i">
+            <app-product-card [data]="history"></app-product-card>
+          </ng-template>
+        </swiper>
+      </div>
+    </ion-card>
+  </ion-col>
+</ion-row>
+</ion-card-content>
+
+    
