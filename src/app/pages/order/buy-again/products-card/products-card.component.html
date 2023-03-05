@@ -1,0 +1,34 @@
+
+
+<a class="product-card" routerLink="/book-details/{{data.bookId}}">
+
+  <img class="pc-img" [src]="data.posterurl" />
+
+  <div class="card-body">
+    <h2 class="name">{{data.bookname}}</h2>
+    <h6 class="des">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h6>
+    <h6 class="author">{{data.authorName}}</h6>
+    <button class="add-card" routerLink="/product">Add to Card</button>
+  </div>
+
+  <b class="pt-2" text="wrap_text">{{data.bookname}}</b>
+  <small class="pt-1">{{data.authorName}}</small>
+
+
+  <div class="d-flex">{{data.userRating}}
+    <ion-icon color="warning" name="star"></ion-icon>
+    <ion-icon color="warning" name="star"></ion-icon>
+    <ion-icon color="warning" name="star"></ion-icon>
+    <ion-icon color="warning" name="star-half-outline"></ion-icon>
+    <ion-icon color="warning" name="star-outline"></ion-icon>
+  </div>
+
+  
+ <div>
+  <small style="font-size: large;"><span class="rupee-symbol" style="font-size:large;">&#8722; 40%</span></small>&nbsp;
+  <span  style="font-size:x-large;color: green;">&#8377;</span><b style="font-size: x-large;color: green;">{{data.cost}}</b><span style="font-size: large;color: green">.00</span>
+  <h6><b>Deal</b> MRP <s class="expectedMoney">{{data.expectedMoney}}.00</s></h6>
+ </div>
+ <ion-button color="warning">Add to Card</ion-button>
+</a>
+

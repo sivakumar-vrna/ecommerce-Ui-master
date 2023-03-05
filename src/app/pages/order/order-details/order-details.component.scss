@@ -1,0 +1,40 @@
+.container ion-breadcrumbs,.top,.box,.cart,.slide{
+    display: flex;
+    align-items: auto;
+    justify-content: auto;
+    margin-left: 16%;
+}
+.box{
+    display: flex;
+    gap: 50px;
+    border: 1px solid black;
+    width:850px;
+}
+.box .first{
+    margin-left: 20px;
+}
+
+.cart{
+    display: flex;
+    gap: 50px;
+    border: 1px solid black;
+    width:850px;
+    padding: 20px;
+}
+.cart .thumnall{
+    margin-left: 20px;
+}
+.thumnall{
+    width: 650px;
+}
+button{
+width: 150px;
+height: 30px;
+border-radius: 45px;
+display: block;
+font-size: 18px;
+text-transform: capitalize;
+left: 40%;
+background-color: rgb(225, 225, 225);
+color: black;
+}

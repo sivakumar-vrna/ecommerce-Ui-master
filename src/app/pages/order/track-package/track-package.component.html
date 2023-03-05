@@ -1,0 +1,60 @@
+<ion-content>
+  <app-topbar></app-topbar>
+    <div style="cursor: pointer;" class="container">
+      <ion-breadcrumbs>
+        <ion-breadcrumb href="#">Your Account</ion-breadcrumb>
+        <ion-breadcrumb routerLink="/order"> Your Orders</ion-breadcrumb>
+        <ion-breadcrumb routerLink="/order-details" >Your details</ion-breadcrumb>
+        <ion-breadcrumb routerLink="/treck-package" >Track Package</ion-breadcrumb>
+
+      </ion-breadcrumbs>
+    </div>  
+    <div class="top">
+      <h2>Delivered 13 February</h2>
+      
+    </div>
+     <div class="second">
+      <ion-item>
+        <ion-checkbox slot="start"></ion-checkbox>
+      </ion-item>
+          <p style="font-weight: bold;">Siva<br>
+            Door no:4/188<br>
+            Jagir amma Palayam ettikutai street.<br>
+            Coimbatore, TAMIL NADU 636302.<br>
+            India. <br>
+            <a>see all updates</a>
+          </p>
+     </div>
+
+     <div class="container card">
+      <ion-card>
+        <ion-card-header>
+         <h4>Delivery by Amazon</h4>
+        </ion-card-header>
+      
+        <ion-card-content>
+          Tracking ID: 322353679710
+        </ion-card-content>
+      </ion-card>
+     </div>
+
+     <div class="imgs">
+      <ion-thumbnail slot="start" >
+        <ion-img [src]="" alt="item img"></ion-img>
+      </ion-thumbnail>
+      
+     </div>
+     <div class="container cards">
+   
+     <ion-card>
+      <ion-card-header>
+        <ion-card-title>Order Info</ion-card-title>
+        <ion-card-subtitle routerLink="">View order details</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+        Return or replace items
+      </ion-card-content>
+    </ion-card>
+     </div>
+</ion-content>

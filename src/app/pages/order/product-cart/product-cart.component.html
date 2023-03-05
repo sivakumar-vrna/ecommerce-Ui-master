@@ -3,8 +3,11 @@
 <div class="top">
   <h6>ORDER PLACED</h6>
   <h6>TOTAL</h6>
-  <h6>SHIP TO</h6>
-  <h6>View order details </h6>
+  <h6>SHIP TO
+    <ion-icon  id="hover-trigger" color="primary" name="chevron-down-outline"></ion-icon>
+
+  </h6>
+  <a  routerLink="/order-details"><h6>View order details </h6></a>
   <h6>Invoice</h6>
 </div>
 <div class="second">
@@ -18,16 +21,17 @@
       </ion-thumbnail>
       <div class="content">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos magnam repellat quas blanditiis aperiam asperiores.</p>
-          <button class="btns">Buy it again</button>
+          <button class="btns" routerLink="/buy-again" >Buy it again</button>
           <button class="btn2">View your item</button>
       </div>
     </div>
 
     <div class="left-btn">
           <div class="bt">
-            <button>TrackPackage</button><hr><hr><hr><hr>
-            <button>Cancel Items</button>
+            <button routerLink="/track-package">TrackPackage</button><hr><hr><hr><hr>
+            <button routerLink="/cancelled-orders">Cancel Items</button>
           </div>
+          
     </div>
     
   </div>

@@ -7,11 +7,11 @@ import { ErrorService } from 'src/app/shared/services/error.service';
 SwiperCore.use([Autoplay,Navigation, Pagination, Scrollbar, A11y]);
 
 @Component({
-  selector: 'app-order',
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.scss'],
+  selector: 'app-cancelled-orders',
+  templateUrl: './cancelled-orders.component.html',
+  styleUrls: ['./cancelled-orders.component.scss'],
 })
-export class OrderComponent implements OnInit {
+export class CancelledOrdersComponent implements OnInit {
   isLoading = true;
   orders: any;
   trendings: Book[];
@@ -70,6 +70,7 @@ export class OrderComponent implements OnInit {
       }
     });
   }
+
 
 
 }

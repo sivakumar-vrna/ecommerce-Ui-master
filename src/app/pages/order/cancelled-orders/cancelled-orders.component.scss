@@ -1,0 +1,42 @@
+.container ion-breadcrumbs,.top,.head{
+    display: flex;
+    align-items: auto;
+    justify-content: auto;
+    margin-left: 16%;
+  }
+  .search{
+      position: relative;
+      width: 20%;
+  }
+  
+  button{
+      width: 200px;
+      height: 50px;
+      border-radius: 45px;
+      display: block;
+      margin:auto ;
+      font-size: 18px;
+      background-color: #000;
+      color: #fff;
+      text-transform: capitalize;
+  }
+  .side {
+    display: flex;
+    align-items: auto;
+    justify-content: auto;
+    gap: 10px   ;
+    margin-left: 20%;
+}
+ul li{
+    display: inline-block;
+    list-style: none;
+    text-decoration: none;
+    padding:10px;
+    margin-left: 85px;
+    position: relative;
+    font-size: large;
+}
+.card{
+    position: relative;
+    margin-left: 9%;
+}

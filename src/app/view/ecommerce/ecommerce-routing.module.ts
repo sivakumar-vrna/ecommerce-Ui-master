@@ -53,6 +53,22 @@ const routes: Routes = [
         loadChildren:() => import('../../pages/order/order.module').then(m => m.OrderModule)
       },
       {
+        path:'order-details',
+        loadChildren:() => import('../../pages/order/order-details/order-details.module').then(m => m.OrderDetailsModule)
+      },
+      {
+        path:'buy-again',
+        loadChildren:() => import('../../pages/order/buy-again/buy-again.module').then(m => m.BuyAgainModule)
+      },
+      {
+        path:'track-package',
+        loadChildren:() => import('../../pages/order/track-package/track-package.module').then(m => m.TrackPackageModule)
+      },
+      {
+        path:'cancelled-orders',
+        loadChildren:() => import('../../pages/order/cancelled-orders/cancelled-orders.module').then(m => m.CancelledOrdersModule)
+      },
+      {
         path:'add-card',
         loadChildren:() => import('../../pages/add-card/add-card.module').then(m => m.AddCardModule)
       },

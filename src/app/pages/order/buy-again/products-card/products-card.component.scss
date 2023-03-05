@@ -1,0 +1,105 @@
+.product-card {
+  display       : block;
+  flex-direction: 1%;
+  max-width: 300px;
+  max-height: 550px;
+  text-decoration: none;
+  padding: 30px;
+
+  .pc-img {
+    border-radius:20px;
+    width: 250px;
+    height: 300px;
+    padding:15px;
+    object-fit:fill;
+  }
+
+}
+// .product-card:hover{
+//   transform: scale(0.9)
+// }
+.product-card:hover .card-body{
+  opacity: 5;
+}
+
+.card-body{
+  align-self: center;
+  max-height: 50px;
+  margin-top: -40px;
+  margin-left: -5%;
+  opacity: 0;
+  position:auto;
+  left: 0;
+  z-index:2;
+  padding: 10px;
+  transition: 0.3s;
+  border-radius: 1rem;
+
+
+}
+.name{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: capitalize;
+  margin-top: 100%;
+  text-align: right;
+
+}
+.des{
+  color: #fff;
+  opacity: 0.8;
+  margin:5px 0;
+  font-weight: 500;
+  font-size: 12px;
+  text-align: center;
+}
+.author{
+  position: relative;
+  text-align: center;
+  color: rgb(6, 227, 190);
+}
+.add-card{
+  position: relative;
+  width: -50%;
+  text-transform: capitalize;
+  background: none;
+  border: none;
+  font-weight: 500;
+  text-align: center;
+  color: rgba(255,255,255,0.5);
+  margin: 5px 0;
+  cursor: pointer;
+  padding: 1px 2px;
+
+}
+.add-card::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -5px;
+  width: 1px;
+  height: 1px;
+  background-size: cover;
+  transform: scale(0.4);
+  border-radius: 1rem;
+}
+.add-card:hover{
+  color: #fff;
+  background:rgba(64, 95, 154, 0.91);
+  border-radius: 1rem;
+
+}
+.expectedMoney{
+  color: red;
+  font-size: large;
+}
+span.rupee-symbol {
+  color: red;
+}
+
+@media (max-width:20px){
+  .card-body{
+    position: absolute;
+    display: inline;
+  }}

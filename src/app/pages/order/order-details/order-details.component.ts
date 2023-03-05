@@ -1,32 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from 'src/app/shared/models/book.model';
 import  SwiperCore, { Autoplay,Navigation, Pagination, Scrollbar, A11y, SwiperOptions } from 'swiper';
+import { Book } from 'src/app/shared/models/book.model';
 import { OrchestrationService } from 'src/app/shared/services/orchestration/orchestration.service';
 import { ErrorService } from 'src/app/shared/services/error.service';
 
 SwiperCore.use([Autoplay,Navigation, Pagination, Scrollbar, A11y]);
 
+
 @Component({
-  selector: 'app-order',
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.scss'],
+  selector: 'app-order-details',
+  templateUrl: './order-details.component.html',
+  styleUrls: ['./order-details.component.scss'],
 })
-export class OrderComponent implements OnInit {
+export class OrderDetailsComponent implements OnInit {
+  cartitem: any[] = [];
+  trendings: Book[];
   isLoading = true;
   orders: any;
-  trendings: Book[];
   history:Book[];
   latest: Book[];
 
-
   config: SwiperOptions = {
-    slidesPerView: 5,
+    slidesPerView: 4,
     spaceBetween: 15,
     preloadImages: true,
     scrollbar: false,
-    autoplay:true
+    autoplay:true,
+    navigation:true,
   };
-
+  
   constructor(
     private OrchService:OrchestrationService,
     private errorService:ErrorService

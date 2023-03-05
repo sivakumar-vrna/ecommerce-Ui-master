@@ -26,10 +26,7 @@
              <ion-card-content>
               <ion-list>
                   <ion-item lines="inset" *ngFor="let cartitem of cartitems">
-                    <!-- <ion-checkbox slot="start"></ion-checkbox> -->
-                    <!-- <ion-thumbnail slot="start">
-                      <ion-img  [src]="cartitem.posterurl"/>
-                    </ion-thumbnail> -->
+                   
                     <ion-thumbnail slot="start" *ngIf="cartitem.posterurl">
                       <ion-img [src]="cartitem.posterurl" alt="No preview"></ion-img>
                     </ion-thumbnail>
