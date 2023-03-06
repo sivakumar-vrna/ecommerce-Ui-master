@@ -9,12 +9,11 @@ import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
 
 @Component({
   selector: 'app-forgot-pwd',
-  templateUrl: './forgot-pwd.component.html',
-  styleUrls: ['./forgot-pwd.component.scss'],
+  templateUrl: './forgot-pwd.page.html',
+  styleUrls: ['./forgot-pwd.page.scss'],
 })
-export class ForgotPwdComponent implements OnInit {
+export class ForgotPwdPage implements OnInit {
 
-  
   requestForm: FormGroup;
   resetSubmitted = false;
   pwdResetSuccess = false;
@@ -31,7 +30,6 @@ export class ForgotPwdComponent implements OnInit {
   passwordFocused = false;
   email: string;
 
-  
   constructor(
     private formBuilder: FormBuilder,
     private toast: ToastWidget,
@@ -52,7 +50,7 @@ export class ForgotPwdComponent implements OnInit {
       }
     });
   }
-  
+
   ngOnInit() { }
 
   getForm() {
@@ -142,23 +140,24 @@ export class ForgotPwdComponent implements OnInit {
   }
 
 
-  // getPwdErrorMsg() {
-  //   if (this.f['password'].hasError('required')) {
-  //     return 'Password is Required';
-  //   }
-  //   if (this.f['password'].hasError('pattern')) {
-  //     this.hasNumber = /\d/.test(this.f['password'].value);
-  //     this.hasUpper = /[A-Z]/.test(this.f['password'].value);
-  //     this.hasLower = /[a-z]/.test(this.f['password'].value);
-  //     this.hasSpecialCharacter = /[\!\@\#\$\%\^\&\*\(\)\?\>\<\:\;\"\']/.test(this.f['password'].value);
-  //     this.hasMinCharacter = this.f['password'].errors['minlength'] ? false : true;
-  //     return 'Weak Pasword';
-  //   }
-  //   if (this.f['password'].hasError('minLength')) {
-  //     return 'Password must be at least 8 characters';
-  //   }
-
-  // }
+  getPwdErrorMsg() {
+    if (this.f['password'].hasError('required')) {
+      return 'Password is Required';
+    }
+    if (this.f['password'].hasError('pattern')) {
+      this.hasNumber = /\d/.test(this.f['password'].value);
+      this.hasUpper = /[A-Z]/.test(this.f['password'].value);
+      this.hasLower = /[a-z]/.test(this.f['password'].value);
+      this.hasSpecialCharacter = /[\!\@\#\$\%\^\&\*\(\)\?\>\<\:\;\"\']/.test(this.f['password'].value);
+      this.hasMinCharacter = this.f['password'].errors['minlength'] ? false : true;
+      return 'Weak Password';
+    }
+    if (this.f['password'].hasError('minLength')) {
+      return 'Password must be at least 8 characters';
+    }
+    return '';
+  }
+  
 
   getConfirmPwdErrorMsg() {
     if (this.f['confirmPassword'].hasError('required')) {

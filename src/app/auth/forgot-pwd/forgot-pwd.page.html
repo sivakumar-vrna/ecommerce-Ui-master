@@ -2,7 +2,6 @@
 <div *ngIf="!pwdResetSuccess">
   <form class="reset-form" [formGroup]="requestForm" (ngSubmit)="onRequestSubmit()">
     <ion-row>
-
       <!-- Email -->
       <ion-col class="ion-padding-vertical" size="12">
         <div class="form-label">Email</div>
@@ -79,7 +78,9 @@
         <!-- <ion-text color="danger" *ngIf="resetSubmitted || (f.password.dirty || f.password.touched)" class="help-block">
           <small class="error-msg" *ngIf="f.password.invalid">{{getPwdErrorMsg()}}</small>
         </ion-text> -->
-        <div class="pwd-strength shadow" > //*ngIf="f.password.errors?.pattern && passwordFocused"
+        <div class="pwd-strength shadow">
+          <!--*ngIf="f.password.errors?.pattern && passwordFocused"-->
+
           <!-- <app-password [hasNumber]="hasNumber" [hasUpper]="hasUpper" [hasLower]="hasLower"
             [hasSpecialCharacter]="hasSpecialCharacter" [hasMinCharacter]="!f.password.errors?.minlength">
           </app-password> -->

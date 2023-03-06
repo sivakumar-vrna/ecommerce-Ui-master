@@ -15,7 +15,7 @@ import { AuthModule } from 'src/app/auth/auth.module';
     IonicModule,
     RouterModule,
     LoginModule,
-    AuthModule 
+    AuthModule,
   
 
   ],

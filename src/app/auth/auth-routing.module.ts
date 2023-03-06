@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { AuthComponent } from './auth.component';
 import { Routes, RouterModule } from '@angular/router';
-import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
-import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
+import { SignupPage } from './signup/signup.page';
+import { LoginPage } from './login/login.page';
+import { ForgotPwdPage } from './forgot-pwd/forgot-pwd.page';
 
 const routes: Routes = [
   {
@@ -17,15 +17,15 @@ const routes: Routes = [
           },
           {
               path: 'login',
-              component: LoginComponent,
+              component: LoginPage,
           },
           {
               path: 'signup',
-              component: SignupComponent,
+              component: SignupPage,
           },
           {
               path: 'reset',
-              component: ForgotPwdComponent,
+              component:ForgotPwdPage ,
           }
       ]
   }

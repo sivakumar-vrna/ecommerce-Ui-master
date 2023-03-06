@@ -7,14 +7,12 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { ErrorService } from 'src/app/shared/services/error.service';
 import { StatusBarService } from 'src/app/shared/services/status-bar/status-bar.service';
 import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
-
-
 @Component({
   selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss'],
+  templateUrl: './signup.page.html',
+  styleUrls: ['./signup.page.scss'],
 })
-export class SignupComponent implements OnInit {
+export class SignupPage implements OnInit {
 
   signupForm: FormGroup;
   hide = false;
@@ -30,7 +28,7 @@ export class SignupComponent implements OnInit {
   hasMinCharacter = false;
   passwordFocused = false;
 
- constructor(
+  constructor(
     private formBuilder: FormBuilder,
     private toast: ToastWidget,
     private authService: AuthService,
@@ -105,24 +103,25 @@ export class SignupComponent implements OnInit {
     }
     return this.f['email'].hasError('email') ? 'Valid Format is yourname@example.com' : '';
   }
-
-  // getPwdErrorMsg() {
-  //   if (this.f['password'].hasError('required')) {
-  //     return 'Password is Required';
-  //   }
-  //   if (this.f['password'].hasError('pattern')) {
-  //     this.hasNumber = /\d/.test(this.f['password'].value);
-  //     this.hasUpper = /[A-Z]/.test(this.f['password'].value);
-  //     this.hasLower = /[a-z]/.test(this.f['password'].value);
-  //     this.hasSpecialCharacter = /[\!\@\#\$\%\^\&\*\(\)\?\>\<\:\;\"\']/.test(this.f['password'].value);
-  //     this.hasMinCharacter = this.f['password'].errors['minlength'] ? false : true;
-  //     return 'Weak Pasword';
-  //   }
-  //   if (this.f['password'].hasError('minLength')) {
-  //     return 'Password must be at least 8 characters';
-  //   }
-
-  // }
+  
+  getPwdErrorMsg() {
+    if (this.f['password'].hasError('required')) {
+      return 'Password is Required';
+    }
+    if (this.f['password'].hasError('pattern')) {
+      this.hasNumber = /\d/.test(this.f['password'].value);
+      this.hasUpper = /[A-Z]/.test(this.f['password'].value);
+      this.hasLower = /[a-z]/.test(this.f['password'].value);
+      this.hasSpecialCharacter = /[\!\@\#\$\%\^\&\*\(\)\?\>\<\:\;\"\']/.test(this.f['password'].value);
+      this.hasMinCharacter = this.f['password'].errors['minlength'] ? false : true;
+      return 'Weak Password';
+    }
+    if (this.f['password'].hasError('minLength')) {
+      return 'Password must be at least 8 characters';
+    }
+    return '';
+  }
+  
 
   getConfirmPwdErrorMsg() {
     if (this.f['confirmPassword'].hasError('required')) {
@@ -132,4 +131,3 @@ export class SignupComponent implements OnInit {
     return this.f['confirmPassword'].hasError('MustMatch') ? '' : 'Passwords must match';
   }
 }
-

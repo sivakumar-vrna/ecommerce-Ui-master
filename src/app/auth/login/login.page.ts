@@ -7,14 +7,14 @@ import { LoadingController } from '@ionic/angular';
 import { StatusBarService } from 'src/app/shared/services/status-bar/status-bar.service';
 import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
 import { ErrorService } from 'src/app/shared/services/error.service';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginPage implements OnInit {
   loginForm: FormGroup
   hide = true;
   isSubmitted = false;
@@ -81,6 +81,7 @@ export class LoginComponent implements OnInit {
   }
 
   async onSubmit() {
+    console.log("sk")
     const loading = await this.loadingController.create();
     this.isSubmitted = true;
     if (this.loginForm.valid) {

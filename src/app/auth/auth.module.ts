@@ -1,35 +1,30 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthComponent } from './auth.component';
-import { IonicModule } from '@ionic/angular';
 import { AuthPageRoutingModule } from './auth-routing.module';
-import { SignupComponent } from './signup/signup.component';
-import { ForgotPwdComponent } from './forgot-pwd/forgot-pwd.component';
-import { LoginComponent } from './login/login.component';
-import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
+import { IonicModule } from '@ionic/angular';
+import { SignupPage } from './signup/signup.page';
+import { LoginPage } from './login/login.page';
+import { ForgotPwdPage } from './forgot-pwd/forgot-pwd.page';
 
 
 @NgModule({
   declarations: [
     AuthComponent,
-    SignupComponent,
-    ForgotPwdComponent,
-    LoginComponent
+    LoginPage,
+    SignupPage,
+    ForgotPwdPage
+    
   ],
   imports: [
     CommonModule,
-    IonicModule,
     AuthPageRoutingModule,
-    RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    
-  ],
-  exports: [
-    AuthComponent
-  ],
+    HttpClientModule,
+    IonicModule,
+  ]
 })
 export class AuthModule { }
