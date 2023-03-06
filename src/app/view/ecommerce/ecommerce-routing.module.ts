@@ -65,6 +65,10 @@ const routes: Routes = [
         loadChildren:() => import('../../pages/order/track-package/track-package.module').then(m => m.TrackPackageModule)
       },
       {
+        path:'live-track',
+        loadChildren:() => import('../../pages/order//live-track/live-track.module').then(m => m.LiveTrackModule)
+      },
+      {
         path:'cancelled-orders',
         loadChildren:() => import('../../pages/order/cancelled-orders/cancelled-orders.module').then(m => m.CancelledOrdersModule)
       },
@@ -91,7 +95,24 @@ const routes: Routes = [
       {
         path:'best-seller',
         loadChildren:() => import('../../pages/best-seller/best-seller.module').then(m => m.BestSellerModule)
-      }
+      },
+      {
+        path:'auth',
+        loadChildren:() => import('../../auth/auth.module').then(m => m.AuthModule)
+      },
+      // {
+      //   path:'login',
+      //   loadChildren:() => import('../../auth/login/login.module').then(m => m.LoginModule)
+      // },
+      // {
+      //   path:'signup',
+      //   loadChildren:() => import('../../auth/signup/signup.module').then(m => m.SignupModule)
+      // },
+      // {
+      //   path:'forgot-pwd',
+      //   loadChildren:() => import('../../auth/forgot-pwd/forgot-pwd.module').then(m => m.ForgotPwdModule)
+      // }
+
     ]
   }
 ];

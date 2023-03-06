@@ -11,10 +11,10 @@
           <ion-input autofocus="true" inputmode="email" formControlName="email" type="email" maxlength="55" required>
           </ion-input>
         </ion-item>
-        <ion-text color="danger" *ngIf="resetSubmitted && (requestForm.controls.email.dirty || requestForm.controls.email.touched ||
+        <!-- <ion-text color="danger" *ngIf="resetSubmitted && (requestForm.controls.email.dirty || requestForm.controls.email.touched ||
                   requestForm.controls.email.invalid)" class="help-block">
           <small class="error-msg" *ngIf="requestForm.controls.email.invalid">{{getEmailErrorMsg()}}</small>
-        </ion-text>
+        </ion-text> -->
       </ion-col>
 
       <!-- Submit Button -->
@@ -59,9 +59,9 @@
           <ion-icon class="me-2" name="lock-closed-outline" slot="start"></ion-icon>
           <ion-input autofocus="true" formControlName="token" maxlength="25" required></ion-input>
         </ion-item>
-        <ion-text color="danger" *ngIf="resetSubmitted && (f.token.dirty || f.token.touched)" class="help-block">
+        <!-- <ion-text color="danger" *ngIf="resetSubmitted && (f.token.dirty || f.token.touched)" class="help-block">
           <small class="error-msg" *ngIf="f.token.invalid">{{getEmailErrorMsg()}}</small>
-        </ion-text>
+        </ion-text> -->
       </ion-col>
       <a (click)="resendPassword()" style="font-size: 12px;position: relative; left: 15vw;cursor: pointer;">Resend
         Code</a>
@@ -76,13 +76,13 @@
           <ion-icon [name]="hide ? 'eye-outline' : 'eye-off-outline'" slot="end" (click)="hide= !hide">
           </ion-icon>
         </ion-item>
-        <ion-text color="danger" *ngIf="resetSubmitted || (f.password.dirty || f.password.touched)" class="help-block">
+        <!-- <ion-text color="danger" *ngIf="resetSubmitted || (f.password.dirty || f.password.touched)" class="help-block">
           <small class="error-msg" *ngIf="f.password.invalid">{{getPwdErrorMsg()}}</small>
-        </ion-text>
-        <div class="pwd-strength shadow" *ngIf="f.password.errors?.pattern && passwordFocused">
-          <app-password [hasNumber]="hasNumber" [hasUpper]="hasUpper" [hasLower]="hasLower"
+        </ion-text> -->
+        <div class="pwd-strength shadow" > //*ngIf="f.password.errors?.pattern && passwordFocused"
+          <!-- <app-password [hasNumber]="hasNumber" [hasUpper]="hasUpper" [hasLower]="hasLower"
             [hasSpecialCharacter]="hasSpecialCharacter" [hasMinCharacter]="!f.password.errors?.minlength">
-          </app-password>
+          </app-password> -->
         </div>
       </ion-col>
 
@@ -96,10 +96,10 @@
           <ion-icon [name]="hideRetype ? 'eye-outline' :
                                       'eye-off-outline'" slot="end" (click)="hideRetype= !hideRetype"></ion-icon>
         </ion-item>
-        <ion-text color="danger" *ngIf="resetSubmitted || (f.confirmPassword.dirty ||  f.confirmPassword.touched)"
+        <!-- <ion-text color="danger" *ngIf="resetSubmitted || (f.confirmPassword.dirty ||  f.confirmPassword.touched)"
           class="help-block">
           <small class="error-msg" *ngIf="f.confirmPassword.invalid">{{getConfirmPwdErrorMsg()}}</small>
-        </ion-text>
+        </ion-text> -->
       </ion-col>
 
       <!-- Submit Button -->

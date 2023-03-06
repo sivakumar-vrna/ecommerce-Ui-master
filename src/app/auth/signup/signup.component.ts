@@ -6,14 +6,15 @@ import { MustMatch } from 'src/app/shared/directives/must.match';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { ErrorService } from 'src/app/shared/services/error.service';
 import { StatusBarService } from 'src/app/shared/services/status-bar/status-bar.service';
-import { ToastWidget } from 'src/app/widgets/toast.widget';
+import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
+
 
 @Component({
   selector: 'app-signup',
-  templateUrl: './signup.page.html',
-  styleUrls: ['./signup.page.scss'],
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss'],
 })
-export class SignupPage implements OnInit {
+export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
   hide = false;
@@ -29,7 +30,7 @@ export class SignupPage implements OnInit {
   hasMinCharacter = false;
   passwordFocused = false;
 
-  constructor(
+ constructor(
     private formBuilder: FormBuilder,
     private toast: ToastWidget,
     private authService: AuthService,
@@ -44,6 +45,7 @@ export class SignupPage implements OnInit {
     }
   }
 
+  
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -64,8 +66,8 @@ export class SignupPage implements OnInit {
       this.isLoading = true;
       const macId = this.authService.uniqueID();
       const registerData = {
-        email: this.signupForm.controls.email.value,
-        password: this.signupForm.controls.password.value,
+        email: this.signupForm.controls['email'].value,
+        password: this.signupForm.controls['password'].value,
         macaddress: macId,
       };
       (await this.authService.onSignup(registerData, macId)).subscribe(res => {
@@ -98,35 +100,36 @@ export class SignupPage implements OnInit {
 
   /* Email Error Msg's */
   getEmailErrorMsg() {
-    if (this.f.email.hasError('required')) {
+    if (this.f['email'].hasError('required')) {
       return 'Email is Required';
     }
-    return this.f.email.hasError('email') ? 'Valid Format is yourname@example.com' : '';
+    return this.f['email'].hasError('email') ? 'Valid Format is yourname@example.com' : '';
   }
 
-  getPwdErrorMsg() {
-    if (this.f.password.hasError('required')) {
-      return 'Password is Required';
-    }
-    if (this.f.password.hasError('pattern')) {
-      this.hasNumber = /\d/.test(this.f.password.value);
-      this.hasUpper = /[A-Z]/.test(this.f.password.value);
-      this.hasLower = /[a-z]/.test(this.f.password.value);
-      this.hasSpecialCharacter = /[\!\@\#\$\%\^\&\*\(\)\?\>\<\:\;\"\']/.test(this.f.password.value);
-      this.hasMinCharacter = this.f.password.errors.minlength ? false : true;
-      return 'Weak Pasword';
-    }
-    if (this.f.password.hasError('minLength')) {
-      return 'Password must be at least 8 characters';
-    }
+  // getPwdErrorMsg() {
+  //   if (this.f['password'].hasError('required')) {
+  //     return 'Password is Required';
+  //   }
+  //   if (this.f['password'].hasError('pattern')) {
+  //     this.hasNumber = /\d/.test(this.f['password'].value);
+  //     this.hasUpper = /[A-Z]/.test(this.f['password'].value);
+  //     this.hasLower = /[a-z]/.test(this.f['password'].value);
+  //     this.hasSpecialCharacter = /[\!\@\#\$\%\^\&\*\(\)\?\>\<\:\;\"\']/.test(this.f['password'].value);
+  //     this.hasMinCharacter = this.f['password'].errors['minlength'] ? false : true;
+  //     return 'Weak Pasword';
+  //   }
+  //   if (this.f['password'].hasError('minLength')) {
+  //     return 'Password must be at least 8 characters';
+  //   }
 
-  }
+  // }
 
   getConfirmPwdErrorMsg() {
-    if (this.f.confirmPassword.hasError('required')) {
+    if (this.f['confirmPassword'].hasError('required')) {
       return 'Passwords must match';
     }
 
-    return this.f.confirmPassword.hasError('MustMatch') ? '' : 'Passwords must match';
+    return this.f['confirmPassword'].hasError('MustMatch') ? '' : 'Passwords must match';
   }
 }
+

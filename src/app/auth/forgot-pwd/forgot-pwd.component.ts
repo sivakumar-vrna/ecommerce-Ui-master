@@ -5,15 +5,16 @@ import { isPlatform } from '@ionic/angular';
 import { MustMatch } from 'src/app/shared/directives/must.match';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { StatusBarService } from 'src/app/shared/services/status-bar/status-bar.service';
-import { ToastWidget } from 'src/app/widgets/toast.widget';
+import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
 
 @Component({
   selector: 'app-forgot-pwd',
-  templateUrl: './forgot-pwd.page.html',
-  styleUrls: ['./forgot-pwd.page.scss'],
+  templateUrl: './forgot-pwd.component.html',
+  styleUrls: ['./forgot-pwd.component.scss'],
 })
-export class ForgotPwdPage implements OnInit {
+export class ForgotPwdComponent implements OnInit {
 
+  
   requestForm: FormGroup;
   resetSubmitted = false;
   pwdResetSuccess = false;
@@ -30,6 +31,7 @@ export class ForgotPwdPage implements OnInit {
   passwordFocused = false;
   email: string;
 
+  
   constructor(
     private formBuilder: FormBuilder,
     private toast: ToastWidget,
@@ -43,14 +45,14 @@ export class ForgotPwdPage implements OnInit {
     }
     this.getForm();
     this.route.queryParams.subscribe((params) => {
-      const token = params.token;
+      const token = params['token'];
       if (token) {
         this.pwdResetSuccess = true;
         this.resetForm.patchValue({ token: token });
       }
     });
   }
-
+  
   ngOnInit() { }
 
   getForm() {
@@ -132,38 +134,38 @@ export class ForgotPwdPage implements OnInit {
   }
 
   getEmailErrorMsg() {
-    if (this.requestForm.controls.email.hasError('required')) {
+    if (this.requestForm.controls['email'].hasError('required')) {
       return 'Email is Required';
     }
 
-    return this.requestForm.controls.email.hasError('email') ? 'Not a valid email' : '';
+    return this.requestForm.controls['email'].hasError('email') ? 'Not a valid email' : '';
   }
 
 
-  getPwdErrorMsg() {
-    if (this.f.password.hasError('required')) {
-      return 'Password is Required';
-    }
-    if (this.f.password.hasError('pattern')) {
-      this.hasNumber = /\d/.test(this.f.password.value);
-      this.hasUpper = /[A-Z]/.test(this.f.password.value);
-      this.hasLower = /[a-z]/.test(this.f.password.value);
-      this.hasSpecialCharacter = /[\!\@\#\$\%\^\&\*\(\)\?\>\<\:\;\"\']/.test(this.f.password.value);
-      this.hasMinCharacter = this.f.password.errors.minlength ? false : true;
-      return 'Weak Pasword';
-    }
-    if (this.f.password.hasError('minLength')) {
-      return 'Password must be at least 8 characters';
-    }
+  // getPwdErrorMsg() {
+  //   if (this.f['password'].hasError('required')) {
+  //     return 'Password is Required';
+  //   }
+  //   if (this.f['password'].hasError('pattern')) {
+  //     this.hasNumber = /\d/.test(this.f['password'].value);
+  //     this.hasUpper = /[A-Z]/.test(this.f['password'].value);
+  //     this.hasLower = /[a-z]/.test(this.f['password'].value);
+  //     this.hasSpecialCharacter = /[\!\@\#\$\%\^\&\*\(\)\?\>\<\:\;\"\']/.test(this.f['password'].value);
+  //     this.hasMinCharacter = this.f['password'].errors['minlength'] ? false : true;
+  //     return 'Weak Pasword';
+  //   }
+  //   if (this.f['password'].hasError('minLength')) {
+  //     return 'Password must be at least 8 characters';
+  //   }
 
-  }
+  // }
 
   getConfirmPwdErrorMsg() {
-    if (this.f.confirmPassword.hasError('required')) {
+    if (this.f['confirmPassword'].hasError('required')) {
       return 'Password is Required';
     }
 
-    return this.f.confirmPassword.hasError('MustMatch') ? '' : 'Passwords must match';
+    return this.f['confirmPassword'].hasError('MustMatch') ? '' : 'Passwords must match';
   }
 
   resendPassword() {

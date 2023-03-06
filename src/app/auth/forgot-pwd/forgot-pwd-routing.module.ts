@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TrackPackageComponent } from './track-package.component';
+import { ForgotPwdComponent } from './forgot-pwd.component';
 const routes: Routes = [
   {
     path: '',
-    component:TrackPackageComponent 
+    component: ForgotPwdComponent
   }
 ];
 
@@ -12,4 +12,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class TrackPackagePageRoutingModule {}
+export class ForgotPwdPageRoutingModule {}

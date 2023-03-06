@@ -4,6 +4,8 @@ import { IonicModule } from '@ionic/angular';
 import { LoginComponent } from './login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -13,7 +15,8 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
     CommonModule,
     IonicModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule 
   ],
   exports: [
     LoginComponent

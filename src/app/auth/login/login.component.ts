@@ -5,16 +5,16 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { AlertController, isPlatform } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 import { StatusBarService } from 'src/app/shared/services/status-bar/status-bar.service';
-import { ToastWidget } from 'src/app/widgets/toast.widget';
+import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
 import { ErrorService } from 'src/app/shared/services/error.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup
   hide = true;
   isSubmitted = false;
@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
     }
     this.createForm();
     this.route.queryParams.subscribe((params) => {
-      const token = params.token;
+      const token = params['token'];
       if (token) {
         this.presentAlert(token);
       }
@@ -130,9 +130,9 @@ export class LoginPage implements OnInit {
 
   /* Email Error Msg's */
   getEmailErrorMsg() {
-    if (this.f.email.hasError('required')) {
+    if (this.f['email'].hasError('required')) {
       return 'Email is Required';
     }
-    return this.f.email.hasError('email') ? 'Valid Format is yourname@example.com' : '';
+    return this.f['email'].hasError('email') ? 'Valid Format is yourname@example.com' : '';
   }
 }

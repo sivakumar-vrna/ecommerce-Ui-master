@@ -1,4 +1,4 @@
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+<form   class="login-form">
   <ion-row>
     <!-- Email -->
     <ion-col class="ion-padding-vertical" size="12">
@@ -8,10 +8,10 @@
         <ion-input autofocus="true" inputmode="email" clearInput="true" type="email" maxlength="55"
           formControlName="email" required="true"></ion-input>
       </ion-item>
-      <ion-text color="danger" *ngIf="isSubmitted && (f.email.dirty || f.email.touched ||
-        f.email.invalid)" class="help-block">
-        <small class="error-msg" *ngIf="f.email.invalid">{{getEmailErrorMsg()}}</small>
-      </ion-text>
+      <!-- <ion-text color="danger" *ngIf="isSubmitted && (f.email.dirty || f.email.touched ||
+        f.email.invalid)" class="help-block"> -->
+        <!-- <small class="error-msg" *ngIf="f.email.invalid">{{getEmailErrorMsg()}}</small> -->
+      <!-- </ion-text> -->
     </ion-col>
 
     <!-- Password -->
@@ -19,16 +19,16 @@
       <label class="form-label">Password</label>
       <ion-item class="form-control" lines="none">
         <ion-icon class="me-2" name="lock-open-outline" slot="start"></ion-icon>
-        <ion-input [type]="hide ? 'password' : 'text'" formControlName="password" maxlength="25" required>
-        </ion-input>
-        <ion-icon [name]="hide ? 'eye-outline' : 'eye-off-outline'" slot="end" (click)="hide= !hide">
-        </ion-icon>
+        <!-- <ion-input [type]="hide ? 'password' : 'text'" formControlName="password" maxlength="25" required> -->
+        <!-- </ion-input> -->
+        <!-- <ion-icon [name]="hide ? 'eye-outline' : 'eye-off-outline'" slot="end" (click)="hide= !hide"> -->
+        <!-- </ion-icon> -->
       </ion-item>
-      <ion-text color="danger" *ngIf="isSubmitted || (f.password.dirty
+      <!-- <ion-text color="danger" *ngIf="isSubmitted || (f.password.dirty
         ||
         f.password.touched)" class="help-block">
-        <small class="error-msg" *ngIf="f.password.invalid">Password is required</small>
-      </ion-text>
+        <small class="error-msg" *ngIf="f.password.invalid">Password is required</small> -->
+      <!-- </ion-text> -->
     </ion-col>
 
     <!-- Forgot Password -->
@@ -38,8 +38,8 @@
 
     <!-- Submit Button -->
     <ion-col class="ion-padding-top" size="12">
-      <ion-button color="primary mx-auto" type="submit" expand="block" [disabled]="isSubmitted">Login
-        <ion-spinner name="bubbles" *ngIf="isSubmitted"></ion-spinner>
+      <ion-button color="primary mx-auto" type="submit" expand="block" >Login
+        <ion-spinner name="bubbles" ></ion-spinner>
       </ion-button>
     </ion-col>
 
