@@ -57,8 +57,6 @@ export class CheckoutPage implements OnInit {
   ngOnInit() {
     this.onGetSavedCards();
     this.ongetSavedAddress();
-
-
   }
 
   onCardSelection(e) {
@@ -93,6 +91,7 @@ export class CheckoutPage implements OnInit {
     }
     );
   }
+  
 
   async ongetSavedAddress(){
     this.isLoading = true;
@@ -110,7 +109,7 @@ export class CheckoutPage implements OnInit {
       this.isLoading = false;
       loading.dismiss();
     }, (err) => {
-      console.log('sivakumar:', err); // add a console.log statement here to help diagnose the error
+      console.log('siva:', err); // add a console.log statement here to help diagnose the error
       this.isLoading = false;
       loading.dismiss();
     });
@@ -129,9 +128,7 @@ export class CheckoutPage implements OnInit {
       const rentalData = {
         custId: userId,
         emailId: userName,
-        // cartId: this.contentData,
-        // amount: this.contentPrice,
-        // tokenId: this.contentData,
+       
         stripeCardId: this.isPromoCodeValid ? null : this.selectedCard.stripeCardId,
         stripeCustId: this.isPromoCodeValid ? null : this.selectedCard.stripeCustId,
         stripetokenId:this.isPromoCodeValid ? null : this.selectedCard.stripetokenId

@@ -41,8 +41,7 @@ export class UserService {
     console.log("inside if for userid chcek")
     id.value="3434";
     return parseInt(id.value);
-
-    }
+  }
     else {
       console.log("inside if for nan chcek")
       id.value="3434";

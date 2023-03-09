@@ -40,6 +40,7 @@ export class BuyAgainComponent implements OnInit {
     this.onGetLatest();
     this.onGetfeatured()
   }
+  
 
   async onGetTrending() {
     (await this.OrchService.getTrending()).subscribe({

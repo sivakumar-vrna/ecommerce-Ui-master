@@ -10,51 +10,33 @@
     <ion-list>
       <ion-card>
         <ion-card-content>
-          <a>
+          <a routerLink="/address">
             <ion-icon name="add"></ion-icon> Add New Address
           </a>
         </ion-card-content>
       </ion-card>
-      <ion-card class="address-card">
+      <ion-card class="address-card" *ngFor="let address of addressData">
         <ion-card-content>
           <ion-list>
             <ion-item>
               <ion-label>
-                <h4>Vinoth +91-xxxxx xxxxx</h4>
-                <p>4, Raj Laxmi Bldg, Shree Nagar, Wagle Est, Thane(w), Mumbai, Maharashtra - 400064</p>
+                <h4>{{ address.firstName }} +91- {{ address.mobile }} {{ address.lastName }}</h4>
+                <p>
+                  {{ address.address1 }}, {{ address.address2 }},{{ address.addressId }},{{ address.addressType }},{{ address.area }}
+                  {{ address.country }}{{ address.zipCode }}
+                </p>
               </ion-label>
               <div class="d-flex">
-                <ion-button color="dark" color="danger" fill="clear">
+                <ion-button color="dark" color="danger" fill="clear" (click)="deleteAddress(address)">
                   <ion-icon name="trash"></ion-icon>
                 </ion-button>
                 <ion-button expand="block" color="dark" fill="clear" class="w-100" disabled>|</ion-button>
-                <ion-button expand="block" color="dark" fill="clear" class="w-100">Edit</ion-button>
-              </div>
-            </ion-item>
-            <ion-item>
-              <ion-label>
-                <h4>Mathew +91-xxxxx xxxxx</h4>
-                <p>A-8, Sidco Indl Est, Kodungaiyur, Chennai, Tamil Nadu - 600018</p>
-              </ion-label>
-              <div class="d-flex">
-                <ion-button color="dark" color="danger" fill="clear">
-                  <ion-icon name="trash"></ion-icon>
+
+                <ion-button expand="block" color="dark" fill="clear" class="w-100" [routerLink]="['/address',(address)]">
+                  Edit
                 </ion-button>
-                <ion-button expand="block" color="dark" fill="clear" class="w-100" disabled>|</ion-button>
-                <ion-button expand="block" color="dark" fill="clear" class="w-100">Edit</ion-button>
-              </div>
-            </ion-item>
-            <ion-item lines="none">
-              <ion-label>
-                <h4>Ramesh Babu +91-xxxxx xxxxx</h4>
-                <p>G 210, Udyog Vihar Indl. Es, Vitthal Wadi, Ulhasnagar, Mumbai, Maharashtra - 400064</p>
-              </ion-label>
-              <div class="d-flex">
-                <ion-button color="dark" color="danger" fill="clear">
-                  <ion-icon name="trash"></ion-icon>
-                </ion-button>
-                <ion-button expand="block" color="dark" fill="clear" class="w-100" disabled>|</ion-button>
-                <ion-button expand="block" color="dark" fill="clear" class="w-100">Edit</ion-button>
+                
+              
               </div>
             </ion-item>
           </ion-list>
@@ -62,6 +44,5 @@
       </ion-card>
     </ion-list>
   </div>
-
   <app-footer></app-footer>
 </ion-content>

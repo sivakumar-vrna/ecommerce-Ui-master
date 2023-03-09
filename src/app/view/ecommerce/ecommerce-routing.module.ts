@@ -77,8 +77,16 @@ const routes: Routes = [
         loadChildren:() => import('../../pages/add-card/add-card.module').then(m => m.AddCardModule)
       },
       {
+        path:'cards',
+        loadChildren:() => import('../../pages/account/cards/cards.module').then(m => m.CardsPageModule)
+      },
+      {
         path:'address',
         loadChildren:() => import('../../pages/address/address.module').then(m => m.AddressModule)
+      },
+      {
+        path:'view-address',
+        loadChildren:() => import('../../pages/account/address/address.module').then(m => m.AddressPageModule)
       },
       {
         path:'author',

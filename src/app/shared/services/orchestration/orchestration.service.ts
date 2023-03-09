@@ -83,19 +83,16 @@ export class OrchestrationService {
   async getTrending() {
     const url = this.Trending;
     return this.http.getCall(url, environment.capaciorUrl + url);
-    // return this.http.get<any>("assets/trending.json");
   }
 
   async getLatest() {
     const url = this.latest;
     return this.http.getCall(url, environment.capaciorUrl + url);
-    // return this.http.get<any>("assets/latest.json");
   }
 
   async getfeatured() {
     const url = this.featured;
     return this.http.getCall(url, environment.capaciorUrl + url);
-    // return this.http.get<any>("assets/latest.json");
   }
 
   async getBooks() {
@@ -106,8 +103,8 @@ export class OrchestrationService {
     console.log('{orchestration service }  ---- {}getBookDetails-----here ');
     const url = this.bookDetailsURL;
     return this.http.getCall(url, environment.capaciorUrl + url);
-    // return this.http.get<any>("assets/books.json");
   }
+
   addToCart(content: any) {
     const url = this.addCartURL;
     console.log('inside {addCartURL}---------->');
@@ -178,11 +175,6 @@ async getWishList() {
 }
 
 
-  async addcustomercard(postData) {
-    const url =environment.paymentUrl +'payment/addCustomerCard';
-    const capacitorUrl = environment.capaciorUrl + url;
-    return this.http.postCall(url, capacitorUrl, postData);
-  }
 
  
 
@@ -202,9 +194,13 @@ async getWishList() {
     return this.http.postCall(url, capacitorUrl, postData);
   }
 
- 
-
-
+  
+  async addcustomercard(postData) {
+    const url = environment.paymentUrl +'payment/addCustomerCard';
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.http.postCall(url, capacitorUrl, postData);
+  }
+  
   async getSavedCards(): Promise<Observable<any>> {
     const userName = await this.userService.getEmail();
     const url =`http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/payment-service/payment/cardinfo?userName=${userName}`;
@@ -212,19 +208,34 @@ async getWishList() {
     return this.http.getCall(url, capacitorUrl);
   }
 
+  async postDeleteCards(postData) {
+   const url = environment.paymentUrl+'payment/deleteCustomerCard';
+   const capaciorUrl = environment.capaciorUrl + url;
+   return this.http.postCall(url,capaciorUrl, postData)
+  }
+
+
   async getSavedAddress(): Promise<Observable<any>> {
     const userId = await this.userService.getUserId();
     const url = environment.authUrl + 'address/all?userId='+userId;
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.getCall(url, capacitorUrl);
   }
-
+  
   async addAddress(postData) {
     
     const url =environment.authUrl +'address/add';
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.postCall(url, capacitorUrl, postData);
   }
+
+  async deleteAddress() {
+    
+    const url =environment.authUrl +'address/{userId}';
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.http.deleteCall(url, capacitorUrl);
+  }
+
   
 
 

@@ -76,7 +76,8 @@ export class ForgotPwdPage implements OnInit {
     this.resetSubmitted = true;
     this.isLoading = true;
     const macId = this.authService.uniqueID();
-    if (this.requestForm.valid) {
+    //  if (this.requestForm.valid) {
+      
       this.authService.onRequestResetPwd(this.requestForm.value, macId).subscribe(res => {
         console.log(res);
         if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
@@ -93,16 +94,16 @@ export class ForgotPwdPage implements OnInit {
         this.isLoading = false;
         this.toast.onFail('Error in Password Reset');
       });
-    } else {
-      this.toast.onFail('Form is invalid');
-      this.isLoading = false;
-    }
+    // } else {
+    //   this.toast.onFail('Form is invalid');
+    //   this.isLoading = false;
+    // }
   }
 
   onReset() {
     this.resetSubmitted = true;
     this.isLoading = true;
-    if (this.resetForm.valid) {
+    // if (this.resetForm.valid) {
       const data = {
         email: this.email,
         password: this.resetForm.value.password,
@@ -125,10 +126,10 @@ export class ForgotPwdPage implements OnInit {
         this.resetSubmitted = false;
         this.toast.onFail('Error in Password Reset');
       });
-    } else {
-      this.toast.onFail('Form is invalid');
-      this.isLoading = false;
-    }
+    // } else {
+    //   this.toast.onFail('Form is invalid');
+    //   this.isLoading = false;
+    // }
   }
 
   getEmailErrorMsg() {

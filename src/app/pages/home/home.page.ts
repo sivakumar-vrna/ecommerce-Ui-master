@@ -10,7 +10,8 @@ import { environment } from 'src/environments/environment';
 import { isPlatform } from '@ionic/core';
 import { BookDetailsService } from '../book-details/book-details.service';
 import { ActivatedRoute, Router } from '@angular/router';
-// import { TopbarComponent } from 'src/app/layout/topbar/topbar.component';
+
+
 
 
 
@@ -30,6 +31,10 @@ export class HomePage implements OnInit {
   featured: Book[];
   bookid:any;
   domainUrl: string;
+  bookId:any;
+  book: Book;
+  isLoading = true;
+
 
 
 
@@ -37,7 +42,7 @@ export class HomePage implements OnInit {
     slidesPerView: 7,
     spaceBetween: 10,
     preloadImages: true,
-    // loop: true,
+    loop: true,
     navigation: true,
     // pagination: { clickable: true },
     scrollbar: false,
@@ -59,7 +64,7 @@ export class HomePage implements OnInit {
     this.onGetLatest();
     this.onGetTrending();
     this.onGetfeatured();
-   // this.GetBookDetails();
+    // this.GetBookDetails();
 
 
     if (isPlatform('capacitor')) {
@@ -96,16 +101,33 @@ export class HomePage implements OnInit {
     });
   }
 
+  async GetBookDetails()  {
+    (await this.orchService.getBookDetails(this.bookId)).subscribe({
+      next: (res: any) => {
+        if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {
+          this.bookId = res.data;
+          console.log(this.latest)
+        } else {
+          this.errorService.onError(res);
+        }
+      },
+      error: error => {
+        this.errorService.onError(error);
+      }
+    });
+  }
 
 
-//   ngAfterContentChecked(): void {
-//     if(this.swiper)
-//     {
-//       this.swiper.updateSwiper({})
-//       this.swiper.swiperRef.autoplay.start();
-//     }
 
-// }
+
+  ngAfterContentChecked(): void {
+    if(this.swiper)
+    {
+      this.swiper.updateSwiper({})
+      this.swiper.swiperRef.autoplay.start();
+    }
+
+}
 
 async onGetTrending() {
   (await this.orchService.getTrending()).subscribe({

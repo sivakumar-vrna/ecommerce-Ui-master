@@ -14,10 +14,10 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class AddressComponent implements OnInit {
   isSubmitted = false;
   isEditMode: boolean = false;
- 
   newAddressForm: FormGroup;
 
- 
+  address: any; 
+
 
   
   constructor(
@@ -32,19 +32,17 @@ export class AddressComponent implements OnInit {
     this.newAddressForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      middleName: [''],
+      middleName: ['', Validators.required],
       mobile: ['', Validators.required],
       email:['',Validators.required],
-      // addressId: [''],
       address1: ['', Validators.required],
-      address2: [''],
+      address2: ['',Validators.required],
       addressType:['',Validators.required],
       area:['',Validators.required],
       country: ['', Validators.required],
       state: ['', Validators.required],
       zipCode: ['', Validators.required],
-      // status:['',Validators.required],
-      // userId:['',Validators.required]
+      
     });
     this.onSubmit();
   }
@@ -58,7 +56,6 @@ export class AddressComponent implements OnInit {
       middleName: this.newAddressForm.get('middleName').value,
       mobile: this.newAddressForm.get('mobile').value,
       email:this.newAddressForm.get('email').value,
-      // addressId: this.newAddressForm.get('addressId').value,
       address1: this.newAddressForm.get('address1').value,
       address2: this.newAddressForm.get('address2').value,
       addressType:this.newAddressForm.get('addressType').value,
@@ -68,7 +65,6 @@ export class AddressComponent implements OnInit {
       zipCode: this.newAddressForm.get('zipCode').value,
       userId : await this.userService.getUserId()
       
-      // status:this.newAddressForm.get('status').value
 
     };
     console.log(postData);

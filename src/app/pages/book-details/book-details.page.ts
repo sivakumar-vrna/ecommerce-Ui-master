@@ -135,7 +135,7 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
 
 
   ngOnInit() {
-    // this.onGetMovieDetail();
+    this.onGetMovieDetail();
     this.onGetTrending();
     console.log("{Inside ngOnInit book-details.page.ts ----------->}"+this.movieId)
     this.onProductDetails();

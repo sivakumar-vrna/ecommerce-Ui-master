@@ -86,7 +86,6 @@ export class AddCardComponent implements OnInit {
       date: null
     }
     console.log(postData);
-    // if (this.newCardForm.valid) {
       
       (await this.cardService.addcustomercard(postData)).subscribe(res => {
         if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {

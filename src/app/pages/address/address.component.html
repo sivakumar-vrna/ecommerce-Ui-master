@@ -8,7 +8,12 @@
       <form [formGroup]="newAddressForm" (ngSubmit)="onSubmit()">
         <ion-item>
           <ion-label position="stacked">First Name</ion-label>
-          <ion-input formControlName="firstName"></ion-input>
+          <ion-input  formControlName="firstName"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Middle Name</ion-label>
+          <ion-input formControlName="middleName"></ion-input>
         </ion-item>
 
         <ion-item>
@@ -16,10 +21,7 @@
           <ion-input formControlName="lastName"></ion-input>
         </ion-item>
 
-        <ion-item>
-          <ion-label position="stacked">Middle Name</ion-label>
-          <ion-input formControlName="middleName"></ion-input>
-        </ion-item>
+       
 
         <ion-item>
           <ion-label position="stacked">Phone Number</ion-label>
@@ -41,10 +43,7 @@
           <ion-input formControlName="address2"></ion-input>
         </ion-item>
 
-        <!-- <ion-item>
-          <ion-label position="stacked">AddressId</ion-label>
-          <ion-input formControlName="addressId"></ion-input>
-        </ion-item> -->
+       
 
         <ion-item>
           <ion-label position="stacked">addressType</ion-label>
@@ -61,9 +60,7 @@
           <ion-label position="stacked">Country</ion-label>
           <ion-input formControlName="country"></ion-input>
         </ion-item>
-
-       
-
+        
         <ion-item>
           <ion-label position="stacked">State</ion-label>
           <ion-input formControlName="state"></ion-input>
@@ -77,7 +74,7 @@
         
 
         <div class="alert alert-danger" *ngIf="newAddressForm.invalid">
-          Error in address data, please try to fill carefully.
+          <h5>Error in address data, please try to fill carefully.</h5>  
         </div>
 
         <ion-button color="primary" type="submit" expand="full">
