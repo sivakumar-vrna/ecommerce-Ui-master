@@ -28,6 +28,8 @@ export class CheckoutPage implements OnInit {
   public cardData: any;
   public addressData:any;
 
+  emailId: string;
+  stripeCustId: string;
   selectedCard: any;
   selectedAddress: any;
   subtotal: number = 0;
@@ -57,6 +59,9 @@ export class CheckoutPage implements OnInit {
   ngOnInit() {
     this.onGetSavedCards();
     this.ongetSavedAddress();
+    this.onGetRental() ;
+    this.userService.getEmail().then(res => this.emailId = res);
+    this.userService.getStripeId().then(res => this.stripeCustId = res);
   }
 
   onCardSelection(e) {
@@ -92,16 +97,16 @@ export class CheckoutPage implements OnInit {
     );
   }
   
-
   async ongetSavedAddress(){
     this.isLoading = true;
     const loading = await this.loadingController.create();
-    (await this. orchService.getSavedAddress()).subscribe((res: any) => {
+    (await this.orchService.getSavedAddress()).subscribe((res: any) => {
       console.log(res);
       const data = res.data;
       if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
-        this. addressData = data;
-        console.log(this. addressData);
+        // Only display the first 10 addresses in the array
+        this.addressData = data.slice(0, 5);
+        console.log(this.addressData);
         this.selectedAddress = this.addressData[1];
       } else {
         this.selectedAddress = 'new';
@@ -109,12 +114,12 @@ export class CheckoutPage implements OnInit {
       this.isLoading = false;
       loading.dismiss();
     }, (err) => {
-      console.log('siva:', err); // add a console.log statement here to help diagnose the error
+      console.log('siva:', err);
       this.isLoading = false;
       loading.dismiss();
     });
-  }
-  
+}
+
 
   
   async onGetRental() {
@@ -128,10 +133,9 @@ export class CheckoutPage implements OnInit {
       const rentalData = {
         custId: userId,
         emailId: userName,
-       
-        stripeCardId: this.isPromoCodeValid ? null : this.selectedCard.stripeCardId,
-        stripeCustId: this.isPromoCodeValid ? null : this.selectedCard.stripeCustId,
-        stripetokenId:this.isPromoCodeValid ? null : this.selectedCard.stripetokenId
+         stripeCardId: this.isPromoCodeValid ? null : this.selectedCard.stripeCardId,
+         stripeCustId: this.isPromoCodeValid ? null : this.selectedCard.stripeCustId,
+         stripetokenId:this.isPromoCodeValid ? null : this.selectedCard.stripetokenId
       };
       console.log('rentalData:', rentalData);
   

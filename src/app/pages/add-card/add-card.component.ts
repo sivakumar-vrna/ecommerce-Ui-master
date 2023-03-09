@@ -2,8 +2,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { UserService } from 'src/app/shared/services/user.service';
-// import { DatePipe } from '@angular/common';
-import { PaymentService } from 'src/app/shared/services/payment.service';
 import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
 import { OrchestrationService } from 'src/app/shared/services/orchestration/orchestration.service';
 
@@ -82,6 +80,7 @@ export class AddCardComponent implements OnInit {
       expiryMonth: this.newCardForm.value.expiryMonth,
       expiryYear: this.newCardForm.value.expiryYear,
       secretPin: this.newCardForm.value.secretPin,
+      stripeId:this.stripeCustId,
       stripetokenId: null,
       date: null
     }
@@ -94,7 +93,8 @@ export class AddCardComponent implements OnInit {
           this.modalController.dismiss({
             'newcard': true
           });
-        } else {
+        } 
+        else {
           this.toast.onFail('Error in adding card');
         }
         this.isSubmitted = false;

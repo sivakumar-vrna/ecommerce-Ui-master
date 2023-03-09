@@ -52,7 +52,7 @@ export class BannerComponent implements OnInit {
   }
 
   async onGetBanners() {
-    (await this.orchService.getBanner(this.country)).subscribe({
+    (await this.orchService.getBanner()).subscribe({
       next: (res: any) => {
         
         if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {

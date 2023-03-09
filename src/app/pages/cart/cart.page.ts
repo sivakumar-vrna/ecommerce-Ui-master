@@ -15,6 +15,7 @@ import { isPlatform } from '@ionic/core';
 import { BookDetailsService } from '../book-details/book-details.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
+import { UserService } from 'src/app/shared/services/user.service';
 
 
 
@@ -83,6 +84,7 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
     private bookDetailsService:BookDetailsService,
     private route: ActivatedRoute,
     private router: Router,
+    private UserService:UserService
   ) {
     if (isPlatform('capacitor')) {
       this.domainUrl = environment.capaciorUrl;
@@ -101,12 +103,13 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
     }
   }
    ngAfterViewInit(): void {
-    // throw new Error('Method not implemented.');
+    
   }
 
   ngOnInit() {
      this.getAllCartItems();
      this.cartItemCount = this.cartitems.length;
+    //  this.RemoveToCart(this.cartitems);
      
 
    }
@@ -203,7 +206,10 @@ RemoveToCart(cartitem:any){
 }
 async removeToCart(cartitem: any) {
   const data = {
-    userId: "3434",
+    // userId: "3434",
+    userId:await this.UserService.getUserId(),
+
+
     bookId: cartitem.bookId
   };
   (

@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { SignupPage } from './signup/signup.page';
 import { LoginPage } from './login/login.page';
 import { ForgotPwdPage } from './forgot-pwd/forgot-pwd.page';
+// import { PasswordModule } from '../components/password/password.module';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { ForgotPwdPage } from './forgot-pwd/forgot-pwd.page';
     ReactiveFormsModule,
     HttpClientModule,
     IonicModule,
+    // PasswordModule
   ]
 })
 export class AuthModule { }

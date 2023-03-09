@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { StatusBarService } from 'src/app/shared/services/status-bar/status-bar.service';
 import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
 
+
 @Component({
   selector: 'app-forgot-pwd',
   templateUrl: './forgot-pwd.page.html',
@@ -59,6 +60,7 @@ export class ForgotPwdPage implements OnInit {
     });
 
     /* Password Reset form */
+    
     this.resetForm = this.formBuilder.group({
       token: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/)]],

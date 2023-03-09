@@ -20,43 +20,34 @@ export class OrchestrationService {
   stripe: any;
 
   private cartItemsCount = new BehaviorSubject<number>(0);
-
-  banner ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/book-service/book/banner';
-
-  latest ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/orchestration-service/event/menu?userId=3424&menuName=latest';
-
-  Trending ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/orchestration-service/event/menu?userId=3424&menuName=trending';
-
-  featured ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/orchestration-service/event/menu?userId=3424&menuName=featured';
   
+  // top ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/orchestration-service/event/menu?userId=3424&menuName=top';
   
-  top ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/orchestration-service/event/menu?userId=3424&menuName=top';
+  // allbooks ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/book-service/book/activebooks';
 
-  allbooks ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/book-service/book/activebooks';
+  // upcoming ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/book-service/book/upcoming?userId=112245';
 
-  upcoming ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/book-service/book/upcoming?userId=112245';
+  // bookDetailsURL ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/book-service/book/';
 
-  bookDetailsURL ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/book-service/book/';
+  // addCartURL = 'http://170.187.138.204:8089/customer-service/cart/add';
 
-  addCartURL = 'http://170.187.138.204:8089/customer-service/cart/add';
+  // removeCartURL ='http://170.187.138.204:8089/customer-service/cart/delete?userId=3424&';
 
-  removeCartURL ='http://170.187.138.204:8089/customer-service/cart/delete?userId=3424&';
+  // getCartItemsURL ='http://170.187.138.204:8089/customer-service/cart/get?userId=3434';
 
-  getCartItemsURL ='http://170.187.138.204:8089/customer-service/cart/get?userId=3434';
+  // addWishURL='http://170.187.138.204:8089:8099/customer-service/watchlist/add';
 
-  addWishURL='http://170.187.138.204:8089:8099/customer-service/watchlist/add';
+  // getWishListURl='http://170.187.138.204:8089/customer-service/watchlist/3434';
 
-  getWishListURl='http://170.187.138.204:8089/customer-service/watchlist/3434';
-
-  AddCustomerCard='http://170.187.138.204:8089/payment-service/payment/addCustomerCard';
+  // AddCustomerCard='http://170.187.138.204:8089/payment-service/payment/addCustomerCard';
   
-  processpayment='http://170.187.138.204:8089/payment-service/payment/processPayment';
+  // processpayment='http://170.187.138.204:8089/payment-service/payment/processPayment';
 
-  getcards='http://170.187.138.204:8089/payment-service/payment/cardinfo?userName=vinoth';
+  // getcards='http://170.187.138.204:8089/payment-service/payment/cardinfo?userName=vinoth';
 
-  getAddress='http://170.187.138.204:8089/user-service/address/all?userId=3434';
-
-  AddaddressURL='http://170.187.138.204:8089/user-service/address/add';
+  // getAddress='http://170.187.138.204:8089/user-service/address/all?userId=3434';
+  
+  // AddaddressURL='http://170.187.138.204:8089/user-service/address/add';
  
   constructor(
     private http: HttpService,
@@ -74,53 +65,66 @@ export class OrchestrationService {
     return headers;
   }
 
-  async getBanner(country) {
-    // return this.http.get<any>("assets/banners.json"); // replace these path with url's eg: https://domain.com/orchservice/?menuName=banner
-    const url = this.banner;
-    return this.http.getCall(url, environment.capaciorUrl + url);
+  async getBanner() {
+    const url = environment.contentUrl +'book/banner';
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.http.getCall(url, capacitorUrl + url);
   }
 
   async getTrending() {
-    const url = this.Trending;
-    return this.http.getCall(url, environment.capaciorUrl + url);
+    const userId = await this.userService.getUserId();
+    const url= environment.contentUrl +'trending?userId='+userId;
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.http.getCall(url, capacitorUrl+ url);
   }
 
   async getLatest() {
-    const url = this.latest;
-    return this.http.getCall(url, environment.capaciorUrl + url);
+    const userId = await this.userService.getUserId();
+    const url = environment.contentUrl +'latest?userId='+userId;
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.http.getCall(url,capacitorUrl + url);
   }
 
   async getfeatured() {
-    const url = this.featured;
-    return this.http.getCall(url, environment.capaciorUrl + url);
+    const userId = await this.userService.getUserId();
+    const url = environment.contentUrl + 'featured?userId='+userId;
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.http.getCall(url,capacitorUrl + url);
   }
 
   async getBooks() {
-    const url = this.allbooks;
-    return this.http.getCall(url, environment.capaciorUrl + url);
+    const url = environment.contentUrl +'activebooks';
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.http.getCall(url,capacitorUrl + url);
   }
+
+  
+
   async getBookDetails(bookId) {
     console.log('{orchestration service }  ---- {}getBookDetails-----here ');
-    const url = this.bookDetailsURL;
+    const url= environment.contentUrl +'book';
     return this.http.getCall(url, environment.capaciorUrl + url);
   }
 
   addToCart(content: any) {
-    const url = this.addCartURL;
+    const url = environment.watchlistUrl +'cart/add';
     console.log('inside {addCartURL}---------->');
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.postCall(url, capacitorUrl, content);
   }
   
   async getCartItems() {
-    const url = this.getCartItemsURL;
+    const userId = await this.userService.getUserId();
+    const url =environment.watchlistUrl +'cart/get?userId='+userId;
     const capacitorUrl = environment.capaciorUrl + url;
-    return this.http.getCall(url, environment.capaciorUrl + url);
+    return this.http.getCall(url, capacitorUrl + url);
     
   }
   
-  removeCart(data){
-    const url = this.removeCartURL + 'bookId=' + data.bookId;
+  
+  async removeCart(data){
+    const userId = await this.userService.getUserId();
+    const url = environment.watchlistUrl+'cart/delete?userId'+ userId + 'bookId=' + data.bookId;
     console.log( url)
     console.log('inside {removeCartURL}---------->');
     const capacitorUrl = environment.capaciorUrl + url;
@@ -150,8 +154,10 @@ async contentOrchestrate(content: any) {
 
 }
   async getupcoming() {
-    const url = this.upcoming;
-    return this.http.getCall(url, environment.capaciorUrl + url);
+    const userId = await this.userService.getUserId();
+    const url = environment.contentUrl+'upcoming?userId='+ userId;
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.http.getCall(url, capacitorUrl + url);
   }
   get domainUrl() {
     if (isPlatform('capacitor')) {
@@ -163,33 +169,29 @@ async contentOrchestrate(content: any) {
 
 
 addToWish(content: any) {
-  const url = this.addWishURL;
+  const url = environment.watchlistUrl +'watchlist/add';
   console.log('inside {addCartURL}---------->');
   const capacitorUrl = environment.capaciorUrl + url;
   return this.http.postCall(url, capacitorUrl, content);
 }
+
 async getWishList() {
-  const url = this.getWishListURl;
+  const userId = await this.userService.getUserId();
+  const url = environment.watchlistUrl+'watchlist/'+userId;
   const capacitorUrl = environment.capaciorUrl + url;
-  return this.http.getCall(url, environment.capaciorUrl + url);
+  return this.http.getCall(url, capacitorUrl + url);
 }
 
-
-
- 
-
-  getCartItemsCount() {
+getCartItemsCount() {
     return this.cartItemsCount.asObservable();
   }
 
   updateCartItemsCount(count: number) {
     this.cartItemsCount.next(count);
   }
-
   
   async onPayment(postData) {
-    const baseUrl =this.processpayment;
-    const url = baseUrl;
+   const url =environment.paymentUrl +'payment/processPayment';
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.postCall(url, capacitorUrl, postData);
   }
@@ -203,7 +205,7 @@ async getWishList() {
   
   async getSavedCards(): Promise<Observable<any>> {
     const userName = await this.userService.getEmail();
-    const url =`http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/payment-service/payment/cardinfo?userName=${userName}`;
+    const url =environment.paymentUrl +`payment/cardinfo?userName=${userName}`;
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.getCall(url, capacitorUrl);
   }
@@ -223,17 +225,23 @@ async getWishList() {
   }
   
   async addAddress(postData) {
-    
     const url =environment.authUrl +'address/add';
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.postCall(url, capacitorUrl, postData);
   }
 
   async deleteAddress() {
-    
-    const url =environment.authUrl +'address/{userId}';
+    const userId = await this.userService.getUserId();
+    const url =environment.authUrl +'address/'+userId;
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.deleteCall(url, capacitorUrl);
+  }
+
+  async updateAddress(updatedData) {
+    // const userId = await this.userService.getUserId();
+    const url =environment.authUrl + 'address/update';
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.http.postCall(url, capacitorUrl,updatedData);
   }
 
   

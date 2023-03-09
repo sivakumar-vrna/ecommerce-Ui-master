@@ -15,6 +15,7 @@ import  SwiperCore, { Autoplay,Navigation, Pagination, Scrollbar, A11y } from 's
 import { Share } from '@capacitor/share';
 import { ErrorService } from 'src/app/shared/services/error.service';
 import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
+import { UserService } from 'src/app/shared/services/user.service';
 
 
 
@@ -117,6 +118,7 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
     private OrchService:OrchestrationService,
     private errorService:ErrorService,
     public toast: ToastWidget,
+    private UserService:UserService
 
   ) {
     if (isPlatform('capacitor')) {
@@ -149,7 +151,9 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
   }
   async addCourseToCart(book: any) {
     const data = {
-      userId: "3434",
+      // userId: "3434",
+      userId:await this.UserService.getUserId(),
+
       bookId: book.bookId,
       count: 1
     };
@@ -205,7 +209,8 @@ async getAllCartItems() {
   
   async addCourseToWish(book: any) {
     const data = {
-      userId: "3434",
+      // userId: "3434",
+      userId:await this.UserService.getUserId(),
       bookId: book.bookId,
       count: 1
     };

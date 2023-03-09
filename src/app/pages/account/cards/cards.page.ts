@@ -105,6 +105,7 @@ export class CardsPage implements OnInit {
       stripetokenId: null,
       date: null
     }
+    
     console.log(postData);
   
     (await this.orchService.postDeleteCards(postData)).subscribe(res => {

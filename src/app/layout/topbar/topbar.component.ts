@@ -9,7 +9,8 @@ import { ErrorService } from 'src/app/shared/services/error.service';
 import{OrchestrationService} from 'src/app/shared/services/orchestration/orchestration.service';
 import { Subscription,Subject } from 'rxjs';
 import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
-
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { UserService } from 'src/app/shared/services/user.service';
 
 
 
@@ -33,7 +34,7 @@ export class TopbarComponent implements OnInit {
   
   bookDtls: Book[];
   bookid:any;
-  public userId:"3434";
+  // public userId:"3434";
   @Input() data: Book;
   // routeSub: Subscription;
 
@@ -59,10 +60,11 @@ export class TopbarComponent implements OnInit {
     private theme: themeService,
     public  modalController: ModalController,
     public cartService:CartPageService,
-    // public errorService:ErrorService,
     private OrchService: OrchestrationService,
     private errorService: ErrorService,
     public toast: ToastWidget,
+    private authService:AuthService,
+    private UserService:UserService
 
 
 
@@ -136,7 +138,9 @@ RemoveToCart(cartitem:any){
 }
 async removeToCart(cartitem: any) {
   const data = {
-    userId: "3434",
+    // userId: "3434",
+    userId:await this.UserService.getUserId(),
+  
     bookId: cartitem.bookId
   };
   (
@@ -172,7 +176,10 @@ clearCart() {
   this.cartitems.splice(0, this.cartitems.length);
 }
 
-
+async onLogout() {
+  // this.dismissSideMenu();
+  await this.authService.logout();
+}
 
 
 

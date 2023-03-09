@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { nanoid } from 'nanoid'
+import { Auth } from '../../models/auth';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Http } from '@capacitor-community/http';
+import { isPlatform } from '@ionic/core';
 import { BehaviorSubject, from, Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { Storage } from '@capacitor/storage';
 import { NavController } from '@ionic/angular';
+import { RENTED_KEY } from '../intelligence.service';
 import { Router } from '@angular/router';
 import { ToastWidget } from '../../widgets/toast.widget';
-import { Auth } from '../../models/auth';
+import { GENRES_KEY } from '../ui-orchestration/orch.service';
 
 export const TOKEN_KEY = 'token';
 export const USER_KEY = 'userId';
 export const USERNAME_KEY = 'username';
 export const STRIPE_KEY = 'rentId';
 export const MAC_KEY = 'macId';
-
-
 
 @Injectable({
   providedIn: 'root'
@@ -34,13 +37,10 @@ export class AuthService {
     this.loadToken();
   }
 
-   
-
-
   async loadToken() {
-    const token = localStorage.getItem(TOKEN_KEY);
-    if (token) {
-      this.token = token;
+    const token = await Storage.get({ key: TOKEN_KEY });
+    if (token && token.value) {
+      this.token = token.value;
       this.isAuthenticated.next(true);
     } else {
       this.isAuthenticated.next(false);
@@ -50,28 +50,33 @@ export class AuthService {
   /* Registration Complete */
   async onUserConfirm(token: string) {
     const url = environment.authUrl + 'user/confirm?token=' + token;
-    return this.getCall(url);
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.getCall(url, capacitorUrl);
   }
 
   /* Validating User */
   async onAuthentication(user: Auth, macAddress: any) {
     const url = environment.vrnaFlowUrl + 'login';
-    return this.postRequest(url, user, macAddress);
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.postRequest(url, capacitorUrl, user, macAddress);
   }
 
   onSignup(data: any, macAddress: any) {
     const url = environment.vrnaFlowUrl + 'signup';
-    return this.postRequest(url, data, macAddress);
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.postRequest(url, capacitorUrl, data, macAddress);
   }
 
   onRequestResetPwd(data: any, macAddress: any) {
     const url = environment.vrnaFlowUrl + 'forgotpassword';
-    return this.postRequest(url, data, macAddress);
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.postRequest(url, capacitorUrl, data, macAddress);
   }
 
   onResetPwd(data: any, macAddress: any) {
     const url = environment.authUrl + 'user/updpass';
-    return this.postRequest(url, data, macAddress);
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.postRequest(url, capacitorUrl, data, macAddress);
   }
 
   /* Unique ID Creation */
@@ -88,39 +93,67 @@ export class AuthService {
   }
 
   // GET - HTTP call for capacitor and Web
-  async getCall(url: string) {
+  async getCall(url: string, capacitorUrl: string) {
     const headers = {
       'Content-Type': 'application/json'
     };
-    return this.http
-      .get<any>(url, {
-        observe: 'response',
-        headers: headers
-      })
-      .pipe(
-        map((res) => res.body)
+
+    if (isPlatform('capacitor')) {
+      const options = {
+        url: capacitorUrl,
+        headers: headers,
+      };
+      return from(Http.get(options)).pipe(
+        map((result) => result.data)
       );
+    } else {
+      return this.http
+        .get<any>(url, {
+          observe: 'response',
+          headers: headers
+        })
+        .pipe(
+          map((res) => res.body)
+        );
+    }
   }
 
-  postRequest(url, postData: Auth, macAddress: any): Observable<any> {
+  postRequest(url, capacitorUrl, postData: Auth, macAddress: any): Observable<any> {
     const headers = {
       'Content-Type': 'application/json',
       userName: postData.email,
       macAddress: macAddress,
     };
     let token = null;
-    return this.http.post<any>(url, postData, {
-      observe: 'response',
-      headers: headers
-    }).pipe(
-      tap(res => {
-        token = res.headers.get('vrna-token');
-      }),
-      map(res => {
-        res.body['token'] = token;
-        return res.body;
-      })
-    )
+    if (isPlatform('capacitor')) {
+      const options = {
+        url: capacitorUrl,
+        headers: headers,
+        data: postData,
+      };
+      return from(Http.post(options)).pipe(
+        tap(res => {
+          token = res.headers['vrna-token'];
+        }),
+        map(result => {
+          result.data['token'] = token;
+          return result.data;
+        })
+      );
+    } else {
+      return this.http.post<any>(url, postData, {
+        observe: 'response',
+        headers: headers
+      }).pipe(
+        tap(res => {
+          token = res.headers.get('vrna-token');
+        }),
+        map(res => {
+          res.body['token'] = token;
+          return res.body;
+        })
+      )
+    }
   }
 
   private handleError<T>(result?: T) {
@@ -139,21 +172,26 @@ export class AuthService {
 
   // #After Successfull login
   async afterLogin(userData: any, macId: any, token: string) {
-    localStorage.setItem(USER_KEY, JSON.stringify(userData.userId));
-    localStorage.setItem(USERNAME_KEY, userData.email);
-    localStorage.setItem(STRIPE_KEY, userData.stripeId);
-    localStorage.setItem(TOKEN_KEY, token);
-    localStorage.setItem(MAC_KEY, macId);
+    await Storage.set({ key: USER_KEY, value: JSON.stringify(userData.userId) });
+    await Storage.set({ key: USERNAME_KEY, value: userData.email });
+    await Storage.set({ key: STRIPE_KEY, value: userData.stripeId });
+    await Storage.set({ key: TOKEN_KEY, value: token });
+    await Storage.set({ key: MAC_KEY, value: macId });
     this.isAuthenticated.next(true);
-    this.router.navigate(['/home'], { replaceUrl: true });
+    this.router.navigate(['/'], { replaceUrl: true });
   }
+  
 
-  logout() {
+  logout(): Promise<void> {
+    this.router.navigate(['/auth/login']);
     this.isAuthenticated.next(false);
-    localStorage.removeItem(USER_KEY);
-    localStorage.removeItem(USERNAME_KEY);
-    localStorage.removeItem(MAC_KEY);
-    localStorage.removeItem(TOKEN_KEY);
+    Storage.remove({ key: USER_KEY });
+    Storage.remove({ key: USERNAME_KEY });
+    Storage.remove({ key: MAC_KEY });
+    Storage.remove({ key: RENTED_KEY });
+    Storage.remove({ key: STRIPE_KEY });
+    Storage.remove({ key: GENRES_KEY });
+    return Storage.remove({ key: TOKEN_KEY });
   }
 
 }

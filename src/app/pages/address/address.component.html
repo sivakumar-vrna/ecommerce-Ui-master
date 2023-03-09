@@ -8,7 +8,7 @@
       <form [formGroup]="newAddressForm" (ngSubmit)="onSubmit()">
         <ion-item>
           <ion-label position="stacked">First Name</ion-label>
-          <ion-input  formControlName="firstName"></ion-input>
+          <ion-input formControlName="firstName"></ion-input>
         </ion-item>
 
         <ion-item>
@@ -20,8 +20,6 @@
           <ion-label position="stacked">Last Name</ion-label>
           <ion-input formControlName="lastName"></ion-input>
         </ion-item>
-
-       
 
         <ion-item>
           <ion-label position="stacked">Phone Number</ion-label>
@@ -43,43 +41,45 @@
           <ion-input formControlName="address2"></ion-input>
         </ion-item>
 
-       
-
         <ion-item>
-          <ion-label position="stacked">addressType</ion-label>
+          <ion-label position="stacked">Address Type</ion-label>
           <ion-input formControlName="addressType"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label position="stacked">Area</ion-label>
-        <ion-input formControlName="area"></ion-input>
+          <ion-input formControlName="area"></ion-input>
         </ion-item>
-
 
         <ion-item>
           <ion-label position="stacked">Country</ion-label>
           <ion-input formControlName="country"></ion-input>
         </ion-item>
-        
+
         <ion-item>
           <ion-label position="stacked">State</ion-label>
           <ion-input formControlName="state"></ion-input>
         </ion-item>
-        
 
         <ion-item>
           <ion-label position="stacked">Zip Code</ion-label>
           <ion-input formControlName="zipCode"></ion-input>
         </ion-item>
-        
 
         <div class="alert alert-danger" *ngIf="newAddressForm.invalid">
           <h5>Error in address data, please try to fill carefully.</h5>  
         </div>
 
-        <ion-button color="primary" type="submit" expand="full">
+       
+
+        <ion-button color="primary" id="submitBtn" type="submit" expand="full" [disabled]="submitButtonDisabled">
           {{ isEditMode ? 'Save Changes' : 'Add New Address' }}
         </ion-button>
+       
+          <ion-button color="primary" type="submit" expand="full">
+          {{ isEditMode ? 'Update Changes' : 'Update Address' }}
+        </ion-button> 
+
       </form>
     </ion-card-content>
   </ion-card>

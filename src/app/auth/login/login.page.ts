@@ -81,7 +81,6 @@ export class LoginPage implements OnInit {
   }
 
   async onSubmit() {
-    console.log("sk")
     const loading = await this.loadingController.create();
     this.isSubmitted = true;
     if (this.loginForm.valid) {

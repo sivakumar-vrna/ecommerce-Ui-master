@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { OrchestrationService } from 'src/app/shared/services/orchestration/orchestration.service';
 import { ErrorService } from 'src/app/shared/services/error.service';
-import { AddressPageModule } from './address.module';
 import { ActivatedRoute, Router, Routes } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { AddressComponent } from '../../address/address.component';
 
 
 
@@ -19,29 +17,29 @@ import { AddressComponent } from '../../address/address.component';
 export class AddressPage implements OnInit {
   public addressData:any;
   id: string;
-
-
   address: any;
-
   isLoading: boolean = false;
   selectedAddress: any;
   contentPrice: number;
   selectedCard: any;
 
-
-  // address: AddressPageModule = {
-  //   addressId: null,
-  //   firstName: '',
-  //   lastName: '',
-  //   mobile: '',
-  //   address1: '',
-  //   address2: '',
-  //   area: '',
-  //   country: '',
-  //   zipCode: '',
-  //   addressType: '',
-  // };
-
+  userId: string;
+  addressId: string;
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  mobile: string;
+  email: string;
+  addressType: string;
+  address1: string;
+  address2: string;
+  area: string;
+  state: string;
+  country: string;
+  zipcode: string;
+  date: string;
+  status: string;
+  toast: any;
 
 
 
@@ -91,14 +89,12 @@ export class AddressPage implements OnInit {
     });
   }
 
-
-  
-
-  goToAddressPage(id: string) {
-    this.router.navigate(['/address', id]);
+  goToAddressPage(address: any) {
+    const addressStr = encodeURIComponent(JSON.stringify(address));
+    this.router.navigate(['/address', { address: addressStr }]);
   }
-
-
+  
+    
   async deleteAddress(address) {
      this.isLoading = true;
     const loading = await this.loadingController.create();
@@ -112,11 +108,21 @@ export class AddressPage implements OnInit {
       } else {
         this.selectedAddress = 'delete';
       }
-
-    console.log(`Deleting address ${address.addressId}`);
+      console.log(`Deleting address ${address.addressId}`);
   }
+  )}
   
   
 
-    )}
-}
+
+
+
+
+   
+addNewAddress() {
+  if (this.addressData.length < 10) {
+    // Add new address code here
+  } else {
+    this.toast.onWaring('You have already added the maximum number of addresses');
+  }
+}}

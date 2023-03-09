@@ -8,11 +8,12 @@
       <ion-breadcrumb>Address</ion-breadcrumb>
     </ion-breadcrumbs>
     <ion-list>
-      <ion-card>
+      <ion-card *ngIf="addressData.length < 10">
         <ion-card-content>
-          <a routerLink="/address">
+          <a (click)="addNewAddress()" routerLink="/address">
             <ion-icon name="add"></ion-icon> Add New Address
           </a>
+          
         </ion-card-content>
       </ion-card>
       <ion-card class="address-card" *ngFor="let address of addressData">
@@ -22,9 +23,11 @@
               <ion-label>
                 <h4>{{ address.firstName }} +91- {{ address.mobile }} {{ address.lastName }}</h4>
                 <p>
-                  {{ address.address1 }}, {{ address.address2 }},{{ address.addressId }},{{ address.addressType }},{{ address.area }}
+                  {{ address.address1 }},{{ address.address2 }},,{{ address.addressType }},{{ address.area }}
                   {{ address.country }}{{ address.zipCode }}
+
                 </p>
+                <h2>{{ address.addressId }}</h2>
               </ion-label>
               <div class="d-flex">
                 <ion-button color="dark" color="danger" fill="clear" (click)="deleteAddress(address)">
@@ -35,8 +38,6 @@
                 <ion-button expand="block" color="dark" fill="clear" class="w-100" [routerLink]="['/address',(address)]">
                   Edit
                 </ion-button>
-                
-              
               </div>
             </ion-item>
           </ion-list>

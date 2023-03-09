@@ -80,14 +80,13 @@
        
       </ion-button>
      
-     
-      <ion-button fill="clear" color="dark" routerLink="/logout">
+      
+      <ion-button fill="clear" color="dark" (click)="onLogout()" >
         <ion-icon slot="start" name="Logout"></ion-icon>
         Logout
-        <p></p>
-
         <ion-icon class="fa fa-sign-out fa-2x"></ion-icon>
       </ion-button>
+      
       <ion-button fill="clear" color="dark" routerLink="/wish-list">
         <ion-icon slot="start" name="notifications"></ion-icon>
         <ion-badge slot="start" color="danger" Data-Badge siz="medium">4</ion-badge>

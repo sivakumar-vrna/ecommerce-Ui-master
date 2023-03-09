@@ -32,42 +32,15 @@ export class UserService {
     const uId = await Storage.get({ key: MAC_KEY });
     return uId.value;
   }
-
+  
   async getUserId(): Promise<number> {
     const id = await Storage.get({ key: USER_KEY });
-    
-    if (id){
-    const id = await Storage.get({ key: USER_KEY });
-    console.log("inside if for userid chcek")
-    id.value="3434";
     return parseInt(id.value);
-  }
-    else {
-      console.log("inside if for nan chcek")
-      id.value="3434";
-      return parseInt(id.value);
-      
-    }
-    // return parseInt(id.value);
-    
   }
 
   async getEmail(): Promise<string> {
     const email = await Storage.get({ key: USERNAME_KEY });
-
-    if (email)
-    {
-    const email = await Storage.get({ key: USERNAME_KEY });
-      console.log("inside if for null check");
-      email.value="kannan.gb@vrnaplex.com"; 
-      return email.value;
-    }
-
-    else {
-      console.log("inside else for null check ")
-      email.value="kannan.gb@vrnaplex.com"; 
-      return email.value;
-    }
+    return email.value;
   }
 
   async getStripeId() {
