@@ -69,7 +69,7 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('bookSwiper', { static: false }) swiper?: SwiperComponent;
 
     // #For Skeleton Loader
-    skeletonData = [1, 2, 3, 4, 5, 6];
+   skeletonData = [1, 2, 3, 4, 5, 6];
    subtotalText: string;
    errorMessage: string;
     
@@ -93,7 +93,7 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
     }
 
     this.routeSub = this.route.params.subscribe(params => {
-      this.movieId = params['id']; // Movie id is captured here
+      this.bookId = params['id']; // Movie id is captured here
     });
    }
 
@@ -102,17 +102,22 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
       this.routeSub.unsubscribe();
     }
   }
+  
    ngAfterViewInit(): void {
     
   }
 
   ngOnInit() {
      this.getAllCartItems();
-     this.cartItemCount = this.cartitems.length;
+    //  this.cartItemCount = this.cartitems.length;
     //  this.RemoveToCart(this.cartitems);
-     
+  }
 
-   }
+  
+onPlaceOrder() {
+  // Pass the cartitems data to the checkout page using the Angular Router
+  this.router.navigate(['/checkout'], { queryParams: { cartitems: JSON.stringify(this.cartitems) } });
+}
 
   async onGetTrending() {
     (await this.orchService.getTrending()).subscribe({
@@ -152,6 +157,7 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
     .doc(book.bookId)
     .update({ isDeleted })
   }
+
   async getSuggestions() {
     (await this.orchService.getupcoming()).subscribe({
       next: (res: any) => {
@@ -206,10 +212,7 @@ RemoveToCart(cartitem:any){
 }
 async removeToCart(cartitem: any) {
   const data = {
-    // userId: "3434",
     userId:await this.UserService.getUserId(),
-
-
     bookId: cartitem.bookId
   };
   (
@@ -245,7 +248,7 @@ clearCart() {
 getTotalAmount(): number {
   let total = 0;
   for (let cartitem of this.cartitems) {
-    total += cartitem.count * cartitem.count;
+    total += cartitem.cost * cartitem.cost;
   }
   return total;
 }
@@ -274,6 +277,7 @@ decreaseCount(cartitem: any) {
 //   this.addCardModal.onAddNewCard().then(res => {
 //     this.onGetSavedCards();
 //   });
+
 }
 
 

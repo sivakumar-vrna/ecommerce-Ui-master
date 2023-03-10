@@ -32,7 +32,7 @@ SwiperCore.use([Autoplay,Navigation, Pagination, Scrollbar, A11y]);
   providedIn:'root'
 })
 export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
-  @Input() bookId: number;
+  // @Input() bookId: number;
   @Input() data:Book;
   @ViewChild('popover') popover;
 
@@ -46,7 +46,7 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
   cart = [];
   products = [];
   // cartItemCount: BehaviorSubject<number>;
-  movieId: number;
+  bookId: number;
   routeSub: Subscription;
   book: Book;
   showBanner = false;
@@ -106,18 +106,18 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
 
 
   // #For Skeleton Loader
-  skeletonData = [1, 2, 3, 4, 5, 6];
+  skeletonData = [1, 2, 3, 4, 5, 6]
   swiper: any;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    public modalController: ModalController,
+    public  modalController: ModalController,
     private router: Router,
     private route: ActivatedRoute,
     private orchService: OrchService,
     private OrchService:OrchestrationService,
     private errorService:ErrorService,
-    public toast: ToastWidget,
+    public  toast: ToastWidget,
     private UserService:UserService
 
   ) {
@@ -128,7 +128,7 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
     }
 
     this.routeSub = this.route.params.subscribe(params => {
-      this.movieId = params['id']; // Movie id is captured here
+      this.bookId = params['id']; // Movie id is captured here
     });
   }
   ngAfterViewInit(): void {
@@ -137,12 +137,11 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
 
 
   ngOnInit() {
-    this.onGetMovieDetail();
+    this.onGetBookDetail();
     this.onGetTrending();
-    console.log("{Inside ngOnInit book-details.page.ts ----------->}"+this.movieId)
-    this.onProductDetails();
+    console.log("{Inside ngOnInit book-details.page.ts ----------->}"+this.bookId)
+    // this.onProductDetails();
     console.log("calling add to cart from {ngOnInit}----->> "+ this.data)
-
   }
   
   addToCart(){
@@ -151,11 +150,9 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
   }
   async addCourseToCart(book: any) {
     const data = {
-      // userId: "3434",
       userId:await this.UserService.getUserId(),
-
-      bookId: book.bookId,
-      count: 1
+      bookId: this.bookId,
+      count: 1,
     };
     console.log("{this is the book id to add to cart--->> Last step}"+ data.bookId);
 
@@ -209,10 +206,9 @@ async getAllCartItems() {
   
   async addCourseToWish(book: any) {
     const data = {
-      // userId: "3434",
       userId:await this.UserService.getUserId(),
       bookId: book.bookId,
-      count: 1
+      count: 1,
     };
     console.log("{this is the book id to add to cart--->> Last step}"+ data.bookId);
     
@@ -235,7 +231,7 @@ async getAllCartItems() {
     (await this.OrchService.getBooks()).subscribe({
       next: (res: any) => {
         if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {
-          this.book = res.data.find((e: Book) => e.bookId == this.movieId);
+          this.book = res.data.find((e: Book) => e.bookId == this.bookId);
           console.log(this.book)
         } else {
           this.errorService.onError(res);
@@ -253,11 +249,12 @@ async getAllCartItems() {
    }
 
 
-  async onGetMovieDetail() {
-    (await this.OrchService.getBooks()).subscribe(async response => {
+  async onGetBookDetail(){ 
+
+    (await this.OrchService.getBookDetails(this.bookId)).subscribe(async response => {
       if (response.status.toLowerCase() === 'success' && response.statusCode == 200) {
         this.book = response.data;
-        await this.orchService.movieOrchestrate(this.book);
+        await this.orchService.bookOrchestrate(this.book);
         this.isLoading = false;
       } else {
         this.isLoading = false;

@@ -34,6 +34,8 @@
                       <h4> {{cartitem.bookid}} .</h4>
                       <p>Count: {{cartitem.count}}</p>
                       <p>Seller: Vivamus</p>
+                      <h6>{{cartitem.cost}}</h6>
+                      <!-- <h6>{{cartitem.bookid}}</h6> -->
                     </ion-label>
                     <div class="">
                       <p>Delivery by Mon Dec 5 | Free</p>
@@ -69,7 +71,7 @@
             <ion-card-content>
               <ion-list>
                 <ion-item lines="none">
-                  <ion-label>{{ subtotalText }} </ion-label>
+                  <ion-label> SubTotal</ion-label><!--{{ subtotalText }}-->
                   <p>₹650{{ getTotalCount() | number: '1.2-2' }}</p>
                 </ion-item>
                  <ion-item>
@@ -84,7 +86,7 @@
 
                 <ion-item lines="none">
                   <ion-label>
-                    <ion-button expand="full" color="dark" routerLink="/checkout">Place Order</ion-button>
+                    <ion-button expand="full" color="dark" (click)="onPlaceOrder() ">Place Order</ion-button>
                   </ion-label>
                 </ion-item>
               </ion-list>

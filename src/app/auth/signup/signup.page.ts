@@ -84,12 +84,14 @@ export class SignupPage implements OnInit {
           this.errorService.onError(res);
         }
 
-      }, (err) => {
+      }, 
+      (err) => {
         this.toast.onFail('Form is not valid');
         this.isLoading = false;
         this.isSubmitted = false;
       });
-    } else {
+    }
+     else {
       this.toast.onFail('Form is not valid');
     }
   }

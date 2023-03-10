@@ -72,20 +72,40 @@ export class OrchestrationService {
   }
 
   async getTrending() {
-    const userId = await this.userService.getUserId();
+    let userId = await this.userService.getUserId();
+    console.log("first time login");
+    console.log(userId);
+    if (Number.isNaN(userId)){
+      userId=0;
+    }
+    console.log("after if");
+    console.log(userId)
     const url= environment.contentUrl +'trending?userId='+userId;
+    // const url= environment.contentUrl +'trending?userId='+0;
+      
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.getCall(url, capacitorUrl+ url);
   }
 
   async getLatest() {
-    const userId = await this.userService.getUserId();
+    console.log("inside  getLatest");
+    let userId = await this.userService.getUserId();
+    console.log("first time login");
+    console.log(userId);
+    if (Number.isNaN(userId)){
+      userId=0;
+    }
+    console.log("after if");
+    console.log(userId)
     const url = environment.contentUrl +'latest?userId='+userId;
+    // const url = environment.contentUrl +'latest?userId='+0;
+
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.getCall(url,capacitorUrl + url);
   }
 
   async getfeatured() {
+
     const userId = await this.userService.getUserId();
     const url = environment.contentUrl + 'featured?userId='+userId;
     const capacitorUrl = environment.capaciorUrl + url;
@@ -99,37 +119,40 @@ export class OrchestrationService {
   }
 
   
-
   async getBookDetails(bookId) {
     console.log('{orchestration service }  ---- {}getBookDetails-----here ');
-    const url= environment.contentUrl +'book';
-    return this.http.getCall(url, environment.capaciorUrl + url);
+    const url= environment.vrnaFlowUrl +'book/'+ bookId;
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.http.getCall(url,capacitorUrl + url);
   }
+  
 
-  addToCart(content: any) {
+
+  async addToCart(content: any) {
+    // const userId = await this.userService.getUserId();
     const url = environment.watchlistUrl +'cart/add';
     console.log('inside {addCartURL}---------->');
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.postCall(url, capacitorUrl, content);
   }
   
-  async getCartItems() {
+  async getCartItems(){
     const userId = await this.userService.getUserId();
     const url =environment.watchlistUrl +'cart/get?userId='+userId;
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.getCall(url, capacitorUrl + url);
-    
   }
   
   
   async removeCart(data){
     const userId = await this.userService.getUserId();
-    const url = environment.watchlistUrl+'cart/delete?userId'+ userId + 'bookId=' + data.bookId;
+    const url = environment.watchlistUrl+'cart/delete?userId='+ userId + '&bookId='+ + data.bookId;
     console.log( url)
     console.log('inside {removeCartURL}---------->');
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.postCall(url, capacitorUrl, data);
   }
+  
   
   orchestrateData(data: any) {
     let tempData: any[] = [];
@@ -148,8 +171,8 @@ export class OrchestrationService {
 async contentOrchestrate(content: any) {
   const cart: any[] = [];
   content['bannerurl'] = this.domainUrl + '/images' + content.bannerurl;
-  content['posterurl'] = ' https://wallpaperaccess.com/full/3421332.jpg';
-
+  // content['posterurl'] = ' https://wallpaperaccess.com/full/3421332.jpg';
+  content['posterurl'] = this.domainUrl + '/images' + content.posterurl;
 
 
 }
@@ -232,7 +255,7 @@ getCartItemsCount() {
 
   async deleteAddress() {
     const userId = await this.userService.getUserId();
-    const url =environment.authUrl +'address/'+userId;
+    const url =environment.authUrl +`address/${userId}`;
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.deleteCall(url, capacitorUrl);
   }

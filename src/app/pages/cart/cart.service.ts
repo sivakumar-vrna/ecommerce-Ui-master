@@ -6,18 +6,20 @@ import {CartPage} from './cart.page';
 import { HttpClient } from '@angular/common/http';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { environment } from 'src/environments/environment';
+import { UserService } from 'src/app/shared/services/user.service';
 @Injectable({
     providedIn: 'root'
 })
 
 export class CartPageService {
 
-  onGetCartDetailsURL=' http://170.187.138.204:8089/customer-service/cart/get?userId=3434';
+  // onGetCartDetailsURL=' http://170.187.138.204:8089/customer-service/cart/get?userId=3434';
 
     constructor(
         public modalController: ModalController,
         private router: Router,
         private http: HttpService,
+        private userService:UserService
 
     ) { }
     async header() {
@@ -52,9 +54,12 @@ export class CartPageService {
             queryParamsHandling: 'merge'
         })
     }
-    async onGetCartDetails(userId:any) {
+    async onGetCartDetails() {
+
       console.log("Inside {onGetCartDetails} -->> cart.service --- here ")
-      const url = this.onGetCartDetailsURL;
+      // const url = this.onGetCartDetailsURL;
+      const userId = await this.userService.getUserId();
+      const url =environment.watchlistUrl +'cart/get?userId='+ userId;
       return this.http.getCall(url, environment.capaciorUrl+url);
 
      // return this.http.get<any>("assets/trending.json");

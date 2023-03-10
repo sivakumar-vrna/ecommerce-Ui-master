@@ -56,8 +56,12 @@ export class AuthService {
 
   /* Validating User */
   async onAuthentication(user: Auth, macAddress: any) {
+    
     const url = environment.vrnaFlowUrl + 'login';
+    console.log(url);
     const capacitorUrl = environment.capaciorUrl + url;
+    console.log(user,macAddress)
+
     return this.postRequest(url, capacitorUrl, user, macAddress);
   }
 
@@ -171,6 +175,7 @@ export class AuthService {
   }
 
   // #After Successfull login
+
   async afterLogin(userData: any, macId: any, token: string) {
     await Storage.set({ key: USER_KEY, value: JSON.stringify(userData.userId) });
     await Storage.set({ key: USERNAME_KEY, value: userData.email });
@@ -182,7 +187,7 @@ export class AuthService {
   }
   
 
-  logout(): Promise<void> {
+  logout(): Promise<void>{
     this.router.navigate(['/auth/login']);
     this.isAuthenticated.next(false);
     Storage.remove({ key: USER_KEY });

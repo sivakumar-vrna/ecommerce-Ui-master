@@ -44,4 +44,5 @@ export interface Book {
     category?: number[];
     categoryDesc?: string[];
     countriesAccess?: string[];
+    
 }

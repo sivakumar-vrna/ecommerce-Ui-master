@@ -15,8 +15,6 @@ export class AddressComponent implements OnInit {
   isSubmitted = false;
   isEditMode: boolean = false;
   newAddressForm: FormGroup;
-
-  // address: any;
   address: any[] = [];
 
   
@@ -54,20 +52,20 @@ export class AddressComponent implements OnInit {
    
   }
 
-ngAfterViewInit() {
-  this.submitButton = document.querySelector('#submitButton');
-}
+// ngAfterViewInit() {
+//   this.submitButton = document.querySelector('#submitButton');
+// }
 
 async onSubmit() {
   this.isSubmitted = true;
   // check if the length of the address array is already 10
   // disable the submit button if the length of the addresses array is 10
 
-  if (this.address.length < 10) {
-    this.toast.onWaring('You have already added the maximum number of addresses');
-    this.submitButtonDisabled = true;
-    return;
-  }
+  // if (this.address.length < 10) {
+  //   this.toast.onWaring('You have already added the maximum number of addresses');
+  //   this.submitButtonDisabled = true;
+  //   return;
+  // }
   const postData = {
     firstName: this.newAddressForm.get('firstName').value,
     lastName: this.newAddressForm.get('lastName').value,
@@ -83,6 +81,7 @@ async onSubmit() {
     zipCode: this.newAddressForm.get('zipCode').value,
     userId : await this.userService.getUserId()
   };
+
   console.log(postData);
   if (this.newAddressForm.invalid) {
     this.toast.onWaring('Please fill all required fields.');
@@ -147,6 +146,7 @@ async updateAddress(addressToUpdate: any) {
       this.modalController.dismiss({
         'updatedaddress': true
       });
+
       this.newAddressForm.reset();
       // update the address in the list of addresses
       const index = this.address.indexOf(addressToUpdate);

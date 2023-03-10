@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input,Output,EventEmitter } from '@angular/core';
 import { ErrorService } from 'src/app/shared/services/error.service';
 import { LoadingController, ModalController } from '@ionic/angular';
 import { PaymentService } from 'src/app/shared/services/payment.service';
@@ -31,7 +31,8 @@ export class CardsPage implements OnInit {
   currency: string = '';
   homeService: any;
 
-
+  @Input() cardDetail: any;
+  @Output() cardDeleted = new EventEmitter();
 
 
 
@@ -42,7 +43,7 @@ export class CardsPage implements OnInit {
   dateobj = new Date();
   selectYears: any[] = [];
   maxExpiryYear = 20;
-  
+  Dialog:any
 
 
   constructor(
@@ -58,7 +59,7 @@ export class CardsPage implements OnInit {
 
     ngOnInit() {
       this.onGetSavedCards();
-      this.onDeleteCards();
+      // this.onDelete();
     }
 
     onCardSelection(e) {
@@ -90,36 +91,27 @@ export class CardsPage implements OnInit {
   }
 
 
-  async onDeleteCards(){
-    this.isLoading = true;
-    this.isSubmitted = true;
-
-    const postData = {
-      emailId: this.emailId,
-      stripeCustId: this.stripeCustId,
-      stripeCardId: null,
-      // cardNo: this.newCardForm.value.cardNo,
-      // expiryMonth: this.newCardForm.value.expiryMonth,
-      // expiryYear: this.newCardForm.value.expiryYear,
-      // secretPin: this.newCardForm.value.secretPin,
-      stripetokenId: null,
-      date: null
+  async onDelete() {
+    const deleteCardData = {
+      "stripeCustId": this.cardDetail.stripeCustId,
+      "stripeCardId": this.cardDetail.stripeCardId,
     }
     
-    console.log(postData);
-  
-    (await this.orchService.postDeleteCards(postData)).subscribe(res => {
-      if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
-        console.log(res);
-        this.toast.onSuccess(res?.message);
-        this.modalController.dismiss({
-          'deletecard': true
-        });
-      } else {
-        this.toast.onFail('Error in adding card');
-      }
-      this.isSubmitted = false;
-    });
+     {
+      (await this.paymentService.deleteCard(deleteCardData)).subscribe(
+        (res: any) => {
+          console.log(res);
+          if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
+            this.cardDeleted.emit();
+            this.toast.onSuccess(res.message);
+          } else {
+            this.toast.onFail('Failed to delete card');
+          }
+        }, (err: any) => {
+          this.toast.onFail('network error in delete card');
+        }
+      )
+    }
+  };
+}
 
-}
-}

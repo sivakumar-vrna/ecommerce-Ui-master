@@ -65,6 +65,7 @@ export class HomePage implements OnInit {
     this.onGetTrending();
     this.onGetfeatured();
     // this.GetBookDetails();
+    
 
 
     if (isPlatform('capacitor')) {

@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
 import { OrchestrationService } from '../orchestration/orchestration.service';
 // import { UtilityService } from 'src/app/shared/services/utility.service';
 // import { VrnaflowService } from 'src/app/shared/services/vrnaflow.service';
-
 export const COUNTRIES_KEY = 'countries';
 export const ROLES_KEY = 'roles';
 export const COUNTRY_KEY = 'country';
@@ -35,8 +34,8 @@ export class OrchService {
         let tempData: any[] = [];
         if (data !== null && data[0]) {
             const tempMoviesList = data;
-            tempMoviesList.map(async (movie: any) => {
-                await this.movieOrchestrate(movie);
+            tempMoviesList.map(async (book: any) => {
+                await this.bookOrchestrate(book);
             });
             tempData = tempMoviesList;
             return tempData;
@@ -45,20 +44,18 @@ export class OrchService {
         }
     }
 
-    async movieOrchestrate(movie: any) {
+    async bookOrchestrate(book: any) {
         const genreName: any[] = [];
         const tempGenres = await Storage.get({ key: GENRES_KEY });
         const genresDataSrc = JSON.parse(tempGenres.value);
-        // const isRented = await this.utilityService.isRented(movie);
-        // movie['isRented'] = isRented;
-        movie['moviebannerurl'] = this.domainUrl + '/images' + movie.moviebannerurl;
-        movie['posterurl'] = this.domainUrl + '/images' + movie.posterurl;
+        book['bookbannerurl'] = this.domainUrl + '/images' + book.bookbannerurl;
+        book['posterurl'] = this.domainUrl + '/images' + book.posterurl;
         genresDataSrc?.map((genre: any) => {
-            movie?.genre?.find((x: any) => x === genre.genreId) ? genreName.push(genre.genreDesc) : '';
+            book?.genre?.find((x: any) => x === genre.genreId) ? genreName.push(genre.genreDesc) : '';
         });
-        movie['genre'] = genreName;
-        if (movie.continuewatching) {
-            movie['percentWatched'] = Number((movie.percentWatched / 100).toFixed(1));
+        book['genre'] = genreName;
+        if (book.continuewatching) {
+            book['percentWatched'] = Number((book.percentWatched / 100).toFixed(1));
         }
     }
 

@@ -99,7 +99,7 @@ img {
                     <div>
                       <h4>
                         <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Follow
-                          the Author
+                          the {{book.authorName}}
                         </b>
                       </h4>
                     </div>
@@ -120,7 +120,7 @@ img {
                 <div class="text">
                   <div class="container-fluid">
                     <h1>
-                      Stock Investing Mastermind Hardcover – 1 January 2022
+                     {{book.bookname}} {{book.bookYear}}
                     </h1>
                     <span>
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<ion-icon
@@ -128,7 +128,7 @@ img {
                     </span>
                   </div>
                   <div>
-                    by <a><ion-label> Zebra Learn (Author)</ion-label></a>
+                    by <a><ion-label>{{book.authorName}}(Author)</ion-label></a>
                     <div class="d-flex">
                       <ion-icon color="warning" name="star"></ion-icon>
                       <ion-icon color="warning" name="star"></ion-icon>
@@ -294,7 +294,7 @@ img {
                         the entire process of investing, but also helps you
                         build the right mindset, written in a manner that makes
                         it extremely practical and applicable in the Indian
-                        markets.
+                        markets. <h2>{{book.description}}</h2> 
                       </ion-label>
                     </div><!--proct description-->
                     <ion-item-divider></ion-item-divider>
@@ -315,11 +315,11 @@ img {
                         <ion-col><ion-icon size="large" name="people"></ion-icon></ion-col>
                       </ion-row>
                       <ion-row>
-                        <ion-col>368 pages</ion-col>
-                        <ion-col>English</ion-col>
-                        <ion-col>Zebra Learn</ion-col>
+                        <ion-col>{{book.duration}}</ion-col>
+                        <ion-col>{{book.originLanguage}}</ion-col>
+                        <ion-col>{{book.authorName}}</ion-col>
                         <ion-col>1 January 2022</ion-col>
-                        <ion-col>15 years and up</ion-col>
+                        <ion-col>{{book.durationperday}}</ion-col>
                       </ion-row>
                     </ion-grid>
                   </div>

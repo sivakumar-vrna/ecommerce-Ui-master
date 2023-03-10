@@ -4,6 +4,8 @@ import { AddCardRoutingModule } from './add-card-routing.module';
 import { AddCardComponent } from './add-card.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+
 
 
 
@@ -17,6 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     IonicModule,
     FormsModule, 
     ReactiveFormsModule
-  ]
+  ],
+  providers: [DatePipe],
+
 })
 export class AddCardModule { }

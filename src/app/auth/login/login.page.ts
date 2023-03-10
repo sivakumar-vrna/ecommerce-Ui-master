@@ -91,6 +91,7 @@ export class LoginPage implements OnInit {
         email: this.loginForm.value.email,
         password: pwd,
         macAddress: macId
+        
       };
       (await this.authservice.onAuthentication(loginValues, macId)).subscribe(
         async (res) => {
@@ -99,6 +100,7 @@ export class LoginPage implements OnInit {
           if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {
             if (res.data) {
               const userData = res.data;
+              console.log(res.data)
               await this.authservice.afterLogin(userData, macId, res.token);
             } else {
               this.errorService.onError(res);
@@ -111,9 +113,9 @@ export class LoginPage implements OnInit {
 
         //not to check in
         async (err) => {
-          const userData = 'chidambararaj.j@gmail.com';
-          const token =null;
-          await this.authservice.afterLogin(userData, macId,token);
+          // const userData = 'chidambararaj.j@gmail.com';
+          // const token =null;
+          // await this.authservice.afterLogin(userData, macId,token);
 
           this.authservice.isAuthenticated.next(false);
           this.toast.onFail('Error in network');

@@ -14,21 +14,32 @@ export class PaymentService {
     private userService: UserService
   ) { }
 
-  async addCard(postData: any) {
-    const baseUrl = environment.paymentUrl;
-    const url = baseUrl + 'payment/addCustomerCard';
+  // async addCard(postData: any) {
+  //   const baseUrl = environment.paymentUrl;
+  //   const url = baseUrl + 'payment/addCustomerCard';
+  //   const capacitorUrl = environment.capaciorUrl + url;
+  //   return this.http.postCall(url, capacitorUrl, postData);
+  // }
+  async addCard(postData) {
+    const url = environment.paymentUrl +'payment/addCustomerCard';
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.postCall(url, capacitorUrl, postData);
   }
 
-  async deleteCard(postData: any) {
-    const baseUrl = environment.paymentUrl;
-    const url = baseUrl + 'payment/deleteCustomerCard';
-    const capacitorUrl = environment.capaciorUrl + url;
-    return this.http.postCall(url, capacitorUrl, postData);
-  }
+  // async deleteCard(postData: any) {
+  //   const baseUrl = environment.paymentUrl;
+  //   const url = baseUrl + 'payment/deleteCustomerCard';
+  //   const capacitorUrl = environment.capaciorUrl + url;
+  //   return this.http.postCall(url, capacitorUrl, postData);
+  // }
 
   
+  async deleteCard(postData) {
+    const url = environment.paymentUrl+'payment/deleteCustomerCard';
+    const capaciorUrl = environment.capaciorUrl + url;
+    return this.http.postCall(url,capaciorUrl, postData)
+   }
+ 
 
   async getSavedCards(): Promise<Observable<any>> {
     const userName = await this.userService.getEmail()
@@ -40,8 +51,7 @@ export class PaymentService {
   
 
   async onPayment(postData) {
-    const baseUrl = environment.vrnaFlowUrl;
-    const url = baseUrl + 'processpayment';
+    const url = environment.vrnaFlowUrl+ 'processpayment';
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.postCall(url, capacitorUrl, postData);
   }

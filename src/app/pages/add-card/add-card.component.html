@@ -8,11 +8,10 @@
           <ion-input type="text" inputmode="numeric" minlength="16" maxlength="16" autofocus="true" type="text"
             formControlName="cardNo" required (keypress)="numberOnlyValidation($event)"></ion-input>
         </ion-item>
-        <ion-text color="danger" *ngIf="isSubmitted && (f['cardNo'].dirty || f['cardNo'].touched || f['cardNo'].invalid)"
-
+        <!-- <ion-text color="danger" *ngIf="isSubmitted && (f.cardNo.dirty || f.cardNo.touched || f.cardNo.invalid)"
           class="help-block">
-          <small class="error-msg" *ngIf="f['cardNo'].invalid"></small>
-        </ion-text>
+          <small class="error-msg" *ngIf="f.cardNo.invalid">{{getErrorMsg()}}</small>
+        </ion-text> -->
       </ion-col>
 
       <ion-col size="4">
@@ -33,11 +32,11 @@
             <ion-select-option value="12">December</ion-select-option>
           </ion-select>
         </ion-item>
-        <ion-text color="danger"
-          *ngIf="isSubmitted && (f['expiryMonth'].dirty || f['expiryMonth'].touched || f['expiryMonth'].invalid)"
+        <!-- <ion-text color="danger"
+          *ngIf="isSubmitted && (f.expiryMonth.dirty || f.expiryMonth.touched || f.expiryMonth.invalid)"
           class="help-block">
-          <small class="error-msg" *ngIf="f['expiryMonth'].invalid">Required</small>
-        </ion-text>
+          <small class="error-msg" *ngIf="f.expiryMonth.invalid">Required</small>
+        </ion-text> -->
       </ion-col>
 
       <ion-col size="4">
@@ -47,11 +46,11 @@
             <ion-select-option [value]="year" *ngFor="let year of selectYears">{{year}}</ion-select-option>
           </ion-select>
         </ion-item>
-        <ion-text color="danger"
-          *ngIf="isSubmitted && (f['expiryYear'].dirty || f['expiryYear'].touched || f['expiryYear'].invalid)"
+        <!-- <ion-text color="danger"
+          *ngIf="isSubmitted && (f.expiryYear.dirty || f.expiryYear.touched || f.expiryYear.invalid)"
           class="help-block">
-          <small class="error-msg" *ngIf="f['expiryYear'].invalid">Required</small>
-        </ion-text>
+          <small class="error-msg" *ngIf="f.expiryYear.invalid">Required</small>
+        </ion-text> -->
       </ion-col>
 
       <ion-col size="4">
@@ -61,10 +60,10 @@
             formControlName="secretPin" (keypress)="numberOnlyValidation($event)" required>
           </ion-input>
         </ion-item>
-        <ion-text color="danger"
-          *ngIf="isSubmitted && (f['secretPin'].dirty || f['secretPin'].touched || f['secretPin'].invalid)" class="help-block">
-          <small class="error-msg" *ngIf="f['secretPin'].invalid"></small>
-        </ion-text>
+        <!-- <ion-text color="danger"
+          *ngIf="isSubmitted && (f.secretPin.dirty || f.secretPin.touched || f.secretPin.invalid)" class="help-block">
+          <small class="error-msg" *ngIf="f.secretPin.invalid">{{getErrorMsg()}}</small>
+        </ion-text> -->
       </ion-col>
 
       <ion-col size="6">
@@ -76,7 +75,3 @@
     </ion-row>
   </form>
 </ion-grid>
-
-
-
-

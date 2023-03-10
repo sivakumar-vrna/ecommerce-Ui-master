@@ -6,11 +6,9 @@ import { LoadingController, ModalController } from '@ionic/angular';
 import { PaymentService } from 'src/app/shared/services/payment.service';
 import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
 import { UserService } from 'src/app/shared/services/user.service';
-
 import { UiRentDataService } from 'src/app/shared/services/ui-orchestration/ui-rent-data.service';
-
-
-
+import { COUNTRY_KEY } from 'src/app/shared/services/ui-orchestration/orch.service';
+import { COUNTRIES_KEY } from 'src/app/shared/services/ui-orchestration/orch.service';
 
 
 
@@ -21,24 +19,19 @@ import { UiRentDataService } from 'src/app/shared/services/ui-orchestration/ui-r
 })
 export class CheckoutPage implements OnInit {
   @Input() contentData: any;
-
   book: Book;
   isLoading: boolean = false;
-  
   public cardData: any;
   public addressData:any;
-
   emailId: string;
   stripeCustId: string;
   selectedCard: any;
   selectedAddress: any;
   subtotal: number = 0;
 
-
-  contentPrice: number;
+contentPrice: number;
   isPromoCode = false;
   isPromoCodeValid = false;
-  
   promoTxt = 'VRNAMVP2021';
   currency: string = '';
   homeService: any;
@@ -59,10 +52,14 @@ export class CheckoutPage implements OnInit {
   ngOnInit() {
     this.onGetSavedCards();
     this.ongetSavedAddress();
-    this.onGetRental() ;
+    // this.onGetRental();
     this.userService.getEmail().then(res => this.emailId = res);
     this.userService.getStripeId().then(res => this.stripeCustId = res);
+    this.contentPrice = this.contentData.ppmCost;
   }
+
+ 
+  
 
   onCardSelection(e) {
     console.log(e.detail.value)
@@ -135,7 +132,8 @@ export class CheckoutPage implements OnInit {
         emailId: userName,
          stripeCardId: this.isPromoCodeValid ? null : this.selectedCard.stripeCardId,
          stripeCustId: this.isPromoCodeValid ? null : this.selectedCard.stripeCustId,
-         stripetokenId:this.isPromoCodeValid ? null : this.selectedCard.stripetokenId
+         stripetokenId:this.isPromoCodeValid ? null : this.selectedCard.stripetokenId,
+         currency:"INR"
       };
       console.log('rentalData:', rentalData);
   
@@ -161,6 +159,45 @@ export class CheckoutPage implements OnInit {
     // }
   };
   
+  // async onGetRental() {
+  //   this.isLoading = true;
+  //   const userId = await this.userService.getUserId();
+  //   const userName = await this.userService.getEmail();
+  //   const rentalData = {
+  //     custId: userId,
+  //     // bookId: this.contentData.bookId,
+  //     amount: this.contentPrice,
+  //     currency: 'INR',
+  //     description: `This transaction is for renting the movie: ${this.contentData.moviename} for INR ${this.contentPrice} by ${userName}`,
+  //     promoCode: this.contentPrice === 0 ? this.promoTxt : 'false',
+  //     stripeCardId: this.isPromoCodeValid ? null : this.selectedCard.stripeCardId,
+  //     stripeCustId: this.isPromoCodeValid ? null : this.selectedCard.stripeCustId
+  //   };
+  //   (await this.paymentService.onPayment(rentalData)).subscribe(
+  //     (res: any) => {
+  //       console.log(res);
+  //       const data = res.data;
+  //       if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
+  //         const msgBody: string = `You have purchased ${this.contentData.moviename} for INR ${this.contentData.ppmCost}.`
+  //         this.utilService.onSuccess(msgBody);
+  //         this.uiRentDataService.userRentedMovies();
+  //         this.homeService.getAllHomeData();
+  //         this.localNotification(this.contentData.moviename, msgBody);
+  //         this.dismiss(true);
+  //       } else {
+  //         this.errorService.onError(res);
+  //       }
+  //       this.isLoading = false;
+  //     },
+  //     (err) => {
+  //       this.errorService.onError(err);
+  //       this.isLoading = false;
+  //     }
+  //   );
+  // }
+
+
+
 
   async dismiss(status: boolean) {
     await this.modalController.dismiss(status);

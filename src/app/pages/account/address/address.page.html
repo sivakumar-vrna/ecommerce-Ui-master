@@ -8,7 +8,7 @@
       <ion-breadcrumb>Address</ion-breadcrumb>
     </ion-breadcrumbs>
     <ion-list>
-      <ion-card *ngIf="addressData.length < 10">
+      <ion-card> <!--*ngIf="addressData.length < 10"-->
         <ion-card-content>
           <a (click)="addNewAddress()" routerLink="/address">
             <ion-icon name="add"></ion-icon> Add New Address
