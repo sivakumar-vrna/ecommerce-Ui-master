@@ -1,3 +1,133 @@
-<p>
-  author-details works!
-</p>
+<ion-header>
+  <app-topbar></app-topbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+
+  <div class="container-fluid"> 
+    <ion-card  style="width: 22%; height: 1070px; padding: 5px;"
+    class="ion-no-border">
+    <ion-avatar >
+      <ion-img id="cover-trigger"  class="image" src="/assets/img/vinoth.jfif"></ion-img>
+    </ion-avatar>
+
+    <ion-popover trigger="cover-trigger" size="cover">
+      <ng-template>
+        <ion-img class="image" id="cover-trigger" src="/assets/img/vinoth.jfif"></ion-img>
+      </ng-template>
+    </ion-popover>
+
+    <ion-button class="btn1">+Follow</ion-button>
+      <div class="container-fluid para">
+        <p>Follow to get new release updates, special offers (including promotional offers) and improved recommendations.</p>
+      </div>
+      <hr>
+      <div class="container-fluid about" >
+        <h6>About Vinodh Arunachalam</h6>
+      </div>
+      <div class="read" [ngClass]="{'limitTextHeight': isReadMore}">
+
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error, esse nostrum pariatur fuga incidunt quo, aliquid laboriosam velit eligendi repellat ducimus quisquam voluptas assumenda ut non iure hic cupiditate iusto!
+        Eos sunt aspernatur vel, eum at pariatur a aliquam provident sint veritatis sed odit impedit molestias quae fugit ad minima cum repudiandae nobis facilis soluta qui sequi voluptates expedita. Repellat!
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis veritatis, voluptatem deserunt facere placeat modi ducimus temporibus, quae omnis, maxime explicabo sit adipisci ratione voluptas nemo. Expedita a quae enim.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cupiditate itaque dolorem eius illum rem beatae recusandae architecto ullam accusantium expedita, voluptate aliquid magnam laboriosam qui nisi earum nobis quisquam.
+      </div>
+      <a class="read"  (click)="showText()">
+        {{ isReadMore ? 'Read More': 'Read Less' }}
+      </a>
+
+      <div class="container-fluid bottom">
+        <h6>Customers Also Bought Items By </h6>
+        <ion-avatar>
+          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+        </ion-avatar>
+        <h6>Maple Press</h6>
+      </div>
+    </ion-card>
+  </div>
+
+    <ion-card style="width: 78%; height: 3570px; padding: 5px;position: absolute;left: 22%;margin-top: -71%;"
+    class="ion-no-border">
+  
+  <div class="container-fluid">
+    <h2 style="font-size: x-larger;font-weight: bolder;color: black;">Vinodh Arunachalam</h2>
+  </div>
+   <hr><hr><hr><hr><hr><hr>
+
+  <div class="container-fuild">
+    <ion-row size ="20" class="book-row">
+      <swiper #bookSwiper [config]="config">
+        <ng-template swiperSlide *ngFor="let book of latest; index as i">
+          <app-author-books [data]="book"  class="book"></app-author-books>
+          <ion-col size="2" *ngFor="let book of latest"></ion-col>
+      </ng-template>
+      </swiper>
+    </ion-row>
+  </div>
+
+  <div class="container-fluid auhtor">
+    <h2 style="font-size: x-larger;font-weight: bolder;color: black;">Author Updates</h2>
+  </div>
+
+  <div class="contaier-fluid  imgs">
+    <ion-img src="/assets/img/nothing.jpg" alt=""></ion-img>
+    <ion-img src="/assets/img/nothing.jpg" alt=""></ion-img>
+  </div>
+  
+  <div style="position: absolute;margin-top: -10%;" class="container-fluid">
+    <h2 style="font-size: x-larger;font-weight: bolder;color: black;">Books By Vinodh Arunachalam</h2>
+  </div>
+
+  <div class="container-fuild bt">
+    <button>All Formats</button>
+    <button>Kindle Ebooks</button>
+    <button>Hardcover</button>
+    <button>Paperback</button>
+    <ion-list class="drop">
+      <ion-item>
+        <ion-select placeholder="Sort by:" [multiple]="true">
+          <ion-select-option value="popluar">Popluar</ion-select-option>
+          <ion-select-option value="Price:Low to High">Price:Low to High </ion-select-option>
+          <ion-select-option value="Price:High to Low">Price:High to Low</ion-select-option>
+          <ion-select-option value="Avg:Customer Review">Avg:Customer Review</ion-select-option>
+          <ion-select-option value="Publication Date">Publication Date</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  
+  <!-- <div class="container-fluid">
+    <ion-row class="no-padding">
+      <ion-col *ngFor="let book of latest; index as i" size="auto">
+        <app-books [data]="book"></app-books>
+      </ion-col>
+    </ion-row>
+  </div>
+   -->
+
+
+   <div class="container-fluid">
+    <ion-row class="no-padding">
+      <ion-col *ngFor="let book of latest; index as i" size="auto">
+        <app-books [data]="book"></app-books>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col size="12">
+        <!-- <ion-pagination [disabled]="latest.length <= 1"></ion-pagination> -->
+      
+      </ion-col>
+    </ion-row>
+  </div>
+  
+
+ 
+  
+  
+
+
+
+  </ion-card>
+
+</ion-content>

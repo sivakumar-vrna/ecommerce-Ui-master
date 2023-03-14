@@ -3,12 +3,15 @@
     align-items: auto;
     justify-content: auto;
     margin-left: 16%;
+
 }
 .box{
     display: flex;
     gap: 50px;
     border: 1px solid black;
     width:850px;
+    background-color: #ECEFF1;
+
 }
 .box .first{
     margin-left: 20px;
@@ -20,6 +23,8 @@
     border: 1px solid black;
     width:850px;
     padding: 20px;
+    background-color: #ECEFF1;
+
 }
 .cart .thumnall{
     margin-left: 20px;
@@ -36,5 +41,6 @@ font-size: 18px;
 text-transform: capitalize;
 left: 40%;
 background-color: rgb(225, 225, 225);
+
 color: black;
 }

@@ -1,0 +1,105 @@
+
+<a class="product-card" ><!--routerLink="/book-details/{{data.bookId}}"-->
+  <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-col >
+          <img class="imgStyle" id="cover-trigger"[src]="data.posterurl" />
+        </ion-col>
+        <ion-col>
+            <h6> {{data.bookname}} <small>{{data.bookYear}}</small></h6>
+            by <a><ion-label>{{data.authorName}} (Author)</ion-label></a>
+            <div class="d-flex">
+              <ion-icon color="warning" name="star"></ion-icon>
+              <ion-icon color="warning" name="star"></ion-icon>
+              <ion-icon color="warning" name="star"></ion-icon>
+              <ion-icon color="warning" name="star-half-outline"></ion-icon>
+              <ion-icon color="warning" name="star-outline"></ion-icon>
+              <ion-icon  id="hover-trigger" color="primary" name="chevron-down-outline"></ion-icon><!--rating-->
+              <ion-popover trigger="hover-trigger" triggerAction="hover">
+                  <ng-template>
+                    <div>
+                    <ion-content class="ion-padding">
+                      <ion-icon color="warning" name="star"></ion-icon>
+                      <ion-icon color="warning" name="star"></ion-icon>
+                      <ion-icon color="warning" name="star"></ion-icon>
+                      <ion-icon color="warning" name="star"></ion-icon>
+                      <ion-icon color="warning"name="star-half-outline"></ion-icon> 
+                      <b>4.1 out of 5</b>
+
+                      <ion-grid>
+                          <ion-row>
+                            <b>5 star</b>
+                            <ion-row style="background-color: rgb(79, 191, 124);width: 62%"></ion-row>
+                            <b>80%</b>
+                          </ion-row>
+                        </ion-grid>
+                        <ion-grid>
+                          <ion-row>
+                            <b>2 star</b>
+                            <ion-row style="background-color:  rgb(79, 191, 124);width: 55%;"></ion-row>
+                            <b> 60%</b>
+                          </ion-row>
+                        </ion-grid>
+                        <ion-grid>
+                          <ion-row>
+                            <b>3 star</b>
+                            <ion-row style="background-color:  rgb(79, 191, 124);width: 50%"></ion-row>
+                            <b> 40%</b>
+                          </ion-row>
+                        </ion-grid>
+                        <ion-grid>
+                          <ion-row>
+                            <b>4 star</b>
+                            <ion-row style="background-color: rgb(79, 191, 124);width: 40%"></ion-row>
+                            <b> 20%</b>
+                          </ion-row>
+                        </ion-grid>
+                        <ion-grid style="position: relative;">
+                          <ion-row>
+                            <b>1 star</b>
+                            <ion-row style="background-color: rgb(79, 191, 124);width: 30%"></ion-row>
+                            <b> 10%</b>
+                          </ion-row>
+                        </ion-grid>
+                        <ion-row>
+                          <a href="#"><h6>See all customer reviews</h6></a>
+                        </ion-row>
+                      </ion-content>
+                    </div>
+                  </ng-template>
+          </ion-popover>
+        </div>
+        <span  style="font-size:large;">&#8377;</span><b style="font-size: x-large;">{{data.cost}}</b><span style="font-size: large;">.00</span>
+        <h6><b>Deal</b> MRP <s class="expectedMoney">{{data.expectedMoney}}.00</s></h6>
+
+
+
+        <small>You Save: ₹ 42.45(83%)</small>
+        
+        <div class="read" [ngClass]="{'limitTextHeight': isReadMore}">
+
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error, esse nostrum pariatur fuga incidunt quo, aliquid laboriosam velit eligendi repellat ducimus quisquam voluptas assumenda ut non iure hic cupiditate iusto!
+          Eos sunt aspernatur vel, eum at pariatur a aliquam provident sint veritatis sed odit impedit molestias quae fugit ad minima cum repudiandae nobis facilis soluta qui sequi voluptates expedita. Repellat!
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis veritatis, voluptatem deserunt facere placeat modi ducimus temporibus, quae omnis, maxime explicabo sit adipisci ratione voluptas nemo. Expedita a quae enim.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cupiditate itaque dolorem eius illum rem beatae recusandae architecto ullam accusantium expedita, voluptate aliquid magnam laboriosam qui nisi earum nobis quisquam.
+        </div>
+        <a class="read"  (click)="showText()">
+          {{ isReadMore ? 'Read More': 'Read Less' }}
+        </a><br>
+
+        <small>Other Formats: Paperback</small>
+        </ion-col>
+        <ion-col>
+          <h6>inclusive of all taxes</h6><br>
+          <ion-button routerLink="/checkout" color="warning"
+           shape="round">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Buy
+           Now&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           <ion-label color="warning"></ion-label>
+           </ion-button>
+           <h6>Sold by: VRNA Private Limited</h6>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</a>

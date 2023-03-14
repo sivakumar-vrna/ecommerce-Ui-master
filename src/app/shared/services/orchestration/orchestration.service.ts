@@ -81,32 +81,33 @@ export class OrchestrationService {
     console.log("after if");
     console.log(userId)
     const url= environment.contentUrl +'trending?userId='+userId;
-    // const url= environment.contentUrl +'trending?userId='+0;
       
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.getCall(url, capacitorUrl+ url);
   }
+  
 
   async getLatest() {
-    console.log("inside  getLatest");
+    // console.log("inside  getLatest");
     let userId = await this.userService.getUserId();
-    console.log("first time login");
-    console.log(userId);
+    // console.log("first time login"); 
+    // console.log(userId);
     if (Number.isNaN(userId)){
       userId=0;
     }
-    console.log("after if");
-    console.log(userId)
+    // console.log("after if");
+    // console.log(userId)
     const url = environment.contentUrl +'latest?userId='+userId;
-    // const url = environment.contentUrl +'latest?userId='+0;
-
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.getCall(url,capacitorUrl + url);
   }
 
   async getfeatured() {
-
-    const userId = await this.userService.getUserId();
+    
+    let userId = await this.userService.getUserId();
+    if (Number.isNaN(userId)){
+      userId=0;
+    }
     const url = environment.contentUrl + 'featured?userId='+userId;
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.getCall(url,capacitorUrl + url);
@@ -171,11 +172,11 @@ export class OrchestrationService {
 async contentOrchestrate(content: any) {
   const cart: any[] = [];
   content['bannerurl'] = this.domainUrl + '/images' + content.bannerurl;
-  // content['posterurl'] = ' https://wallpaperaccess.com/full/3421332.jpg';
-  content['posterurl'] = this.domainUrl + '/images' + content.posterurl;
-
-
+  content['posterurl'] = ' https://wallpaperaccess.com/full/3421332.jpg';
+  // content['posterurl'] = this.domainUrl + '/images' + content.posterurl;
+  content['cost']='650';
 }
+
   async getupcoming() {
     const userId = await this.userService.getUserId();
     const url = environment.contentUrl+'upcoming?userId='+ userId;

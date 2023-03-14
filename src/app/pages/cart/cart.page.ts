@@ -248,7 +248,7 @@ clearCart() {
 getTotalAmount(): number {
   let total = 0;
   for (let cartitem of this.cartitems) {
-    total += cartitem.cost * cartitem.cost;
+    total += cartitem.count * cartitem.cost;
   }
   return total;
 }
@@ -256,18 +256,18 @@ getTotalAmount(): number {
 getTotalCount(): number {
   let total = 0;
   for (let i = 0; i < this.cartitems.length; i++) {
-    total += this.cartitems[i].count * this.cartitems[i].price;
+    total += this.cartitems[i].price * this.cartitems[i].count;
   }
   this.subtotalText = `Subtotal (${this.cartitems.length} items):`; // update the subtotal text here
   return total;
 }
 
 increaseCount(cartitem: any) {
-  cartitem.count += 1;
+  cartitem.cost += 1;
 }
 
 decreaseCount(cartitem: any) {
-  cartitem.count -= 1;
+  cartitem.cost -= 1;
 }
 
 

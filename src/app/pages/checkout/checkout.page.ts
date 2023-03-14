@@ -55,7 +55,6 @@ contentPrice: number;
     // this.onGetRental();
     this.userService.getEmail().then(res => this.emailId = res);
     this.userService.getStripeId().then(res => this.stripeCustId = res);
-    this.contentPrice = this.contentData.ppmCost;
   }
 
  

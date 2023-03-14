@@ -1,0 +1,132 @@
+.image {
+    margin: auto;
+    height: 270px; 
+    width: 270px; 
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 5px gray;
+    display: block;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    left: 20%;
+}
+.btn1{
+    position: relative;
+    margin-top: 75%;
+    left: 5%;
+    width: 88%;
+}
+.para{
+    position: relative;
+    width: 90%;
+    left: 8%;
+    font-weight: 600;
+}
+.about{
+    position: relative;
+    // width: 90%;
+    left: 8%;
+}
+.about h6{
+    font-size: large;
+    font-weight: bolder;
+}
+.read{
+  position: relative;
+  left: 8%;
+  width: 280px;
+
+
+}
+.read{
+    cursor: pointer;
+    font-weight: 600;
+
+}
+.limitTextHeight {
+    height: 20px;
+    overflow: hidden;
+}
+.bottom{
+  position: relative;
+  left: 8%;
+  width: fit-content;
+}
+.bottom h6{
+    font-weight: bolder;
+    // font-size: large;
+    color: black;
+}
+ion-avatar {
+    --border-radius: 4px;
+}
+ion-card {
+    border-style: none;
+}
+.book-row {
+    justify-content: space-between;
+}
+.book {
+    height: 200px; 
+}
+ion-col {
+    display: flex;
+    flex-direction: column;
+}
+  
+app-author-books {
+    flex: 1;
+}
+
+.book-row {
+    display: flex;
+    flex-wrap: wrap;
+    height: 20px;
+  }
+  
+  .book {
+    flex-basis: calc(100% / 5); 
+    margin-bottom: 20px; 
+  }
+
+
+  .auhtor{
+    position: relative;
+    margin-top: 30%;
+  }
+  .imgs{
+    display: flex;
+    flex: 1;
+    width: 500px;
+    height: 400px;
+    margin-top: -10%;
+  }
+//   .imgs ion-img{
+//     border: 2px solid black;
+
+//   }
+.bt{
+    display: flex;
+    gap: 10px;
+    position: relative;
+    margin-top: -3%;
+}
+button{
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 18px;
+    background-color: whitesmoke;
+    color:rgb(142, 177, 211);
+    text-transform: capitalize;
+    border: 2px solid #e6e8e3;
+}
+.drop{
+    position: absolute;
+    margin-left: 80%;
+    margin-top: -1%;
+}
+.bt button:hover{
+    color: red;
+}

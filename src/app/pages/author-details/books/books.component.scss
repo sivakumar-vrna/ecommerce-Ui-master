@@ -1,0 +1,20 @@
+.imgStyle {
+    width: 200px;
+    height: 250px;
+    text-align: center;
+    justify-content: center;
+  }
+  .limitTextHeight {
+    height: 20px;
+    overflow: hidden;
+}
+.read{
+    cursor: pointer;
+    font-weight: 200;
+
+}
+ion-col {
+
+    text-align: start;
+    justify-content: center;
+}

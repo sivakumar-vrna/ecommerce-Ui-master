@@ -148,6 +148,7 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
     console.log("Inside { addToCart} book-details.page.ts----->here "+this.bookId);
     this.addCourseToCart(this.book);
   }
+  
   async addCourseToCart(book: any) {
     const data = {
       userId:await this.UserService.getUserId(),
