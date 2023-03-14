@@ -7,6 +7,7 @@ import { Book } from 'src/app/shared/models/book.model';
   styleUrls: ['./author-books.component.scss'],
 })
 export class AuthorBooksComponent implements OnInit {
+
   bookDtls: Book[];
   bookid:any;
 

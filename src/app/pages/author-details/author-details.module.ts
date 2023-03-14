@@ -10,6 +10,8 @@ import { BooksModule } from './books/books.module';
 
 
 
+
+
 @NgModule({
   declarations: [
     AuthorDetailsComponent
@@ -21,7 +23,7 @@ import { BooksModule } from './books/books.module';
     TopbarModule,
     AuthorBooksModule,
     SwiperModule,
-    BooksModule
+    BooksModule,
   ]
 })
 export class AuthorDetailsModule { }

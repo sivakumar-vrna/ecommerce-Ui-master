@@ -17,6 +17,7 @@ SwiperCore.use([Autoplay,Navigation, Pagination, Scrollbar, A11y]);
 export class AuthorDetailsComponent implements OnInit {
   @Input() author: any;
 
+
   domainUrl: string;
   isReadMore = true;
 
@@ -35,6 +36,26 @@ export class AuthorDetailsComponent implements OnInit {
     scrollbar: false,
     autoplay:true
   };
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
   @ViewChild('bookSwiper', { static: false }) swiper?: SwiperComponent;
 
   constructor(

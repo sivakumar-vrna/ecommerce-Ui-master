@@ -28,6 +28,7 @@
     "@ionic/angular": "^6.1.9",
     "flag-icons": "^6.6.6",
     "ionicons": "^6.0.3",
+    "ngx-pagination": "^6.0.3",
     "rxjs": "~7.5.0",
     "swiper": "^8.4.5",
     "tslib": "^2.3.0",
