@@ -67,8 +67,10 @@ ion-card {
 .book-row {
     justify-content: space-between;
 }
-.book {
-    height: 200px; 
+.book-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
 }
 ion-col {
     display: flex;
@@ -130,4 +132,15 @@ button{
 .bt button:hover{
     color: red;
 }
+ion-card {
+box-shadow:none !important
+}
 
+
+.loading-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+  

@@ -58,7 +58,7 @@ export class CardsPage implements OnInit {
     ) { }
 
     ngOnInit() {
-      this.onGetSavedCards();
+      // this.onGetSavedCards();
       // this.onDelete();
     }
 
@@ -83,7 +83,8 @@ export class CardsPage implements OnInit {
       }
       this.isLoading = false;
       loading.dismiss();
-    }, (err) => {
+    }, 
+    (err) => {
       this.isLoading = false;
       loading.dismiss();
     }

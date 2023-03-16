@@ -29,10 +29,38 @@
               <ion-button fill="clear" color="dark">   <ion-icon name="location"></ion-icon>Location</ion-button>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div>
-            <ion-select class="fi fi-in" color="dark" width="20px" height="60px">
+            <!-- <ion-select class="fi fi-in" color="dark" width="20px" height="60px">
               <ion-select-option class="fi fi-in"><h3> India <ion-label class="fi-fi-in"></ion-label></h3></ion-select-option>
+              
               <ion-select-option class="fi fi-us"><h3> United Stated of Amerca</h3></ion-select-option>
+              <ion-select-option class="fi fi-ca"><h3> Canada </h3></ion-select-option>
+              <ion-select-option class="fi fi-in" selected><h3> India </h3></ion-select-option>
+
+            </ion-select> -->
+
+
+
+            <ion-select class="fi fi-in" color="dark" width="20px" height="60px">
+              <ion-select-option class="fi fi-in">
+                <ion-icon class="fi fi-in" slot="start"></ion-icon>
+                <h3>India</h3>
+              </ion-select-option>
+              <ion-select-option class="fi fi-us">
+                <ion-icon class="fi fi-us" slot="start"></ion-icon>
+                <h3>United States of America</h3>
+              </ion-select-option>
+              <ion-select-option class="fi fi-ca">
+                <ion-icon class="fi fi-ca" slot="start"></ion-icon>
+                <h3>Canada</h3>
+              </ion-select-option>
+              <ion-select-option class="fi fi-in" selected>
+                <ion-icon class="fi fi-in" slot="start"></ion-icon>
+                <h3>India</h3>
+              </ion-select-option>
             </ion-select>
+            
+
+            
           </div>
           </div>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -101,14 +129,18 @@
 </ion-toolbar>
 <ion-toolbar color="dark">
   <ion-buttons slot="start">
-    <ion-menu-button auto-hide="false"></ion-menu-button>
+    <ion-menu-button auto-hide="false" ionMenuToggle>
+      <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+    </ion-menu-button>
   </ion-buttons>
   <ion-segment value="All">
-
-    <ion-segment-button value="Latest">
+    <ion-segment-button routerLink="/trendings-books" value="trendings">
+      Trendings
+    </ion-segment-button>
+    <ion-segment-button routerLink="/latest-books" value="Latest">
       Latest
     </ion-segment-button>
-    <ion-segment-button value="Featured">
+    <ion-segment-button routerLink="/featured-books" value="Featured">
       Featured
     </ion-segment-button>
     <ion-segment-button value="BestSellers">

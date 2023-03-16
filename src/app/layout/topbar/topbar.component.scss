@@ -153,28 +153,29 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   @media (max-width:700px){
     ion-toolbar{
       position:relative;
 
     }
   }
+
+
+
+  .fi {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+  
+  .fi-in::before {
+    background-image: url('/assets/img/us.png');
+  }
+  
+  .fi-us::before {
+    background-image: url('/assets/img/us.png');
+  }
+  
+  .fi-ca::before {
+    background-image: url('/assets/img/us.png');
+  }
+  

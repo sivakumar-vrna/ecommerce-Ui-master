@@ -15,6 +15,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 
 
 
+
 export interface ProfileMenu {
   title: string,
   url: string,
@@ -34,7 +35,6 @@ export class TopbarComponent implements OnInit {
   
   bookDtls: Book[];
   bookid:any;
-  // public userId:"3434";
   @Input() data: Book;
   // routeSub: Subscription;
 
@@ -76,7 +76,7 @@ export class TopbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllCartItems();
+    // this.getAllCartItems();
     
    }
 
@@ -180,22 +180,6 @@ async onLogout() {
   // this.dismissSideMenu();
   await this.authService.logout();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

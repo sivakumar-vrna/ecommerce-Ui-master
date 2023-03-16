@@ -21,7 +21,7 @@ export class WishlistPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getAllWishItems()
+    // this.getAllWishItems()
   }
 
 

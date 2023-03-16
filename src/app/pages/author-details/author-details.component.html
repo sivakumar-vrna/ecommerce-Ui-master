@@ -44,8 +44,7 @@
       </div>
     </ion-card>
   </div>
-
-    <ion-card style="width: 78%; height: 6910px; padding: 5px;position: absolute;left: 22%;margin-top: -71%;"
+  <ion-card style="width: 78%; height: 6910px; padding: 5px;position: absolute;left: 22%;margin-top: -71%;"
     class="ion-no-border">
   
   <div class="container-fluid">
@@ -53,17 +52,16 @@
   </div>
    <hr><hr><hr><hr><hr><hr>
 
-  <div class="container-fuild">
+   <div class="container-fuild">
     <ion-row size ="20" class="book-row">
       <swiper #bookSwiper [config]="config">
         <ng-template swiperSlide *ngFor="let book of latest; index as i">
-          <app-author-books [data]="book"  class="book"></app-author-books>
+          <app-author-books [data]="book" class="book"></app-author-books>
           <ion-col size="2" *ngFor="let book of latest"></ion-col>
       </ng-template>
       </swiper>
     </ion-row>
-  </div>
-
+  </div> 
   <div class="container-fluid auhtor">
     <h2 style="font-size: x-larger;font-weight: bolder;color: black;">Author Updates</h2>
   </div>
@@ -94,19 +92,7 @@
       </ion-item>
     </ion-list>
   </div>
-
-  
-  <!-- <div class="container-fluid">
-    <ion-row class="no-padding">
-      <ion-col *ngFor="let book of latest; index as i" size="auto">
-        <app-books [data]="book"></app-books>
-      </ion-col>
-    </ion-row>
-  </div>
-   -->
-
-
-   <div class="container-fluid">
+ <div class="container-fluid">
     <ion-row class="no-padding">
       <ion-col *ngFor="let book of latest; index as i" size="auto">
         <app-books [data]="book"></app-books>

@@ -8,13 +8,15 @@
       <ion-breadcrumb>Profile</ion-breadcrumb>
     </ion-breadcrumbs>
     <ion-card>
+      <form [formGroup]="newCardForm" (ngSubmit)="onSubmit()" >
       <ion-card-content>
+     
         <ion-row>
           <!-- First Name -->
           <ion-col class="ion-padding-vertical" size="6">
             <label class="form-label">First Name</label>
             <ion-item class="form-control" lines="none">
-              <ion-input autofocus="true" clearInput="true" type="text" maxlength="55" required="true"></ion-input>
+              <ion-input formControlName="name" autofocus="true" clearInput="true" type="text" maxlength="55" required="true"></ion-input>
             </ion-item>
           </ion-col>
 
@@ -38,42 +40,60 @@
           <ion-col class="ion-padding-vertical" size="6">
             <label class="form-label">Email</label>
             <ion-item class="form-control" lines="none">
-              <ion-input autofocus="true" inputmode="email" clearInput="true" type="email" maxlength="55"
+              <ion-input   autofocus="true" inputmode="email" clearInput="true" type="email" maxlength="55"
+                required="true"></ion-input>
+            </ion-item>
+          </ion-col>
+
+          <!-- Age -->
+          <ion-col class="ion-padding-vertical" size="6">
+            <label class="form-label">Age</label>
+            <ion-item class="form-control" lines="none">
+              <ion-input  formControlName="age" autofocus="true" inputmode="age" clearInput="true" type="number" maxlength="5"
                 required="true"></ion-input>
             </ion-item>
           </ion-col>
 
           <!-- Gender -->
-          <ion-col class="ion-padding-vertical" size="6">
+          <ion-col class="ion-padding-vertical">
             <label class="form-label">Gender</label>
             <ion-item class="form-control" lines="none">
-              <ion-radio-group>
+              <ion-radio-group  >
                 <div class="d-flex">
-                  <ion-radio value="1"></ion-radio>
-                  <ion-label class="my-auto">
-                    <p class="my-auto ps-2">Female</p>
-                  </ion-label>
-                </div>
-                <div class="d-flex">
+                  <ion-item color="light">
                   <ion-radio value="2"></ion-radio>
                   <ion-label class="my-auto">
                     <p class="my-auto ps-2">Male</p>
                   </ion-label>
+                  </ion-item>
                 </div>
                 <div class="d-flex">
+                  <ion-item color="light">
+                  <ion-radio value="1"></ion-radio>
+                  <ion-label class="my-auto">
+                    <p class="my-auto ps-2">Female</p>
+                  </ion-label>
+                  </ion-item>
+                </div>
+                <div class="d-flex">
+                  <ion-item color="light">
                   <ion-radio value="3"></ion-radio>
                   <ion-label class="my-auto">
                     <p class="my-auto ps-2">Transgender</p>
                   </ion-label>
+                  </ion-item>
                 </div>
               </ion-radio-group>
             </ion-item>
           </ion-col>
           <ion-col size="12" class="ion-text-end">
-            <ion-button>Submit</ion-button>
+            <!-- <ion-button>Submit</ion-button> -->
+            <ion-button type="submit" >Submit</ion-button>
           </ion-col>
         </ion-row>
       </ion-card-content>
+    </form>
+
     </ion-card>
   </div>
 

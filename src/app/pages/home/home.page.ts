@@ -38,6 +38,8 @@ export class HomePage implements OnInit {
 
 
 
+
+
   config: SwiperOptions = {
     slidesPerView: 7,
     spaceBetween: 10,

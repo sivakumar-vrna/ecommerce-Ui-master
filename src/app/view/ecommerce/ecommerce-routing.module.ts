@@ -108,19 +108,20 @@ const routes: Routes = [
         path:'auth',
         loadChildren:() => import('../../auth/auth.module').then(m => m.AuthModule)
       },
-      // {
-      //   path:'login',
-      //   loadChildren:() => import('../../auth/login/login.module').then(m => m.LoginModule)
-      // },
-      // {
-      //   path:'signup',
-      //   loadChildren:() => import('../../auth/signup/signup.module').then(m => m.SignupModule)
-      // },
-      // {
-      //   path:'forgot-pwd',
-      //   loadChildren:() => import('../../auth/forgot-pwd/forgot-pwd.module').then(m => m.ForgotPwdModule)
-      // }
+      {
+        path:'latest-books',
+        loadChildren:() => import('../../pages/all-books/latest-books/latest-books.module').then(m => m.LatestBooksModule)
+      },
+      {
+        path:'trendings-books',
+        loadChildren:() => import('../../pages/all-books/trending-books/trending-books.module').then(m => m.TrendingBooksModule)
+      },
+      {
+        path:'featured-books',
+        loadChildren:() => import('../../pages/all-books/featured-books/featured-books.module').then(m => m.FeaturedBooksModule)
+      },
 
+      
     ]
   }
 ];

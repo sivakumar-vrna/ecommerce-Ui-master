@@ -192,7 +192,8 @@ async getAllCartItems() {
                 console.log(this. cartitems);
                 this.cartData.next(this.orchService.orchestrateData(tempData));
                 console.log(this.cartData)
-              } else {
+              } 
+              else {
                 this.errorService.onError(res);
             }
         },

@@ -1,0 +1,24 @@
+<!-- top Navigation bar-->
+<ion-header class="home-header ion-no-border">
+  <!-- <app-topbar></app-topbar> -->
+</ion-header>
+
+
+<ion-content>
+  <ion-grid class="ion-padding">
+    <ion-row>
+      <ion-col size="12">
+        <div class="d-flex w-100">
+          <ion-text color="dark">
+            <h2>Featured Books</h2>
+          </ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="2" *ngFor="let book of featured">
+        <app-product-card [data]="book"></app-product-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

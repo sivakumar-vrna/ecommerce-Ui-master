@@ -21,33 +21,6 @@ export class OrchestrationService {
 
   private cartItemsCount = new BehaviorSubject<number>(0);
   
-  // top ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/orchestration-service/event/menu?userId=3424&menuName=top';
-  
-  // allbooks ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/book-service/book/activebooks';
-
-  // upcoming ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/book-service/book/upcoming?userId=112245';
-
-  // bookDetailsURL ='http://ec2-3-129-58-233.us-east-2.compute.amazonaws.com:8099/book-service/book/';
-
-  // addCartURL = 'http://170.187.138.204:8089/customer-service/cart/add';
-
-  // removeCartURL ='http://170.187.138.204:8089/customer-service/cart/delete?userId=3424&';
-
-  // getCartItemsURL ='http://170.187.138.204:8089/customer-service/cart/get?userId=3434';
-
-  // addWishURL='http://170.187.138.204:8089:8099/customer-service/watchlist/add';
-
-  // getWishListURl='http://170.187.138.204:8089/customer-service/watchlist/3434';
-
-  // AddCustomerCard='http://170.187.138.204:8089/payment-service/payment/addCustomerCard';
-  
-  // processpayment='http://170.187.138.204:8089/payment-service/payment/processPayment';
-
-  // getcards='http://170.187.138.204:8089/payment-service/payment/cardinfo?userName=vinoth';
-
-  // getAddress='http://170.187.138.204:8089/user-service/address/all?userId=3434';
-  
-  // AddaddressURL='http://170.187.138.204:8089/user-service/address/add';
  
   constructor(
     private http: HttpService,
@@ -271,6 +244,11 @@ getCartItemsCount() {
   
 
 
+  addprofile(postData){
+    const url = environment.authUrl +'profile/add';
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.http.postCall(url, capacitorUrl, postData);
+  }
  
 
 }

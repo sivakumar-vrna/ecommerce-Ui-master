@@ -58,14 +58,7 @@ export class AddressComponent implements OnInit {
 
 async onSubmit() {
   this.isSubmitted = true;
-  // check if the length of the address array is already 10
-  // disable the submit button if the length of the addresses array is 10
-
-  // if (this.address.length < 10) {
-  //   this.toast.onWaring('You have already added the maximum number of addresses');
-  //   this.submitButtonDisabled = true;
-  //   return;
-  // }
+  
   const postData = {
     firstName: this.newAddressForm.get('firstName').value,
     lastName: this.newAddressForm.get('lastName').value,
