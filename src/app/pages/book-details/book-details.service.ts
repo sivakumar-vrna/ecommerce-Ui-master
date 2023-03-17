@@ -17,7 +17,7 @@ export class BookDetailsService {
     async bookDetailsModal(id: number) {
         const modal = await this.modalController.create({
             component: BookDetailsPage,
-            cssClass: 'movie-details-modal',
+            cssClass: 'book-details-modal',
             componentProps: {
                 'bookId': id,
             }

@@ -28,6 +28,10 @@ SwiperCore.use([Autoplay,Navigation, Pagination, Scrollbar, A11y]);
 export class CartPage implements OnInit, AfterViewInit, OnDestroy {
   @Input() data: Book;
   @Input() bookId: number;
+  @Input() bookYear:number;
+  @Input() cost:number;
+  @Input() posterurl:Book;
+  
   @Output() cartItemCountChanged = new EventEmitter<number>();
 
   cartItemsCount: number;
@@ -51,7 +55,8 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
   content:Book[];
   totalcartitemsCost: number = 0;
   public cartitemCount: number = 0;
-  cartitems: any[] = [];
+
+  public cartitems: any[] = [];
 
 
 
@@ -109,15 +114,17 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
      this.getAllCartItems();
-    //  this.cartItemCount = this.cartitems.length;
     //  this.RemoveToCart(this.cartitems);
   }
 
   
 onPlaceOrder() {
+
   // Pass the cartitems data to the checkout page using the Angular Router
-  this.router.navigate(['/checkout'], { queryParams: { cartitems: JSON.stringify(this.cartitems) } });
+  this.router.navigate(['/checkout'], { queryParams: { cartItems: JSON.stringify(this.cartitems) } });
+  // console.log(this.cartitems.count)
 }
+
 
   async onGetTrending() {
     (await this.orchService.getTrending()).subscribe({
@@ -138,14 +145,11 @@ onPlaceOrder() {
   remove(no){
      this.cartitems.splice( no,1);
   }
-
-
-
-
+  
   deleteSpace(book: Book): void {
     console.log('book.id',book)
       this.setisDeleted(book);
-    }
+  }
     
 
   setisDeleted(book): Promise<any> {
@@ -179,30 +183,63 @@ onPlaceOrder() {
   }
 
 
-async getAllCartItems() {
-    (await this.orchService.getCartItems()).subscribe(
+// async getAllCartItems() {
+//     (await this.orchService.getCartItems()).subscribe(
       
-        (res: any) => {
-            if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
+//         (res: any) => {
+//             if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
               
-                const tempData = res.data;
-                this.cartitems= res.data;
-                this.cartItemCount = tempData.length; 
-                console.log("cartitems");
-                console.log(this. cartitems);
-                this.cartData.next(this.orchService.orchestrateData(tempData));
-                console.log(this.cartData)
-              } 
-              else {
-                this.errorService.onError(res);
-            }
-        },
-        (err) => {
-            this.errorService.onError(err);
-        }
-    );
-}
+//                 const tempData = res.data;
+//                 this.cartitems= res.data;
+//                 this.cartItemCount = tempData.length;
+//                 console.log("cartitems");
+//                 console.log(this. cartitems);
+//                 this.cartData.next(this.orchService.orchestrateData(tempData));
+//                 console.log(this.cartData)
+//               } 
+//               else {
+//                 this.errorService.onError(res);
+//             }
+//         },
+//         (err) => {
+//             this.errorService.onError(err);
+//         }
+//     );
+// }
 
+async getAllCartItems() {
+  (await this.orchService.getCartItems()).subscribe(
+    async (res: any) => {
+      if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
+        const tempData = res.data;
+        this.cartitems = res.data;
+        this.cartItemCount = tempData.length; 
+        
+        for (const cartitem of this.cartitems) {
+          const res = await (await this.orchService.getBookDetails(cartitem.bookId)).toPromise();
+          console.log(res);
+          if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
+            const book = res.data;
+            cartitem.cost = book.cost;
+            cartitem.posterurl=book.posterurl;
+            console.log(book.cost);
+            console.log(book.posterurl);
+
+          } else {
+            this.errorService.onError(res);
+          }
+        }
+
+        this.cartData.next(this.orchService.orchestrateData(tempData));
+      } else {
+        this.errorService.onError(res);
+      }
+    },
+    (err) => {
+      this.errorService.onError(err);
+    }
+  );
+}
 
 
 

@@ -7,6 +7,9 @@ import { PaymentService } from 'src/app/shared/services/payment.service';
 import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
 import { UserService } from 'src/app/shared/services/user.service';
 import { UiRentDataService } from 'src/app/shared/services/ui-orchestration/ui-rent-data.service';
+import { ActivatedRoute } from '@angular/router';
+import { CartPage } from '../cart/cart.page';
+import { CartPageModule } from '../cart/cart.module';
 import { COUNTRY_KEY } from 'src/app/shared/services/ui-orchestration/orch.service';
 import { COUNTRIES_KEY } from 'src/app/shared/services/ui-orchestration/orch.service';
 
@@ -29,7 +32,9 @@ export class CheckoutPage implements OnInit {
   selectedAddress: any;
   subtotal: number = 0;
 
-contentPrice: number;
+  cartitems: any[] = [];
+
+  contentPrice: number;
   isPromoCode = false;
   isPromoCodeValid = false;
   promoTxt = 'VRNAMVP2021';
@@ -46,15 +51,38 @@ contentPrice: number;
     private utilService: ToastWidget,
     private userService:UserService,
     private uiRentDataService: UiRentDataService,
-    private modalController :ModalController 
+    private modalController :ModalController,
+    private route: ActivatedRoute,
+    private cartPageModule :CartPageModule 
+    
+
     ) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      
+      this.cartitems = JSON.parse(params['cartItems']);
+      console.log(params);
+      // const cost = this.cartitems ['cost'];
+      
+      const cost = params['cartItems'].cost;
+
+      console.log("check hear")
+      console.log(this.cartitems);
+      console.log(cost);
+      // this.cartPageModule.getAllCartItems()
+    });
+  
+
+
+
+
     this.onGetSavedCards();
     this.ongetSavedAddress();
     // this.onGetRental();
     this.userService.getEmail().then(res => this.emailId = res);
     this.userService.getStripeId().then(res => this.stripeCustId = res);
+    
   }
 
  
@@ -132,7 +160,7 @@ contentPrice: number;
          stripeCardId: this.isPromoCodeValid ? null : this.selectedCard.stripeCardId,
          stripeCustId: this.isPromoCodeValid ? null : this.selectedCard.stripeCustId,
          stripetokenId:this.isPromoCodeValid ? null : this.selectedCard.stripetokenId,
-         currency:"INR"
+         currency:"INR",
       };
       console.log('rentalData:', rentalData);
   

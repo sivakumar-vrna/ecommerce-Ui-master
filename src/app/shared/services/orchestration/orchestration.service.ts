@@ -145,9 +145,9 @@ export class OrchestrationService {
 async contentOrchestrate(content: any) {
   const cart: any[] = [];
   content['bannerurl'] = this.domainUrl + '/images' + content.bannerurl;
-  content['posterurl'] = ' https://wallpaperaccess.com/full/3421332.jpg';
+  // content['posterurl'] = ' https://wallpaperaccess.com/full/3421332.jpg';
   // content['posterurl'] = this.domainUrl + '/images' + content.posterurl;
-  content['cost']='650';
+  // content['cost']=;
 }
 
   async getupcoming() {

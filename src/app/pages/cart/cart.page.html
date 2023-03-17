@@ -31,12 +31,13 @@
                       <ion-img [src]="cartitem.posterurl" alt="No preview"></ion-img>
                     </ion-thumbnail>
                     <ion-label>
-                      <h4> {{cartitem.bookid}} .</h4>
+                      <h4>{{cartitem.bookid}}.</h4>
                       <p>Count: {{cartitem.count}}</p>
                       <p>Seller: Vivamus</p>
-                      <h6>{{cartitem.cost}}</h6>
-                      <!-- <h6>{{cartitem.bookid}}</h6> -->
+                      <h6> price:{{cartitem.cost}}</h6>
                     </ion-label>
+                    
+                    
                     <div class="">
                       <p>Delivery by Mon Dec 5 | Free</p>
                       <h5>₹650</h5>
@@ -89,6 +90,13 @@
                     <ion-button expand="full" color="dark" (click)="onPlaceOrder() ">Place Order</ion-button>
                   </ion-label>
                 </ion-item>
+
+                <ion-item lines="none">
+                  <!-- <ion-label>
+                    <ion-button expand="full" color="primary" [routerLink]="['/checkout']" [queryParams]="{cartItems: cartitems | json}">Place Order</ion-button>
+                  </ion-label> -->
+                </ion-item>
+                
               </ion-list>
             </ion-card-content>
           </ion-card>

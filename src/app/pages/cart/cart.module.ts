@@ -24,4 +24,8 @@ import { TrendingSliderModule } from 'src/app/modules/trending-slider/trending-s
   ],
   declarations: [CartPage]
 })
-export class CartPageModule {}
+export class CartPageModule {
+  static getAllCartItems() {
+    throw new Error('Method not implemented.');
+  }
+}

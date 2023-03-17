@@ -9,6 +9,7 @@ import { CheckoutPageRoutingModule } from './checkout-routing.module';
 import { CheckoutPage } from './checkout.page';
 import { FooterModule } from 'src/app/layout/footer/footer.module';
 import { TrendingSliderModule } from 'src/app/modules/trending-slider/trending-slider.module';
+import { CartPageModule } from '../cart/cart.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { TrendingSliderModule } from 'src/app/modules/trending-slider/trending-s
     IonicModule,
     CheckoutPageRoutingModule,
     FooterModule,
-    TrendingSliderModule
+    TrendingSliderModule,
+    CartPageModule
   ],
   declarations: [CheckoutPage]
 })
