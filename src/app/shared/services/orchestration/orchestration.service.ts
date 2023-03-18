@@ -188,7 +188,7 @@ getCartItemsCount() {
   }
   
   async onPayment(postData) {
-   const url =environment.paymentUrl +'payment/processPayment';
+   const url =environment.vrnaFlowUrl +'processpayment';
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.postCall(url, capacitorUrl, postData);
   }

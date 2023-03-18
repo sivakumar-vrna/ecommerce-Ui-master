@@ -32,7 +32,10 @@ export class CheckoutPage implements OnInit {
   selectedAddress: any;
   subtotal: number = 0;
 
-  cartitems: any[] = [];
+  cartitems: any[];
+  cartItemCount: number = 0;
+  tempData: any[];
+
 
   contentPrice: number;
   isPromoCode = false;
@@ -40,6 +43,10 @@ export class CheckoutPage implements OnInit {
   promoTxt = 'VRNAMVP2021';
   currency: string = '';
   homeService: any;
+
+
+  total: number = 0;
+
 
 
 
@@ -58,21 +65,29 @@ export class CheckoutPage implements OnInit {
 
     ) { }
 
-  ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
+    ngOnInit() {
+      let totalCost = 0; // declare totalCost here
       
-      this.cartitems = JSON.parse(params['cartItems']);
-      console.log(params);
-      // const cost = this.cartitems ['cost'];
-      
-      const cost = params['cartItems'].cost;
+      this.route.queryParams.subscribe((params) => {
+        this.cartitems = JSON.parse(params['cartItems']);
+        console.log(params);
+        
+        for (const cartitem of this.cartitems) {
+          totalCost += cartitem.cost;
+        }
+        
+        console.log(this.cartitems);
+        console.log(totalCost);
 
-      console.log("check hear")
-      console.log(this.cartitems);
-      console.log(cost);
-      // this.cartPageModule.getAllCartItems()
-    });
-  
+      });
+        
+
+      
+    
+    
+      // do something with totalCost here
+        
+     
 
 
 
@@ -145,84 +160,64 @@ export class CheckoutPage implements OnInit {
 }
 
 
-  
-  async onGetRental() {
+async onGetRental() {
     this.isLoading = true;
     const userId = await this.userService.getUserId();
     console.log('userId:', userId);
     const userName = await this.userService.getEmail();
     console.log('userName:', userName);
-    console.log('contentData:', this.contentData);
-    
-      const rentalData = {
-        custId: userId,
-        emailId: userName,
-         stripeCardId: this.isPromoCodeValid ? null : this.selectedCard.stripeCardId,
-         stripeCustId: this.isPromoCodeValid ? null : this.selectedCard.stripeCustId,
-         stripetokenId:this.isPromoCodeValid ? null : this.selectedCard.stripetokenId,
-         currency:"INR",
-      };
-      console.log('rentalData:', rentalData);
   
-      (await this.orchService.onPayment(rentalData)).subscribe(
-        (res: any) => {
-          console.log(res);
-          const data = res.data;
-          if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
-            this.cardData = data;
-          } else {
-            this.errorService.onError(res);
-          }
-          this.isLoading = false;
-        },
-        (err) => {
-          this.errorService.onError(err);
-          this.isLoading = false;
+    let totalCost = 0;
+    const bookId = [];
+    const individualCost = [];
+  
+    this.cartitems.forEach(cartitem => {
+      bookId.push(cartitem.bookId);
+      const cost = parseFloat(cartitem.cost);
+      if (!isNaN(cost)) {
+        totalCost += cost;
+        individualCost.push(cost.toFixed(0));
+      } else {
+        individualCost.push('0');
+      }
+    });
+  
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString();
+  
+    const rentalData = {
+      amount: totalCost.toFixed(0),
+      bookId: bookId,
+      custId: userId,
+      currency: "INR",
+      description: `This transaction is for renting the book: for INR ${this.contentPrice} by ${userName}`,
+      emailId: userName,
+      individualCost: individualCost,
+      promoCode: this.contentPrice === 0 ? this.promoTxt : 'false',
+      stripeCardId: this.isPromoCodeValid ? null : this.selectedCard.stripeCardId,
+      stripeCustId: this.isPromoCodeValid ? null : this.selectedCard.stripeCustId,
+      stripetokenId: this.isPromoCodeValid ? null : this.selectedCard.stripetokenId,
+    };
+    console.log('rentalData:', rentalData);
+  
+    (await this.orchService.onPayment(rentalData)).subscribe(
+      (res: any) => {
+        console.log(res);
+        const data = res.data;
+        if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
+          this.cardData = data;
+        } else {
+          this.errorService.onError(res);
         }
-      );
-      
-    // else {
-    //   console.error('contentData is undefined or does not have cartId property.');
-    // }
+        this.isLoading = false;
+      },
+      (err) => {
+        this.errorService.onError(err);
+        this.isLoading = false;
+      }
+    );
   };
   
-  // async onGetRental() {
-  //   this.isLoading = true;
-  //   const userId = await this.userService.getUserId();
-  //   const userName = await this.userService.getEmail();
-  //   const rentalData = {
-  //     custId: userId,
-  //     // bookId: this.contentData.bookId,
-  //     amount: this.contentPrice,
-  //     currency: 'INR',
-  //     description: `This transaction is for renting the movie: ${this.contentData.moviename} for INR ${this.contentPrice} by ${userName}`,
-  //     promoCode: this.contentPrice === 0 ? this.promoTxt : 'false',
-  //     stripeCardId: this.isPromoCodeValid ? null : this.selectedCard.stripeCardId,
-  //     stripeCustId: this.isPromoCodeValid ? null : this.selectedCard.stripeCustId
-  //   };
-  //   (await this.paymentService.onPayment(rentalData)).subscribe(
-  //     (res: any) => {
-  //       console.log(res);
-  //       const data = res.data;
-  //       if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
-  //         const msgBody: string = `You have purchased ${this.contentData.moviename} for INR ${this.contentData.ppmCost}.`
-  //         this.utilService.onSuccess(msgBody);
-  //         this.uiRentDataService.userRentedMovies();
-  //         this.homeService.getAllHomeData();
-  //         this.localNotification(this.contentData.moviename, msgBody);
-  //         this.dismiss(true);
-  //       } else {
-  //         this.errorService.onError(res);
-  //       }
-  //       this.isLoading = false;
-  //     },
-  //     (err) => {
-  //       this.errorService.onError(err);
-  //       this.isLoading = false;
-  //     }
-  //   );
-  // }
-
 
 
 
@@ -248,3 +243,7 @@ export class CheckoutPage implements OnInit {
 
 
 }
+
+
+
+

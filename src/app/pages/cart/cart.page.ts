@@ -118,13 +118,14 @@ export class CartPage implements OnInit, AfterViewInit, OnDestroy {
   }
 
   
+
 onPlaceOrder() {
-
-  // Pass the cartitems data to the checkout page using the Angular Router
-  this.router.navigate(['/checkout'], { queryParams: { cartItems: JSON.stringify(this.cartitems) } });
-  // console.log(this.cartitems.count)
+  let total = 0;
+  for (let item of this.cartitems) {
+    total += item.quantity * item.price;
+  }
+  this.router.navigate(['/checkout'], { queryParams: { cartItems: JSON.stringify(this.cartitems), total: total } });
 }
-
 
   async onGetTrending() {
     (await this.orchService.getTrending()).subscribe({
@@ -231,6 +232,7 @@ async getAllCartItems() {
         }
 
         this.cartData.next(this.orchService.orchestrateData(tempData));
+        
       } else {
         this.errorService.onError(res);
       }
@@ -240,6 +242,8 @@ async getAllCartItems() {
     }
   );
 }
+
+
 
 
 
@@ -292,29 +296,24 @@ getTotalAmount(): number {
 }
 
 getTotalCount(): number {
-  let total = 0;
-  for (let i = 0; i < this.cartitems.length; i++) {
-    total += this.cartitems[i].price * this.cartitems[i].count;
+  let count = 0;
+  for (const cartitem of this.cartitems) {
+    count += cartitem.count;
   }
-  this.subtotalText = `Subtotal (${this.cartitems.length} items):`; // update the subtotal text here
-  return total;
+  return count;
 }
 
 increaseCount(cartitem: any) {
-  cartitem.cost += 1;
+  cartitem.cost *= 2;
 }
 
 decreaseCount(cartitem: any) {
-  cartitem.cost -= 1;
+  cartitem.cost /= 2;
 }
 
 
 
 
-// async onAddNewCard() {
-//   this.addCardModal.onAddNewCard().then(res => {
-//     this.onGetSavedCards();
-//   });
 
 }
 

@@ -111,13 +111,13 @@
             <ion-card-title>Price Details</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <ion-list>
-              <ion-item lines="none" *ngFor="let cartitem of cartitems">
+            <ion-list >
+              <ion-item lines="none" *ngFor="let cartitem of cartitems" >
                 <!-- <ion-label>Subtotal ({{cardData.length}} items):</ion-label>
                 <p>₹{{subtotal.toFixed(2)}}</p>
               </ion-item> -->
                 <ion-label>Subtotal (2 items):</ion-label>
-                <p>₹{{cartitem.cost}}</p>
+                <p>₹{{cartitems.length}}</p>
               </ion-item>
 
               <ion-item>
@@ -125,10 +125,12 @@
                 <p>FREE</p>
               </ion-item>
 
-              <ion-item lines="none">
+              <ion-item lines="none"  *ngFor="let cartitem of cartitems">
                 <ion-label>Total Amount</ion-label>
-                <b>₹650.00</b>
+                <b>₹{{cartitem.cost}}.00</b>
               </ion-item>
+
+              
 
               <ion-item lines="none">
                 <ion-label>
