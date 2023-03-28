@@ -10,27 +10,28 @@
     <ion-list lines="none">
       <ion-card>
         <ion-card-content>
-          <ion-list lines="none">
-            <ion-item>
-              <img class="pe-4" src="assets/img/11.jpg" width="100" />
+          <ion-list>
+            <ion-item lines="inset" *ngFor="let watchitem of watchitems">
+              <img class="pe-4" [src]="watchitem.posterurl" width="100" />
               <ion-label>
-                <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h4>
-                <p>Author: Aenean lacinia</p>
-                <p>Seller: Vivamus</p>
-                <p>Item added on 15/07/2022</p>
-                <h5>₹450.00</h5>
+                <h2><b>{{watchitem.bookname}}</b></h2>
+                <h6><b>{{watchitem.description}}</b></h6>
+                <h6><b>Author:</b> {{watchitem.authorName}}</h6>
+                <h6><b>Duration:</b> {{watchitem.duration}}</h6>
+                <h6>Item added on {{watchitem.date}}</h6>
+                <h5>₹{{watchitem.cost}}</h5>
               </ion-label>
               <div class="d-flex">
-                <ion-button expand="block" class="pe-2" fill="none">
+                <ion-button  (click)="RemoveToWishItems(watchitem)" expand="block" class="pe-2" fill="none">
                   <ion-icon name="trash" color="danger"></ion-icon>
                 </ion-button>
-                <ion-button expand="block" color="success" fill="solid">Add to Cart</ion-button>
+                <ion-button (click)="addToCart(watchitem.bookId)"  expand="block" color="success" fill="solid">Add to Cart</ion-button>
               </div>
             </ion-item>
           </ion-list>
         </ion-card-content>
       </ion-card>
-      <ion-card>
+      <!-- <ion-card>
         <ion-card-content>
           <ion-list lines="none">
             <ion-item>
@@ -95,7 +96,7 @@
             </ion-item>
           </ion-list>
         </ion-card-content>
-      </ion-card>
+      </ion-card> -->
     </ion-list>
   </div>
 <app-footer></app-footer>

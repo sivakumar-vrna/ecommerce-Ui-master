@@ -32,7 +32,6 @@ SwiperCore.use([Autoplay,Navigation, Pagination, Scrollbar, A11y]);
   providedIn:'root'
 })
 export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
-  // @Input() bookId: number;
   @Input() data:Book;
   @ViewChild('popover') popover;
 
@@ -42,10 +41,8 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
     this.popover.event = e;
     this.isOpen = true;
   }
-  // @Input() bannerData: any[];
   cart = [];
   products = [];
-  // cartItemCount: BehaviorSubject<number>;
   bookId: number;
   routeSub: Subscription;
   book: Book;
@@ -144,6 +141,7 @@ export class BookDetailsPage implements OnInit, AfterViewInit, OnDestroy {
     console.log("calling add to cart from {ngOnInit}----->> "+ this.data)
   }
   
+
   addToCart(){
     console.log("Inside { addToCart} book-details.page.ts----->here "+this.bookId);
     this.addCourseToCart(this.book);
@@ -201,7 +199,7 @@ async getAllCartItems() {
 
 
   addToWishList(){
-    console.log("Inside { addToCart} book-details.page.ts----->here "+this.bookId);
+    console.log("Inside { addTowishlist} book-details.page.ts----->here "+this.bookId);
     this.addCourseToWish(this.book);
   }
   
@@ -209,9 +207,19 @@ async getAllCartItems() {
     const data = {
       userId:await this.UserService.getUserId(),
       bookId: book.bookId,
-      count: 1,
+      bookname:book.bookname,
+      posterurl:book.posterurl,
+      pauseTime:book.page,
+      continuewatching:true,
+      percentWatched:0,
+      playTime:0,
+      cost:book.cost,
+      description:book.description,
+      seller:book.seller,
+      author:book.authorName,
+
     };
-    console.log("{this is the book id to add to cart--->> Last step}"+ data.bookId);
+    console.log("{this is the book id to add to wish--->> Last step}"+ data.bookId);
     
     (await this.OrchService.addToWish(data)).subscribe(
       (res: any) => {

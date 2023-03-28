@@ -74,6 +74,10 @@ export class AuthComponent implements OnInit {
   }
 
 
+
+  
+
+
   cancel() {
     this.modal.dismiss(null, 'cancel');
   }

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input,Output,EventEmitter,  OnDestroy, OnInit,ViewChild,CUSTOM_ELEMENTS_SCHEMA, TemplateRef } from '@angular/core';
+import { AfterViewInit, Component, Input,Output,EventEmitter,  OnDestroy, OnInit,ViewChild } from '@angular/core';
 import { Inject } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Book } from 'src/app/shared/models/book.model';
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
 import { SwiperOptions } from 'swiper';
 import { SwiperComponent } from 'swiper/angular';
-import SwiperCore, { Autoplay,Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import  SwiperCore, { Autoplay,Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { DOCUMENT } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { isPlatform } from '@ionic/core';
@@ -184,30 +184,6 @@ onPlaceOrder() {
   }
 
 
-// async getAllCartItems() {
-//     (await this.orchService.getCartItems()).subscribe(
-      
-//         (res: any) => {
-//             if (res.status.toLowerCase() === 'success' && res.statusCode == 200) {
-              
-//                 const tempData = res.data;
-//                 this.cartitems= res.data;
-//                 this.cartItemCount = tempData.length;
-//                 console.log("cartitems");
-//                 console.log(this. cartitems);
-//                 this.cartData.next(this.orchService.orchestrateData(tempData));
-//                 console.log(this.cartData)
-//               } 
-//               else {
-//                 this.errorService.onError(res);
-//             }
-//         },
-//         (err) => {
-//             this.errorService.onError(err);
-//         }
-//     );
-// }
-
 async getAllCartItems() {
   (await this.orchService.getCartItems()).subscribe(
     async (res: any) => {
@@ -280,6 +256,7 @@ removeFromCartArray(cartitem: any) {
     
   }
 }
+
 clearCart() {
   this.cartitems.splice(0, this.cartitems.length);
 }

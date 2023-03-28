@@ -1,10 +1,9 @@
 <ion-content>
   <app-topbar></app-topbar>
-    <div class="container">
+  <div class="container">
       <ion-breadcrumbs>
         <ion-breadcrumb routerLink="/account" >Your Account</ion-breadcrumb>
         <ion-breadcrumb routerLink="/order"> Your Orders</ion-breadcrumb>
-        
       </ion-breadcrumbs>
     </div>  
   <div class="top">
@@ -14,6 +13,10 @@
       <button>search Orders</button>
     </div>
   </div>
+<!-- <div >
+  <p>{{order.orderId}}</p>
+  <p>{{order.orderDate}}</p>
+</div> -->
 
   <div>
     <ul style="cursor: pointer;" class="list">
@@ -65,12 +68,8 @@
           </ion-col>
         </ion-row>
       </ion-card-content>
-
     </ion-content>
 
-
-
-    
     <ion-content [fullscreen]="false">
 
       <ion-card-content>
@@ -114,7 +113,11 @@
   </ion-col>
 </ion-row>
 </ion-card-content>
+
 <app-footer></app-footer>
+
+
+
 
 
 </ion-content>

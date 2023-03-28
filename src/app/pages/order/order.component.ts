@@ -3,6 +3,7 @@ import { Book } from 'src/app/shared/models/book.model';
 import  SwiperCore, { Autoplay,Navigation, Pagination, Scrollbar, A11y, SwiperOptions } from 'swiper';
 import { OrchestrationService } from 'src/app/shared/services/orchestration/orchestration.service';
 import { ErrorService } from 'src/app/shared/services/error.service';
+import { ModalController } from '@ionic/angular';
 
 SwiperCore.use([Autoplay,Navigation, Pagination, Scrollbar, A11y]);
 
@@ -13,10 +14,16 @@ SwiperCore.use([Autoplay,Navigation, Pagination, Scrollbar, A11y]);
 })
 export class OrderComponent implements OnInit {
   isLoading = true;
-  orders: any;
+  order: any;
   trendings: Book[];
   history:Book[];
   latest: Book[];
+  OrderDtls:any;
+  // orders: any;
+  orders: any[] = [];
+
+
+
 
 
   config: SwiperOptions = {
@@ -26,16 +33,37 @@ export class OrderComponent implements OnInit {
     scrollbar: false,
     autoplay:true
   };
-
+2
   constructor(
     private OrchService:OrchestrationService,
-    private errorService:ErrorService
+    private errorService:ErrorService,
+    private modalController:ModalController
   ) { }
 
   ngOnInit() {
     this.onGetTrending();
-    this. onGetLatest();
+    this.onGetLatest();
+    this.GetOrderDetails();
   }
+  
+  async GetOrderDetails()  {
+    (await this.OrchService.getOrderDetails()).subscribe({
+      next: (res: any) => {
+        if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {
+          this.orders = res.data;
+          console.log(this.orders)
+          
+        } else {
+          this.errorService.onError(res);
+        }
+      },
+      error: error => {
+        this.errorService.onError(error);
+      }
+    });
+  }
+
+
 
   async onGetTrending() {
     (await this.OrchService.getTrending()).subscribe({
@@ -72,4 +100,13 @@ export class OrderComponent implements OnInit {
   }
 
 
+
+  async viewOrderDetails(order) {
+    const modal = await this.modalController.create({
+      component: OrderComponent,
+      componentProps: { order },
+    });
+    await modal.present();
+  }
+  
 }

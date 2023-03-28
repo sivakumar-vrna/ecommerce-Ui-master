@@ -20,6 +20,7 @@ export class AllBooksPage implements OnInit {
   ngOnInit() {
     this.onGetBooks();
   }
+  
   async onGetBooks() {
     (await this.orchService.getBooks()).subscribe({
       next: (res: any) => {
@@ -36,4 +37,5 @@ export class AllBooksPage implements OnInit {
       }
     });
   }
+
 }

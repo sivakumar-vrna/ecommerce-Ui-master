@@ -59,7 +59,6 @@ export class HomePage implements OnInit {
     private bookDetailsService:BookDetailsService,
     private route: ActivatedRoute,
     private router: Router,
-    // public TopbarComponent:TopbarComponent
   ) { }
 
   ngOnInit() {
@@ -85,6 +84,14 @@ export class HomePage implements OnInit {
   }
   triggerHomeData() {
     
+  }
+
+  onSwiper() {
+    this.isLoading = true;
+  }
+
+  onSwiperEnd() {
+    this.isLoading = false;
   }
 
 

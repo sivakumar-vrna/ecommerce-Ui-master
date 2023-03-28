@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators,  } from '@angular/forms';
 import { OrchestrationService } from 'src/app/shared/services/orchestration/orchestration.service';
 import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
 import { ModalController } from '@ionic/angular';
 import { UserService } from 'src/app/shared/services/user.service';
+import { ActivatedRoute,Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-address',
@@ -15,7 +16,10 @@ export class AddressComponent implements OnInit {
   isSubmitted = false;
   isEditMode: boolean = false;
   newAddressForm: FormGroup;
-  address: any[] = [];
+  // address: any[] = [];
+  address: any = {};
+
+
 
   
   submitButton: HTMLButtonElement;
@@ -26,13 +30,32 @@ export class AddressComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private addressService: OrchestrationService,
-    private  toast: ToastWidget,
-    public modalController: ModalController,
+    private toast: ToastWidget,
+    public  modalController: ModalController,
     private formBuilder: FormBuilder,
-    private userService:UserService
+    private userService:UserService,
+    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
     ){}
 
   ngOnInit() {
+    const state = this.router.getCurrentNavigation()?.extras.state;
+  const address = state && state['address'];
+  if (address) {
+    this.newAddressForm.setValue({
+      firstName: address.firstName,
+      lastName: address.lastName,
+      mobile: address.mobile,
+      address1: address.address1,
+      address2: address.address2,
+      addressType: address.addressType,
+      area: address.area,
+      country: address.country,
+      zipCode: address.zipCode
+    });
+  }
+    
     this.newAddressForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -48,13 +71,13 @@ export class AddressComponent implements OnInit {
       zipCode: ['', Validators.required],
       
     });
+   
+
     this.onSubmit();
    
   }
 
-// ngAfterViewInit() {
-//   this.submitButton = document.querySelector('#submitButton');
-// }
+
 
 async onSubmit() {
   this.isSubmitted = true;
@@ -103,11 +126,6 @@ async onSubmit() {
     this.isSubmitted = false;
   });
 }
-
-
-
-
-
 
 async updateAddress(addressToUpdate: any) {
   this.isSubmitted = true;

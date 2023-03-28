@@ -98,21 +98,19 @@ app-author-books {
     margin-top: 30%;
   }
   .imgs{
+    position: relative;
     display: flex;
     flex: 1;
-    width: 500px;
-    height: 400px;
-    margin-top: -10%;
-  }
-//   .imgs ion-img{
-//     border: 2px solid black;
-
-//   }
+    margin-top: -5%;
+    width: 400px;
+    height: 350px;
+    gap: 20px;
+}
 .bt{
     display: flex;
     gap: 10px;
     position: relative;
-    margin-top: -3%;
+    margin-top: 3%;
 }
 button{
     width: 150px;
@@ -136,11 +134,19 @@ ion-card {
 box-shadow:none !important
 }
 
-
+.name{
+    color: green;
+}
 .loading-icon {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 200px;
-  }
+}
+
+// ion-fab {
+//     position: fixed;
+//     bottom: 210px;
+//     right: 20px;
+//   }
   

@@ -1,18 +1,20 @@
 <ion-header>
   <app-topbar></app-topbar>
 </ion-header>
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true"  [scrollEvents]="true">
+  <div class="container-fluid" *ngFor="let authors of author"> 
 
-  <div class="container-fluid"> 
-    <ion-card  style="width: 22%; height: 1070px; padding: 5px;"
+  <!---------------------------- first card ------------------------------->
+
+    <ion-card  style="width: 22%; height: 1100px; padding: 5px;"
     class="ion-no-border">
     <ion-avatar >
-      <ion-img id="cover-trigger"  class="image" src="/assets/img/vinoth.jfif"></ion-img>
+      <ion-img id="cover-trigger"  class="image" [src]="authors.imageUrl" alt="{{authors.authorname}}"></ion-img>
     </ion-avatar>
 
     <ion-popover trigger="cover-trigger" size="cover">
       <ng-template>
-        <ion-img class="image" id="cover-trigger" src="/assets/img/vinoth.jfif"></ion-img>
+        <ion-img class="image" id="cover-trigger"  [src]="authors.imageUrl" alt="{{authors.authorname}}"></ion-img>
       </ng-template>
     </ion-popover>
 
@@ -22,36 +24,35 @@
       </div>
       <hr>
       <div class="container-fluid about" >
-        <h6>About Vinodh Arunachalam</h6>
+        <h6>About <span class="name">{{authors.authorname}}</span> </h6>
       </div>
       <div class="read" [ngClass]="{'limitTextHeight': isReadMore}">
-
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error, esse nostrum pariatur fuga incidunt quo, aliquid laboriosam velit eligendi repellat ducimus quisquam voluptas assumenda ut non iure hic cupiditate iusto!
-        Eos sunt aspernatur vel, eum at pariatur a aliquam provident sint veritatis sed odit impedit molestias quae fugit ad minima cum repudiandae nobis facilis soluta qui sequi voluptates expedita. Repellat!
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis veritatis, voluptatem deserunt facere placeat modi ducimus temporibus, quae omnis, maxime explicabo sit adipisci ratione voluptas nemo. Expedita a quae enim.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cupiditate itaque dolorem eius illum rem beatae recusandae architecto ullam accusantium expedita, voluptate aliquid magnam laboriosam qui nisi earum nobis quisquam.
+        {{authors.description}}
       </div>
       <a class="read"  (click)="showText()">
         {{ isReadMore ? 'Read More': 'Read Less' }}
       </a>
 
-      <div class="container-fluid bottom">
+      <div class="container-fluid bottom" >
         <h6>Customers Also Bought Items By </h6>
         <ion-avatar>
-          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+          <img alt="Silhouette of a person's head"  src="https://ionicframework.com/docs/img/demos/avatar.svg" />
         </ion-avatar>
         <h6>Maple Press</h6>
       </div>
     </ion-card>
   </div>
-  <ion-card style="width: 78%; height: 6910px; padding: 5px;position: absolute;left: 22%;margin-top: -71%;"
-    class="ion-no-border">
+
+
+  <!---------------------------- second card ------------------------------->
+
+  <ion-card style="width: 78%; height: 6950px; padding: 5px;position: absolute;left: 22%;margin-top: -71%;"
+    class="ion-no-border" *ngFor="let authors of author">
   
   <div class="container-fluid">
-    <h2 style="font-size: x-larger;font-weight: bolder;color: black;">Vinodh Arunachalam</h2>
+    <h2 style="font-size: x-larger;font-weight: bolder;color: black;">{{authors.authorname}}</h2>
   </div>
    <hr><hr><hr><hr><hr><hr>
-
    <div class="container-fuild">
     <ion-row size ="20" class="book-row">
       <swiper #bookSwiper [config]="config">
@@ -62,17 +63,15 @@
       </swiper>
     </ion-row>
   </div> 
-  <div class="container-fluid auhtor">
+  <div class="container auhtor">
     <h2 style="font-size: x-larger;font-weight: bolder;color: black;">Author Updates</h2>
   </div>
-
-  <div class="contaier-fluid  imgs">
-    <ion-img src="/assets/img/nothing.jpg" alt=""></ion-img>
-    <ion-img src="/assets/img/nothing.jpg" alt=""></ion-img>
+  <div class="container-fluid  imgs">
+    <ion-img [src]="authors.imageUrl" alt=""></ion-img>
+    <ion-img [src]="authors.imageUrl" alt=""></ion-img>
   </div>
-  
-  <div style="position: absolute;margin-top: -10%;" class="container-fluid">
-    <h2 style="font-size: x-larger;font-weight: bolder;color: black;">Books By Vinodh Arunachalam</h2>
+  <div style="position: relative;margin-top: -6%;" class="container-fluid">
+    <h2 style="font-size: x-larger;font-weight: bolder;color: black;">Books By <span class="name">{{authors.authorname}}</span></h2>
   </div>
 
   <div class="container-fuild bt">
@@ -98,6 +97,19 @@
         <app-books [data]="book"></app-books>
       </ion-col>
     </ion-row>
-  </div>
+  </div> 
 </ion-card>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="scrollToTop()">
+    <ion-icon name="arrow-up"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+
+
 </ion-content>
+
+
+
+

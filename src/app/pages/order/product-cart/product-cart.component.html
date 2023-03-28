@@ -1,6 +1,5 @@
 <div class="container">
-
-<div class="top">
+  <div class="top">
   <h6>ORDER PLACED</h6>
   <h6>TOTAL</h6>
   <h6>SHIP TO
@@ -10,34 +9,30 @@
   <a  routerLink="/order-details"><h6>View order details </h6></a>
   <h6>Invoice</h6>
 </div>
-<div class="second">
+<div class="second" lines="inset" >
      <div class="inside">
       <h3>Delivered 13-Feb-2023</h3>
      </div>
+     <div class="img" *ngFor="let order of orders">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="order.posterurl" alt="No preview"></ion-img>
 
-     <div class="img">
-      <ion-thumbnail slot="start" >
-        <ion-img [src]="" alt="item img"></ion-img>
       </ion-thumbnail>
+
       <div class="content">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos magnam repellat quas blanditiis aperiam asperiores.</p>
           <button class="btns" routerLink="/buy-again" >Buy it again</button>
           <button class="btn2">View your item</button>
       </div>
     </div>
-
     <div class="left-btn">
           <div class="bt">
             <button routerLink="/track-package">TrackPackage</button><hr><hr><hr><hr>
             <button routerLink="/cancelled-orders">Cancel Items</button><hr><hr><hr><hr>
             <button routerLink="/live-track">Live track</button>
-
-
           </div>
-          
-    </div>
-    
-  </div>
+        </div>
+      </div>
 </div>
 
   

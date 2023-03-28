@@ -240,7 +240,23 @@ async onGetRental() {
     })
   }
 
+  
+  getTotalAmount(): number {
+    let total = 0;
+    for (let cartitem of this.cartitems) {
+      total += cartitem.count * cartitem.cost;
+    }
+    return total;
+  }
 
+  getTotalCount(): number {
+    let count = 0;
+    for (const cartitem of this.cartitems) {
+      count += cartitem.count;
+    }
+    return count;
+  }
+  
 
 }
 

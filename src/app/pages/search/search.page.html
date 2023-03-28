@@ -4,14 +4,13 @@
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title>
-      Search
+      Search Books
     </ion-title>
     <ion-buttons class="home-menu-btn" slot="end">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-grid class="search-input">
     <ion-row>
@@ -20,10 +19,8 @@
           debounce="1000" (ionChange)="fromSearchBar($event); onSearchSuggest($event)">
         </ion-searchbar>
       </ion-col>
-
       <!-- <ion-col size="12">
         <ion-row>
-
           <ion-col size="4">
             <small>Genre:</small>
             <ion-item>
@@ -32,7 +29,6 @@
               </ion-select>
             </ion-item>
           </ion-col>
-
           <ion-col size="4">
             <small>Rating</small>
             <ion-item>
@@ -46,7 +42,6 @@
               </ion-select>
             </ion-item>
           </ion-col>
-
           <ion-col size="4">
             <small>Time Range</small>
             <ion-item>
@@ -65,16 +60,15 @@
   </ion-grid>
 
   <ion-grid class="search-grid">
-    <ion-row>
-      <ion-col size="12" *ngIf="searchSuggest">
+    <ion-col size="12" *ngIf="searchSuggest">
         <ion-text>
           Explore search related to :
           <span class="search-suggestions" *ngFor="let result of searchSuggest" (click)="onSearch(result)">
             {{result}}
           </span>
         </ion-text>
-      </ion-col>
 
+      </ion-col>
       <ion-col size="12" *ngIf="searchKey">
         <ion-text>
           <h6>Result for <b>{{searchKey | uppercase}}</b> : <ion-label color="secondary">{{searchResult?.length}}
@@ -83,9 +77,10 @@
           </h6>
         </ion-text>
       </ion-col>
-      
-    </ion-row>
+      <ion-row>
+        <ion-col size="2" *ngFor="let book of searchResult">
+          <app-product-card [data]="book"></app-product-card>
+        </ion-col>
+      </ion-row>
   </ion-grid>
-  <app-all-books></app-all-books>
 </ion-content>
-    

@@ -12,6 +12,8 @@ export const environment = {
   vrnaFlowUrl: '/orchestration-service/event/',
   intelligenceUrl: '/intelligence-service/',
   contentUrl: '/book-service/book/',
+  authorUrl:'/book-service/author/',
+  orderUrl:'/order-service/order/',
   watchlistUrl: '/customer-service/',
   supportUrl: '/support-service/',
   paymentUrl: '/payment-service/',

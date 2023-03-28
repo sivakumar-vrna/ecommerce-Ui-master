@@ -128,7 +128,8 @@ img {
                     </span>
                   </div>
                   <div>
-                    by <a><ion-label>{{book.authorName}}(Author)</ion-label></a>
+                    by <a routerLink="/author-details/{{book.bookId}}"><ion-label>{{book.authorName}}(Author)</ion-label></a>
+
                     <div class="d-flex">
                       <ion-icon color="warning" name="star"></ion-icon>
                       <ion-icon color="warning" name="star"></ion-icon>

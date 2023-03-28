@@ -7,6 +7,7 @@ import { TopbarModule } from 'src/app/layout/topbar/topbar.module';
 import { AuthorBooksModule } from './author-books/author-books.module';
 import { SwiperModule } from 'swiper/angular';
 import { BooksModule } from './books/books.module';
+import { FooterModule } from 'src/app/layout/footer/footer.module';
 
 
 
@@ -24,6 +25,7 @@ import { BooksModule } from './books/books.module';
     AuthorBooksModule,
     SwiperModule,
     BooksModule,
+    FooterModule
   ]
 })
 export class AuthorDetailsModule { }

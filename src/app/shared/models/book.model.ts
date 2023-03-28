@@ -24,6 +24,7 @@ export interface Book {
     level?: string;
     authorName?: string;
     authorComments?: string[];
+    authorId?:string;
     outcomes?: string[];
     faq?: string[];
     curriculam?: string[];

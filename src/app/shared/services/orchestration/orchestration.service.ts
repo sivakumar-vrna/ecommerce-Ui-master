@@ -54,22 +54,17 @@ export class OrchestrationService {
     console.log("after if");
     console.log(userId)
     const url= environment.contentUrl +'trending?userId='+userId;
-      
+    // const url ='http://170.187.138.204:8089/book-service/book/trending?userId='+ userId;
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.getCall(url, capacitorUrl+ url);
   }
   
 
   async getLatest() {
-    // console.log("inside  getLatest");
     let userId = await this.userService.getUserId();
-    // console.log("first time login"); 
-    // console.log(userId);
     if (Number.isNaN(userId)){
       userId=0;
     }
-    // console.log("after if");
-    // console.log(userId)
     const url = environment.contentUrl +'latest?userId='+userId;
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.getCall(url,capacitorUrl + url);
@@ -127,6 +122,15 @@ export class OrchestrationService {
     return this.http.postCall(url, capacitorUrl, data);
   }
   
+  async removewatchitem(data){
+    const userId = await this.userService.getUserId();
+    const url = environment.watchlistUrl+'watchlist/'+ userId ;
+    const capacitorUrl = environment.capaciorUrl + url;
+    return this.http.deleteCall(url, capacitorUrl);
+
+
+
+  }
   
   orchestrateData(data: any) {
     let tempData: any[] = [];
@@ -145,9 +149,7 @@ export class OrchestrationService {
 async contentOrchestrate(content: any) {
   const cart: any[] = [];
   content['bannerurl'] = this.domainUrl + '/images' + content.bannerurl;
-  // content['posterurl'] = ' https://wallpaperaccess.com/full/3421332.jpg';
   // content['posterurl'] = this.domainUrl + '/images' + content.posterurl;
-  // content['cost']=;
 }
 
   async getupcoming() {
@@ -212,8 +214,7 @@ getCartItemsCount() {
    const capaciorUrl = environment.capaciorUrl + url;
    return this.http.postCall(url,capaciorUrl, postData)
   }
-
-
+  
   async getSavedAddress(): Promise<Observable<any>> {
     const userId = await this.userService.getUserId();
     const url = environment.authUrl + 'address/all?userId='+userId;
@@ -240,15 +241,32 @@ getCartItemsCount() {
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.postCall(url, capacitorUrl,updatedData);
   }
-
   
-
-
   addprofile(postData){
     const url = environment.authUrl +'profile/add';
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.postCall(url, capacitorUrl, postData);
   }
- 
+  
+  async getOrderDetails(){
+    const userId = await this.userService.getUserId();
+    // const url = environment.orderUrl +'allorders?userId='+userId;
+    const url ='http://170.187.138.204:8089/order-service/order/allorders?userId='+userId;
+    const capaciorUrl = environment.capaciorUrl + url;
+    return this.http.getCall(url,capaciorUrl)
+  }
+  
+async getAllAuthor(){
+  const userId = await this.userService.getUserId();
+  const url = environment.authorUrl +  'all?userId='+ userId;
+  const capaciorUrl = environment.capaciorUrl + url;
+  return this.http.getCall(url,capaciorUrl)
 
+}
+   
+  async getAuhtorDetails(bookId){
+    const url = environment.authorUrl + 'bookauthor?bookId='+ bookId;
+    const capaciorUrl = environment.capaciorUrl + url;
+    return this.http.getCall(url,capaciorUrl)
+  }
 }

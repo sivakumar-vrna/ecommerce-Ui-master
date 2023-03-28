@@ -57,15 +57,43 @@ export class AddressPage implements OnInit {
 
   ngOnInit() {
     this.ongetSavedAddress();
+    // this.activatedRoute.params.subscribe(params => {
+    //   const addressStr = params['address'];
+    //   if (addressStr) {
+    //     this.address = JSON.parse(decodeURIComponent(addressStr));
+    //   } else {
+    //     this.address = {};
+    //   }
+    // });
+
+    this.route.params.subscribe((params) => {
+      this.address = params['address'];
+    });
     this.activatedRoute.params.subscribe(params => {
       const addressStr = params['address'];
+
       if (addressStr) {
-        this.address = JSON.parse(decodeURIComponent(addressStr));
-      } else {
-        this.address = {};
+        const address = JSON.parse(decodeURIComponent(addressStr));
+        // this.userId = address.userId;
+        this.addressId = address.addressId;
+        this.firstName = address.firstName;
+        this.middleName = address.middleName;
+        this.lastName = address.lastName;
+        this.mobile = address.mobile;
+        this.email = address.email;
+        this.addressType = address.addressType;
+        this.address1 = address.address1;
+        this.address2 = address.address2;
+        this.area = address.area;
+        this.state = address.state;
+        this.country = address.country;
+        this.zipcode = address.zipcode;
+        this.date = address.date;
+        this.status = address.status;
       }
     });
   }
+  
   
   async ongetSavedAddress(){
     this.isLoading = true;
@@ -112,17 +140,19 @@ export class AddressPage implements OnInit {
   }
   )}
   
-  
-
-
-
-
+  editAddress(address: any) {
+    const addressStr = encodeURIComponent(JSON.stringify(address));
+    this.router.navigate(['/address', { address: addressStr }]);
+    console.log(addressStr);
+  }
 
    
-addNewAddress() {
+ addNewAddress() {
   if (this.addressData.length < 10) {
-    // Add new address code here
+    
   } else {
     this.toast.onWaring('You have already added the maximum number of addresses');
   }
-}}
+}
+
+}

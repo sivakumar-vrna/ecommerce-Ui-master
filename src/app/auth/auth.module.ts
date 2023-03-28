@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { SignupPage } from './signup/signup.page';
 import { LoginPage } from './login/login.page';
 import { ForgotPwdPage } from './forgot-pwd/forgot-pwd.page';
+import { IntroPageModule } from './intro/intro.module';
 // import { PasswordModule } from '../components/password/password.module';
 
 
@@ -26,6 +27,7 @@ import { ForgotPwdPage } from './forgot-pwd/forgot-pwd.page';
     ReactiveFormsModule,
     HttpClientModule,
     IonicModule,
+    IntroPageModule
     // PasswordModule
   ]
 })

@@ -27,9 +27,10 @@
               <ion-list>
                   <ion-item lines="inset" *ngFor="let cartitem of cartitems">
                    
-                    <ion-thumbnail slot="start" *ngIf="cartitem.posterurl">
-                      <ion-img [src]="cartitem.posterurl" alt="No preview"></ion-img>
-                    </ion-thumbnail>
+                    <!-- <ion-thumbnail slot="start" *ngIf="cartitem.posterurl">
+                      <ion-img [src]="cartitem.posterurl" alt="No preview" width="100"></ion-img>
+                    </ion-thumbnail> -->
+                    <img class="pe-4" [src]="cartitem.posterurl" width="100" />
                     <ion-label>
                       <h4>{{cartitem.bookid}}.</h4>
                       <p>Count: {{cartitem.count}}</p>
@@ -53,7 +54,7 @@
                     </div>
 
                     <p>Cart Items: </p>
-                    <ion-button fill="clear" color="dark" routerLink="/cart/3434">
+                    <ion-button fill="clear" color="dark" routerLink="/cart">
                       <ion-icon slot="start" name="cart"></ion-icon>
                       <ion-badge value=cartQty name=quantity slot="start" color="danger" Data-Badge size="medium">{{ cartitems.length }}</ion-badge>
                     </ion-button>

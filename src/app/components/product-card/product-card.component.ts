@@ -11,6 +11,7 @@ import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
 export class ProductCardComponent implements OnInit {
   bookDtls: Book[];
   bookid:any;
+  isLoading: boolean = false;
 
 
   @Input() data: Book;
@@ -22,6 +23,7 @@ export class ProductCardComponent implements OnInit {
   ) { }
 
   ngOnInit() { }
+  
   async GetBookDetails(bookId) {
     (await this.orchService.getBookDetails(bookId)).subscribe({
         next: (res: any) => {
@@ -36,5 +38,14 @@ export class ProductCardComponent implements OnInit {
           this.errorService.onError(error);
         }
       });
+    }
+
+ 
+    onSwiper() {
+      this.isLoading = true;
+    }
+  
+    onSwiperEnd() {
+      this.isLoading = false;
     }
 }

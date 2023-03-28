@@ -13,8 +13,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 
 export class CartPageService {
 
-  // onGetCartDetailsURL=' http://170.187.138.204:8089/customer-service/cart/get?userId=3434';
-
+ 
     constructor(
         public modalController: ModalController,
         private router: Router,
@@ -57,12 +56,11 @@ export class CartPageService {
     async onGetCartDetails() {
 
       console.log("Inside {onGetCartDetails} -->> cart.service --- here ")
-      // const url = this.onGetCartDetailsURL;
       const userId = await this.userService.getUserId();
       const url =environment.watchlistUrl +'cart/get?userId='+ userId;
       return this.http.getCall(url, environment.capaciorUrl+url);
 
-     // return this.http.get<any>("assets/trending.json");
+     
 
    }
 }

@@ -13,18 +13,17 @@ export class SearchService {
     constructor(private http: HttpService, private userService: UserService) { }
 
     async onSearchSuggest(search: string) {
-        const baseUrl = environment.contentUrl + 'book/services';
+        const baseUrl = environment.contentUrl + 'suggest';
         const userId = await this.userService.getUserId();
         const url = baseUrl + `?searchId=${search}&userId=${userId}`;
         const capacitorUrl = environment.capaciorUrl + url;
         return this.http.getCall(url, capacitorUrl);
-        
     }
     
-    async onSearch(searchKey: string) {
-        const baseUrl = environment.vrnaFlowUrl + 'search';
+    async onSearch(search: string) {
+        const baseUrl = environment.contentUrl + 'search';
         const userId = await this.userService.getUserId();
-        const url = baseUrl + `?searchKey=${searchKey}&userId=${userId}`;
+        const url = baseUrl + `?searchId=${search}&userId=${userId}`;
         const capacitorUrl = environment.capaciorUrl + url;
         return this.http.getCall(url, capacitorUrl);
     }

@@ -1,3 +1,21 @@
-<p>
-  author works!
-</p>
+<ion-header>
+  <app-topbar></app-topbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" [scrollEvents]="true">
+  <ion-searchbar [(ngModel)]="searchText" placeholder="Search Authors"></ion-searchbar>
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="2" *ngFor="let authors of author">
+        <ion-card class="ion-justify-content-center">
+          <img class="ion-justify-content-center" [src]="authors.imageUrl" width="220" height="220"/>
+          <ion-card-content class="ion-justify-content-center">
+            <ion-card-title style="justify-content: center;text-align: center;" >{{authors.authorname}}</ion-card-title>
+            <ion-button routerLink="/author-details/:{{authors.authorId}}" expand="block" color="primary">View Details</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

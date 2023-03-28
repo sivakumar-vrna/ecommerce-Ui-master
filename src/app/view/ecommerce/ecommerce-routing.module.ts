@@ -89,11 +89,11 @@ const routes: Routes = [
         loadChildren:() => import('../../pages/account/address/address.module').then(m => m.AddressPageModule)
       },
       {
-        path:'author',
+        path:'author/:id',
         loadChildren:() => import('../../pages/author/author.module').then(m => m.AuthorModule)
       },
       {
-        path:'author-details',
+        path:'author-details/:id',
         loadChildren:() => import('../../pages/author-details/author-details.module').then(m => m.AuthorDetailsModule)
       },
       {

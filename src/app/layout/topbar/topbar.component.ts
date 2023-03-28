@@ -138,7 +138,6 @@ RemoveToCart(cartitem:any){
 }
 async removeToCart(cartitem: any) {
   const data = {
-    // userId: "3434",
     userId:await this.UserService.getUserId(),
   
     bookId: cartitem.bookId
