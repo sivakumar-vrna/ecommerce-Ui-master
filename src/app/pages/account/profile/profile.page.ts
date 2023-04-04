@@ -51,12 +51,11 @@ export class ProfilePage implements OnInit {
   async onSubmit() {
     this.isSubmitted = true;
     const currentDate = new Date();
-  
     const postData = {
       age: this.newCardForm.value.age,
       name: this.newCardForm.value.name,
       date:currentDate.toISOString(), 
-      profileId: 0,
+      profileId:0,
       userId : await this.userService.getUserId()
   
     };
@@ -67,7 +66,7 @@ export class ProfilePage implements OnInit {
         if (res.status && res.status.toLowerCase() === 'success' && res.statusCode == 200) {
           console.log(res);
           if (res.message) {
-            this.toast.onSuccess(res.message);
+          this.toast.onSuccess(res.message);
           }
           this.modalController.dismiss({
             'new profile': true

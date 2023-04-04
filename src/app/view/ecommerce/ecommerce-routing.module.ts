@@ -120,6 +120,14 @@ const routes: Routes = [
         path:'featured-books',
         loadChildren:() => import('../../pages/all-books/featured-books/featured-books.module').then(m => m.FeaturedBooksModule)
       },
+      {
+        path:'privacy-policy',
+        loadChildren:() => import('../../modules/pages/privacy-policy/privacy-policy.module').then(m => m.PrivacyPolicyPageModule)
+      },
+      {
+        path:'terms-condition',
+        loadChildren:() => import('../../modules/pages/terms-conditions/terms-conditions.module').then(m => m.TermsConditionsPageModule)
+      },
 
       
     ]

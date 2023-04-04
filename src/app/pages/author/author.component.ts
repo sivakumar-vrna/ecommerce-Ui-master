@@ -30,7 +30,23 @@ export class AuthorComponent implements OnInit {
     this.onGetAllAuthor();
     this.filteredAuthors = this.author;
   }
+ 
 
+  onToggle(authors: any): void {
+    const toggle = event.target as HTMLElement;
+    const card = toggle.closest('.card') as HTMLElement;
+    const contact = card.querySelector('.contact') as HTMLElement;
+  
+    card.classList.toggle('active');
+    contact.classList.toggle('expanded');
+  }
+  
+
+  
+  
+  
+  
+ 
 
   
   async onGetAllAuthor(){
@@ -73,5 +89,7 @@ export class AuthorComponent implements OnInit {
     }
   }
   
+
+
 
 }

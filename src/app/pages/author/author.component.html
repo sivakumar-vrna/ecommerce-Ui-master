@@ -1,4 +1,6 @@
-<ion-header>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- <ion-header>
   <app-topbar></app-topbar>
 </ion-header>
 
@@ -14,6 +16,65 @@
             <ion-card-title style="justify-content: center;text-align: center;" >{{authors.authorname}}</ion-card-title>
             <ion-button routerLink="/author-details/:{{authors.authorId}}" expand="block" color="primary">View Details</ion-button>
           </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content> -->
+
+<ion-header>
+  <app-topbar></app-topbar>
+</ion-header>
+<ion-content [fullscreen]="true" [scrollEvents]="true">
+  <ion-grid>
+    <ion-row >
+      <ion-col size="4" *ngFor="let authors of author" > 
+        <ion-card>
+          <div class="card">
+            <div class="user">
+              <div class="imgB">
+                <img [src]="authors.imageUrl"   alt="{{authors.authorname}}">
+               </div>
+              <div class="content">
+                <h2>{{authors.authorname}}</h2>
+              </div>
+              <span (click)="onToggle(authors)" class="toggle"></span>
+            </div>
+            <ul class="contact">
+              <li style="--clr:#c71610;--i:0;">
+                <a href="#">
+                  <div class="iconB">
+                    <i class="fa-solid fa-envelope"></i>
+                  </div>
+                  <p>{{authors.authorname}}.com</p>
+                </a>
+              </li>
+              <li style="--clr:#171515;--i:0;">
+                <a href="#">
+                  <div class="iconB">
+                    <i class="fa-brands fa-square-github"></i>
+                  </div>
+                  <p>github{{authors.authorname}}</p>
+                </a>
+              </li>
+              <li style="--clr:#0a66c2;--i:0;">
+                <a href="#">
+                  <div class="iconB">
+                    <i class="fa-brands fa-linkedin"></i>
+                  </div>
+                  <p>linkedin{{authors.authorname}}</p>
+                </a>
+              </li>
+              <li style="--clr:#ff8c00;--i:0;">
+                <a routerLink="/author-details/:{{authors.authorId}}" >
+                <div class="iconB">
+                  <i class="fa-solid fa-user"></i>
+                </div>
+                <p>Author Details</p>
+              </a>
+            </li>
+            </ul>
+          </div>
         </ion-card>
       </ion-col>
     </ion-row>

@@ -14,25 +14,11 @@ export class PaymentService {
     private userService: UserService
   ) { }
 
-  // async addCard(postData: any) {
-  //   const baseUrl = environment.paymentUrl;
-  //   const url = baseUrl + 'payment/addCustomerCard';
-  //   const capacitorUrl = environment.capaciorUrl + url;
-  //   return this.http.postCall(url, capacitorUrl, postData);
-  // }
   async addCard(postData) {
     const url = environment.paymentUrl +'payment/addCustomerCard';
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.postCall(url, capacitorUrl, postData);
   }
-
-  // async deleteCard(postData: any) {
-  //   const baseUrl = environment.paymentUrl;
-  //   const url = baseUrl + 'payment/deleteCustomerCard';
-  //   const capacitorUrl = environment.capaciorUrl + url;
-  //   return this.http.postCall(url, capacitorUrl, postData);
-  // }
-
   
   async deleteCard(postData) {
     const url = environment.paymentUrl+'payment/deleteCustomerCard';

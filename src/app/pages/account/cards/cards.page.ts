@@ -58,8 +58,8 @@ export class CardsPage implements OnInit {
     ) { }
 
     ngOnInit() {
-      // this.onGetSavedCards();
-      // this.onDelete();
+      this.onGetSavedCards();
+      this.onDelete();
     }
 
     onCardSelection(e) {
@@ -93,12 +93,13 @@ export class CardsPage implements OnInit {
 
 
   async onDelete() {
+    
+    
     const deleteCardData = {
       "stripeCustId": this.cardDetail.stripeCustId,
       "stripeCardId": this.cardDetail.stripeCardId,
     }
-    
-     {
+    {
       (await this.paymentService.deleteCard(deleteCardData)).subscribe(
         (res: any) => {
           console.log(res);

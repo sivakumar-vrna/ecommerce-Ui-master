@@ -11,8 +11,11 @@ import { Subscription,Subject } from 'rxjs';
 import { ToastWidget } from 'src/app/shared/widgets/toast.widget';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { UserService } from 'src/app/shared/services/user.service';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 
+
+declare var google: any;
 
 
 
@@ -29,19 +32,26 @@ export interface ProfileMenu {
   styleUrls: ['./topbar.component.scss'],
 })
 export class TopbarComponent implements OnInit {
+  public cartQty: number = 0;
+  // cartQty = 5;
 
   cartItemCount: number;
-
+  selectedCountry:string;
   
   bookDtls: Book[];
   bookid:any;
   @Input() data: Book;
   // routeSub: Subscription;
 
-  cartitems:any;
+   public   cartitems:any;
   cartData = new Subject();
   currentTheme: boolean;
   public isMobile: boolean = false;
+  
+
+  location: string;
+  locationError: string;
+
   
 
 
@@ -64,21 +74,47 @@ export class TopbarComponent implements OnInit {
     private errorService: ErrorService,
     public toast: ToastWidget,
     private authService:AuthService,
-    private UserService:UserService
-
-
-
-    ){
-    if (isPlatform('capacitor')) {
+    private UserService:UserService,
+    private geolocation: Geolocation
+    )
+    {
+       if (isPlatform('capacitor')) {
       this.isMobile = true;
     }
     this.getCurrentTheme();
-  }
+}
 
   ngOnInit() {
-    // this.getAllCartItems();
     
    }
+
+
+  
+  
+  //  getCurrentLocation() {
+  //   this.geolocation.getCurrentPosition().then((resp) => {
+  //     const latlng = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+  //     const geocoder = new google.maps.Geocoder();
+
+  //     geocoder.geocode({ location: latlng }, (results, status) => {
+  //       if (status === 'OK') {
+  //         if (results[0]) {
+  //           const city = results[0].address_components.find((component) =>
+  //             component.types.includes('locality')
+  //           ).long_name;
+  //           document.getElementById('city').innerHTML = city;
+  //         } else {
+  //           console.log('No results found');
+  //         }
+  //       } else {
+  //         console.log('Geocoder failed due to: ' + status);
+  //       }
+  //     });
+  //   });
+  // }
+
+
+
 
   async getCurrentTheme() {
     const theme: any = await Storage.get({ key: THEME_KEY });

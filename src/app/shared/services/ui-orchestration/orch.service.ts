@@ -49,7 +49,7 @@ export class OrchService {
         const tempGenres = await Storage.get({ key: GENRES_KEY });
         const genresDataSrc = JSON.parse(tempGenres.value);
         book['bookbannerurl'] = this.domainUrl + '/images' + book.bookbannerurl;
-        book['posterurl'] = this.domainUrl + '/images' + book.posterurl;
+        // book['posterurl'] = this.domainUrl + '/images' + book.posterurl;
         genresDataSrc?.map((genre: any) => {
             book?.genre?.find((x: any) => x === genre.genreId) ? genreName.push(genre.genreDesc) : '';
         });

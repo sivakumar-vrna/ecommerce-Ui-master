@@ -5,6 +5,11 @@ import { TopbarComponent } from './topbar.component';
 import { RouterModule } from '@angular/router';
 import { LoginModule } from 'src/app/modules/login/login.module';
 import { AuthModule } from 'src/app/auth/auth.module';
+import { FormsModule } from '@angular/forms';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
+
+
 
 @NgModule({
   declarations: [
@@ -16,11 +21,12 @@ import { AuthModule } from 'src/app/auth/auth.module';
     RouterModule,
     LoginModule,
     AuthModule,
-  
-
+    FormsModule
   ],
   exports: [
     TopbarComponent
-  ]
+  ],
+  providers: [Geolocation],
 })
+
 export class TopbarModule {}
