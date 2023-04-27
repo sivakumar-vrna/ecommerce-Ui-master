@@ -2,7 +2,8 @@ import { Component, OnInit ,ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IonModal, Platform } from '@ionic/angular';
 import { ToastWidget } from '../shared/widgets/toast.widget';
-import { AuthService } from './auth.service';
+// import { AuthService } from './auth-orch.service';
+import { AuthService } from '../shared/services/auth/auth.service';
 import { OverlayEventDetail } from '@ionic/core/components';
 import { GoogleAuth } from '@codetrix-studio/capacitor-google-auth';
 

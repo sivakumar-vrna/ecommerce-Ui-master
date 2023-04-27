@@ -40,15 +40,6 @@ export class AuthorComponent implements OnInit {
     card.classList.toggle('active');
     contact.classList.toggle('expanded');
   }
-  
-
-  
-  
-  
-  
- 
-
-  
   async onGetAllAuthor(){
     const loading = await this.loadingCtrl.create({
       message: 'Loading...',

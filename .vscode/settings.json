@@ -1,0 +1,10 @@
+{
+     "editor.wordWrap": "wordWrapColumn",
+    "angular.log": "normal",
+    "angular2-switcher.styleFormats": [
+      ".scss",
+      ".sass",
+      ".less",
+      ".css"
+    ]
+}

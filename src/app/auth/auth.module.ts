@@ -10,7 +10,10 @@ import { LoginPage } from './login/login.page';
 import { ForgotPwdPage } from './forgot-pwd/forgot-pwd.page';
 import { IntroPageModule } from './intro/intro.module';
 // import { PasswordModule } from '../components/password/password.module';
-
+// import { GoogleAuthModule } from './social/google-auth/google-auth.module';
+// import { FbAuthModule } from './social/fb-auth/fb-auth.module';
+import { GoogleAuthModule } from './social/google-auth/google-auth.module';
+import { FbAuthModule } from './social/fb-auth/fb-auth.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import { IntroPageModule } from './intro/intro.module';
     ReactiveFormsModule,
     HttpClientModule,
     IonicModule,
-    IntroPageModule
+    IntroPageModule,
+    GoogleAuthModule,
+    // FbAuthModule,
     // PasswordModule
   ]
 })

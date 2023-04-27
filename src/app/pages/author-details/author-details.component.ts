@@ -66,10 +66,10 @@ export class AuthorDetailsComponent implements OnInit {
   }
   
   ngOnInit() {
-      this.onGetLatest();
+      this.onGetAllBooks();
       this.onGetAuthorDetails();
       // this.onGetAllAuthor();
-  }
+    }
   
   dismiss() {
     this.modalController.dismiss({
@@ -80,8 +80,8 @@ export class AuthorDetailsComponent implements OnInit {
   
    scrollToTop() {
     this.content.scrollToTop(500);
-  }
 
+  }
 
   async onGetAllAuthor(){
     const loading = await this.loadingCtrl.create({
@@ -111,7 +111,7 @@ export class AuthorDetailsComponent implements OnInit {
   }
   
   async onGetAuthorDetails() {
-    const bookId = this.route.snapshot.paramMap.get('id');
+    const authorId = this.route.snapshot.paramMap.get('id');
     const loading = await this.loadingCtrl.create({
       message: 'Loading...',
       spinner: 'bubbles',
@@ -120,7 +120,7 @@ export class AuthorDetailsComponent implements OnInit {
     });
     await loading.present();
   
-    (await this.orchService.getAuhtorDetails(bookId)).subscribe({
+    (await this.orchService.getAuhtorDetails(authorId)).subscribe({
       next: (res: any) => {
         if (res?.status?.toLowerCase() === 'success' && res?.statusCode == 200) {
           this.author = res.data;
@@ -137,15 +137,16 @@ export class AuthorDetailsComponent implements OnInit {
       }
     });
   }
+
+  async onGetAllBooks() {
+    // const bookId = this.route.snapshot.paramMap.get('bookId'); 
   
-  async onGetLatest() {
     const loading = await this.loadingCtrl.create({
       message: 'Loading...',
       spinner: 'bubbles',
       translucent: true,
       cssClass: 'custom-class custom-loading'
     });
-    
     await loading.present();
     (await this.orchService.getLatest()).subscribe({
       next: (res: any) => {
@@ -164,6 +165,7 @@ export class AuthorDetailsComponent implements OnInit {
     });
   }
 }
+
   
 
 

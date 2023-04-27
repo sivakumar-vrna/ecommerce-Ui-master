@@ -39,7 +39,7 @@ export class OrchestrationService {
   }
 
   async getBanner() {
-    const url = environment.contentUrl +'book/banner';
+    const url = environment.contentUrl +'banner';
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.getCall(url, capacitorUrl + url);
   }
@@ -54,7 +54,6 @@ export class OrchestrationService {
     console.log("after if");
     console.log(userId)
     const url= environment.contentUrl +'trending?userId='+userId;
-    // const url ='http://170.187.138.204:8089/book-service/book/trending?userId='+ userId;
     const capacitorUrl = environment.capaciorUrl + url;
     return this.http.getCall(url, capacitorUrl+ url);
   }
@@ -264,9 +263,23 @@ async getAllAuthor(){
 
 }
    
-  async getAuhtorDetails(bookId){
-    const url = environment.authorUrl + 'bookauthor?bookId='+ bookId;
+async getAuhtorDetails(authorId){
+    const url = environment.authorUrl + authorId;
     const capaciorUrl = environment.capaciorUrl + url;
     return this.http.getCall(url,capaciorUrl)
-  }
+}
+
+async getAuthorallBooks(bookId){
+  const url = environment.authorUrl +'bookauthor?bookId='+ bookId;
+  const capaciorUrl = environment.capaciorUrl + url;
+  return this.http.getCall(url,capaciorUrl)
+}
+
+// async getAuthorallBooks(bookId) {
+//   const url = environment.authorUrl + 'bookauthor?bookId=' + bookId; // remove extra forward slash
+//   const capacitorUrl = environment.capacitorUrl + url;
+//   return this.http.getCall(url, capacitorUrl);
+// }
+
+
 }

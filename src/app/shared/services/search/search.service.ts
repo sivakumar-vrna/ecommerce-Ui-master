@@ -13,8 +13,12 @@ export class SearchService {
     constructor(private http: HttpService, private userService: UserService) { }
 
     async onSearchSuggest(search: string) {
+        
         const baseUrl = environment.contentUrl + 'suggest';
-        const userId = await this.userService.getUserId();
+        let userId = await this.userService.getUserId();
+        if (Number.isNaN(userId)){
+            userId=0;
+          }
         const url = baseUrl + `?searchId=${search}&userId=${userId}`;
         const capacitorUrl = environment.capaciorUrl + url;
         return this.http.getCall(url, capacitorUrl);

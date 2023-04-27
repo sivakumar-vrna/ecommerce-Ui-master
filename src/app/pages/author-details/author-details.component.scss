@@ -145,4 +145,13 @@ box-shadow:none !important
 }
 
 
+
+#scroll-to-top-button ion-icon {
+    color: blue;
+  }
+  
+  #scroll-to-top-button.active ion-icon {
+    color: red; 
+  }
+  
   
